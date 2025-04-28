@@ -52,7 +52,90 @@
               </div>
             </div>
           </div>
+          <div class="tab-content mt-3" id="myTabContent">
+            <div class="card mt-4">
+              <div class="card-header bg-secondary text-white">
+                Сервер
+              </div>
+              <div class="card-body">
+<!-- Вкладки -->
+<ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="disk-tab" data-bs-toggle="tab" href="#disk" role="tab" aria-controls="disk" aria-selected="true">
+      Использование диска
+    </a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="processes-tab" data-bs-toggle="tab" href="#processes" role="tab" aria-controls="processes" aria-selected="false">
+      Активные процессы
+    </a>
+  </li>
+</ul>
+
+<!-- Вкладки содержимое -->
+<div class="tab-content mt-3">
+
+  <!-- Вкладка "Использование диска" -->
+  <div class="tab-pane fade show active" id="disk" role="tabpanel" aria-labelledby="disk-tab">
+    <!-- Полоса прогресса для использования диска -->
+    <div class="progress-bar-container mb-3">
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar" role="progressbar" style="width: {{ disk_usage_percentage }}%;" aria-valuenow="{{ disk_usage_percentage }}" aria-valuemin="0" aria-valuemax="100">
+          {{ disk_usage_percentage }}%
         </div>
+      </div>
+    </div>
+
+    <div class="d-flex mb-3">
+      <div class="text-danger">
+        <span class="dot red"></span> Занято
+      </div>
+      <div class="text-primary text-end">
+        <span class="dot blue"></span> Свободно
+      </div>
+    </div>
+
+    <table class="table table-bordered table-dark text-center">
+      <thead>
+        <tr>
+          <th>Директория</th>
+          <th>Размер</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in disk_usage %}
+        <tr>
+          <td>{{ entry.directory }}</td>
+          <td>{{ entry.size }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  
+  <!-- Вкладка "Активные процессы" -->
+  <div class="tab-pane fade" id="processes" role="tabpanel" aria-labelledby="processes-tab">
+    <table class="table table-bordered table-dark text-center">
+      <thead>
+        <tr>
+          <th>CPU (%)</th>
+          <th>Команда</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for process in processes %}
+        <tr>
+          <td>{{ process.cpu }}%</td>
+          <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" data-bs-toggle="tooltip" title="{{ process.command }}">
+            {{ process.command[:50] }}{% if process.command|length > 50 %}...{% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
