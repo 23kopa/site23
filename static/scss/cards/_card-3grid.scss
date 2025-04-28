@@ -1,0 +1,17 @@
+.card-3grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три колонки */
+    gap: 20px;
+    align-items: start;
+    justify-items: stretch;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.one-3column,
+.two-3column,
+.three-3column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

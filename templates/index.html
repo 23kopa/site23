@@ -1,40 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Панель управления myBot</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white text-center">
-                        <h2 class="mb-0">Панель управления myBot</h2>
-                    </div>
-                    <div class="card-body text-center">
-                        <p class="lead mb-4">Выберите действие:</p>
-                        <div class="d-flex justify-content-around mb-4">
-                            <a href="/start_bot" class="btn btn-success btn-lg"><i class="fas fa-play"></i> Запуск бота</a>
-                            <a href="/stop_bot" class="btn btn-danger btn-lg"><i class="fas fa-stop"></i> Остановить бота</a>
-                            <a href="/restart_bot" class="btn btn-warning btn-lg"><i class="fas fa-sync-alt"></i> Перезапуск бота</a>
-                        </div>
-                        <hr>
-                    </div>
-                </div>
+{% extends 'cards-col/card-1col.html' %}
+
+{% block title %}Мой Бот{% endblock %}
+
+{% block one_column %}
+<!-- Карточка 1 -->
+<div class="card">
+    <div class="card-content">
+        <div class="console">
+            <div id="terminal-output">
+                <div class="text"></div>
+                <!-- <div class="cursor"></div> -->
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ url_for('static', filename='/js/scripts.js') }}"></script>
-    <script>
-        toastr.success('Тестовое уведомление', 'Успех');
-    </script>
-</body>
-</html>
+    {% endblock %}

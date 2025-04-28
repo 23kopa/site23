@@ -1,0 +1,78 @@
+@use "cards/card-1grid";
+@use "cards/card-2grid";
+@use "cards/card-3grid";
+@use "cards/card-4grid";
+
+@use "items/table";
+@use "items/card";
+@use "items/description";
+@use "items/notification";
+@use "items/buttons";
+@use "items/navbar";
+@use "items/console";
+
+//! -------------------- Общее содержимое -------------------- //
+.content {
+    flex: 100%;
+    max-width: 100%;
+    padding-top: 69px; /* отступ сверху, чтобы отступить от navbar */
+    box-sizing: border-box; /* чтобы padding не увеличивал ширину блока */
+    padding-left: 10px; /* Добавляет отступ слева */
+    padding-right: 10px; /* Добавляет отступ справа */
+}
+
+//! -------------------- Фон страницы -------------------- //
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "Press Start 2P", Courier, monospace;
+    position: relative;
+    overflow-y: auto;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+//! -------------------- Скролл -------------------- //
+
+/* Кастомизация скроллбаров для всех элементов */
+::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикального скроллбара */
+    height: 10px; /* Высота горизонтального скроллбара */
+}
+
+/* Кастомизация "ползунка" скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #00ff88; /* Цвет ползунка */
+    border-radius: 10px; /* Скругление углов ползунка */
+    border: 2px solid #000000; /* Граница вокруг ползунка */
+}
+
+/* Кастомизация области, по которой ползунок двигается */
+::-webkit-scrollbar-track {
+    background-color: #000000; /* Цвет области, по которой движется ползунок */
+    border-radius: 10px; /* Скругление углов области */
+}
+
+/* Кастомизация горизонтального скроллбара */
+::-webkit-scrollbar-horizontal {
+    height: 8px;
+}
+
+/* Кастомизация вертикального скроллбара */
+::-webkit-scrollbar-vertical {
+    width: 8px;
+}
+
+//! -------------------- Для мобильных телефонов -------------------- //

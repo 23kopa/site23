@@ -1,0 +1,69 @@
+//! -------------------- Контейнер с кнопами -------------------- //
+.buttons-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Размещение кнопок в столбик */
+    align-items: center; /* Выравнивание кнопок по центру */
+}
+
+//! -------------------------- Основной стиль для кнопок -------------------------- //
+.btn {
+    position: relative; /* Относительное позиционирование для дочерних элементов */
+    overflow: hidden; /* Прячем содержимое, выходящее за пределы кнопки */
+    text-transform: uppercase; /* Преобразуем текст в заглавные */
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease,
+        color 0.3s ease;
+
+    font-size: 10px; /* Размер шрифта */
+    font-weight: 600; /* Жирный шрифт */
+    color: #000000; /* Черный текст */
+
+    width: 100%; /* Кнопка занимает всю ширину контейнера */
+
+    background-color: #00ffaa; /* Зеленый фон */
+    border: 2px solid #00ffaa; /* Зеленая рамка */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+
+    border-radius: 10px; /* Скругленные углы */
+    padding: 5px 20px; /* Отступы внутри кнопки */
+    margin: 0 10px; /* Отступы слева и справа */
+    margin-bottom: 10px; /* Отступ между кнопками */
+}
+
+//! -------------------------- Эффект при наведении на кнопку -------------------------- //
+.btn:hover {
+    transform: translateY(-5px); /* Двигаем кнопку вверх при наведении */
+    background-color: #1f8f00; /* Темный зеленый фон при наведении */
+    color: #00ff00; /* Зеленый текст */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Усиление тени */
+}
+
+.icon {
+    font-size: 1em;
+    position: relative;
+    top: -2.3px;
+    vertical-align: middle;
+    margin-right: -3px;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0.6;
+    background: #00ff88;
+    pointer-events: none;
+    animation: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

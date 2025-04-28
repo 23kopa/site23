@@ -1,0 +1,22 @@
+//! -------------------------- Основной стиль для карточек -------------------------- //
+.card-1grid-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* Столбик, одна карточка */
+    gap: 20px;
+    align-items: start;
+    justify-items: stretch;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.one-1column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .card-1grid-layout {
+        margin-top: 20px;
+    }
+}
