@@ -56,4 +56,10 @@ def restart_bot():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    # Укажи абсолютные пути к сертификату и ключу
+    app.run(
+        host='0.0.0.0', 
+        port=5000, 
+        debug=True,
+        ssl_context=('/etc/letsencrypt/live/botmanager.site/fullchain.pem', '/etc/letsencrypt/live/botmanager.site/privkey.pem')
+    )

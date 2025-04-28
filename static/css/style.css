@@ -1,79 +1,136 @@
-
+/* Фон страницы */
 body {
-    background-color: #000000; /* светлый фон */
+    display: flex;
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    margin: 0; /* Убираем отступы */
+    background-color: #000000; /* Черный фон */
+    color: #00FF00; /* Зеленый текст */
+    font-family: 'Press Start 2P', Courier, monospace; /* Пиксельный шрифт */
+}
+
+/* Заголовки */
+h2 {
+    color: #00FF00; /* Зеленый текст */
+    font-size: 2.5em; /* Размер заголовка */
+    text-transform: uppercase; /* Все заглавные буквы */
+    letter-spacing: 2px; /* Расстояние между буквами */
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00; /* Эффект свечения */
 }
 
 /* Основной стиль для кнопок */
 .btn {
     position: relative;
     overflow: hidden;
-    border-radius: 50px; /* скругленные углы */
-    padding: 8px 20px; /* уменьшенный внутренний отступ */
-    font-size: 14px; /* уменьшенный размер шрифта */
+    border-radius: 10px; /* скругленные углы */
+    padding: 10px 20px; /* отступы */
+    font-size: 14px; /* размер шрифта */
     font-weight: 600;
-    text-transform: uppercase;
-    transition: all 0.3s ease; /* плавные переходы */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* теневой эффект */
+    text-transform: uppercase; /* Преобразуем текст в заглавные */
+    transition: all 0.3s ease; /* Плавные переходы */
+    background-color: #00FF00; /* Зеленый фон */
+    color: #000000; /* Черный текст */
+    border: 2px solid #00FF00; /* Зеленая рамка */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
     margin: 0 10px;
+}
+
+.d-flex {
+    flex-direction: column; /* Меняем расположение кнопок на вертикальное */
+    align-items: center; /* Выравниваем кнопки по центру */
+}
+
+/* Добавляем отступы между кнопками */
+.btn {
+    margin-bottom: 10px; /* Отступ между кнопками */
+    width: 100%; /* Делаем кнопки на всю ширину */
 }
 
 /* Эффект при наведении на кнопку */
 .btn:hover {
-    transform: translateY(-5px); /* небольшое движение вверх */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* усиление тени */
+    transform: translateY(-5px); /* Двигаем вверх */
+    background-color: #1f8f00; /* Темный зеленый при наведении */
+    color: #00FF00; /* Зеленый текст */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Усиление тени */
 }
 
-/* Анимация фона при наведении */
-.btn::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.2); /* легкий фон для анимации */
-    transition: all 0.4s;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
+/* Карточки */
+.card {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    background-color: #111111; /* Черный фон для карточек */
+    border: 2px solid #00FF00; /* Зеленая обводка */
+    width: 450px; /* Устанавливаем фиксированную ширину */
+    margin: auto; /* Центрируем карточку */
 }
 
-.btn:hover::before {
-    width: 0;
-    height: 0; /* сужение круга на кнопке */
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Усиление тени */
 }
 
-/* Цвета для каждой кнопки */
-.btn-success {
-    background-color: #27ae60; /* зеленый для успеха */
-    color: white;
+.card-header.bg-primary {
+    background-color: #000000 !important; /* Синий фон */
+    color: #fff !important; /* Белый текст */
+    padding-top: 40px; /* Отступ сверху, чтобы опустить заголовок */
 }
 
-.btn-success:hover {
-    background-color: #2ecc71; /* светлый зеленый при наведении */
+.card-body {
+    background-color: #000000; /* Черный фон */
+    color: #00FF00; /* Зеленый текст */
+    padding: 20px;
 }
 
-.btn-danger {
-    background-color: #e74c3c; /* красный для опасности */
-    color: white;
+.card-body p {
+    font-size: 18px; /* Размер текста */
+    line-height: 1.5;
+    text-align: center;
 }
 
-.btn-danger:hover {
-    background-color: #c0392b; /* темный красный при наведении */
+.card-logo {
+    width: 400px;  /* Устанавливаем ширину логотипа */
+    height: auto;  /* Высота будет автоматически подстраиваться, сохраняя пропорции */
+    margin-bottom: 10px;  /* Отступ снизу */
+    
 }
 
-.btn-warning {
-    background-color: #f39c12; /* желтый для предупреждения */
-    color: white;
+@media (max-width: 768px) {
+    .card {
+        width: 90%; /* Уменьшаем ширину карточки для мобильных устройств */
+        margin: 10px auto; /* Центрируем карточку и добавляем отступы слева и справа */
+    }
+
+    .card-logo {
+        width: 80%;  /* Логотип будет меньше на мобильных */
+    }
+
+    .btn {
+        font-size: 12px; /* Меньший размер шрифта для кнопок */
+        padding: 8px 16px; /* Меньшие отступы */
+    }
+
+    h2 {
+        font-size: 1.8em; /* Меньше размер заголовка */
+    }
 }
 
-.btn-warning:hover {
-    background-color: #e67e22; /* темный желтый при наведении */
-}
+/* Адаптивные стили для экранов маленьких мобильных устройств */
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Карточка будет занимать всю ширину экрана */
+        margin: 10px auto; /* Центрируем карточку и добавляем отступы слева и справа */
+    }
 
-/* Цвет текста и фона кнопок для контраста */
-.btn:focus {
-    outline: none; /* убираем фокусное кольцо */
-    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* добавление эффекта фокуса */
-}
+    .card-logo {
+        width: 70%;  /* Логотип будет еще меньше на очень маленьких экранах */
+    }
 
+    .btn {
+        font-size: 10px; /* Еще меньший размер шрифта для кнопок */
+    }
+
+    h2 {
+        font-size: 1.5em; /* Еще меньший размер заголовка */
+    }
+}
