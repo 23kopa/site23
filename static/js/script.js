@@ -23,3 +23,29 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Функция для запроса данных о диске
+function fetchDiskUsage() {
+    fetch('/get_disk_usage')
+        .then(response => response.json())  // Получаем данные в формате JSON
+        .then(data => {
+            // Формируем HTML для отображения данных
+            let content = '<ul>';
+            data.forEach(item => {
+                content += `<li><strong>Директория:</strong> ${item.directory} - <strong>Размер:</strong> ${item.size}</li>`;
+            });
+            content += '</ul>';
+            
+            // Вставляем данные в тело модального окна
+            document.getElementById('diskUsageContent').innerHTML = content;
+        })
+        .catch(error => {
+            console.error('Ошибка при получении данных:', error);
+            document.getElementById('diskUsageContent').innerHTML = 'Произошла ошибка при получении данных.';
+        });
+}
+
+// Другие скрипты здесь
+document.addEventListener("DOMContentLoaded", function () {
+    // Ваши другие события
+});
