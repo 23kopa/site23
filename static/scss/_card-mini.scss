@@ -1,0 +1,17 @@
+.card-mini {
+    display: flex;
+    flex-direction: column; /* Добавим для правильного размещения элементов внутри */
+    background-color: #424242;
+    border-radius: 12px;
+    padding: 20px;
+    color: #00ff88;
+    height: auto; /* Высота под содержимое */
+    width: auto; /* Ширина под содержимое */
+    align-items: center; /* Центрирование содержимого, включая кнопки */
+    margin-bottom: 15px; /* Добавит отступ после контейнера */
+}
+
+.card-mini p {
+    width: 100%; /* Параграф также на всю ширину */
+    margin: 0; /* Убираем лишние отступы */
+}
