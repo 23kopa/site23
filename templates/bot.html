@@ -1,0 +1,213 @@
+{% extends 'cards-col/card-4col.html' %}
+
+{% block title %}Мой Бот{% endblock %}
+
+{% block one_column %}
+<div class="collumn">
+    <!-- Карточка CPU -->
+    <div class="card">
+        <div class="card-content">
+            <h2>CPU</h2>
+            <div class="description-card">
+                <p id="model">Intel Xeon E5-2680 v4</p>
+                <hr>
+                <p id="cpu-usage">Загрузка...</p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" onclick="fetchCpuUsage()">Обновить</button>
+            </div>
+        </div>
+    </div>
+    <!-- Карточка Память -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Память</h2>
+            <div class="description-card">
+                <p>Запрос памяти с сервера.</p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal"
+                    onclick="fetchDiskUsage()">
+                    <i class="fas fa-file-alt icon"></i> Запросить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block two_column %}
+<div class="collumn">
+    <!-- Карточка Управления ботом -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Управление ботом</h2>
+            <div class="buttons-container">
+
+                <!-- Кнопки для управления ботом -->
+
+                <a href="/start_bot" class="btn btn-success btn-lg">
+                    <i class="fas fa-play icon"></i> Запуск бота
+                </a>
+                <a href="/stop_bot" class="btn btn-danger btn-lg">
+                    <i class="fas fa-stop icon"></i> Остановить бота
+                </a>
+                <a href="/restart_bot" class="btn btn-warning btn-lg">
+                    <i class="fas fa-sync-alt icon"></i> Перезапуск бота
+                </a>
+                <a href="/logs" class="btn btn-info btn-lg">
+                    <i class="fas fa-file-alt icon"></i> Просмотр логов
+                </a>
+
+                <div class="buttons-container">
+                    <button class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown"
+                        id="dropdownMenuButton">
+                        <i class="fas fa-globe icon"></i> Ссылки
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="/start_bot"><i class="fas fa-play"></i> GitHub</a>
+                        </li>
+                        <li><a class="dropdown-item" href="/stop_bot"><i class="fas fa-stop"></i> Telegram</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- Карточка Cron задачи -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Cron задачи</h2>
+            <div class="description-card">
+                <p>Запрос памяти с сервера.</p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal"
+                    onclick="fetchDiskUsage()">
+                    <i class="fas fa-file-alt icon"></i> Запросить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block three_column %}
+<div class="collumn">
+    <div class="card">
+        <div class="card-content">
+            <h2>Сеть</h2>
+            <div class="description-card">
+                <p>>> Байты
+                <p>
+                <p>Отправлено: <span id="sent-bytes">...</span></p>
+                <p>Получено: <span id="received-bytes">...</span></p>
+                <hr>
+                <p>>> Пакеты
+                <p>
+                <p>Отправлено: <span id="sent-packets">...</span></p>
+                <p>Получено: <span id="received-packets">...</span></p>
+            </div>
+
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" onclick="fetchNetworkInfo()">Обновить</button>
+            </div>
+            <div class="tab-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Интерфейс</th>
+                            <th>Адрес</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>External IP</td>
+                            <td>185.22.172.242</td>
+                        </tr>
+                        <tr>
+                            <td>Wi-Fi</td>
+                            <td>192.168.0.101</td>
+                        </tr>
+                        <tr>
+                            <td>Ethernet</td>
+                            <td>172.16.1.191</td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td>169.254.104.4</td>
+                        </tr>
+                        <tr>
+                            <td>AmneziaVPN</td>
+                            <td>10.8.1.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- Карточка Cron задачи -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Nginx</h2>
+            <div class="description-card">
+                <p>Статус: <span id="nginx-status">Загрузка...</span></p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Запуск</button>
+                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Остановка</button>
+            </div>
+        </div>
+    </div>
+    <!-- Карточка Cron задачи -->
+    <div class="card">
+        <div class="card-content">
+            <h2>SSL-сертификаты</h2>
+            <div class="description-card">
+                <p><span id="ssl-status">Загрузка...</span></p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" onclick="fetchSslStatus()">Запросить статус</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block four_column %}
+<div class="collumn">
+    <!-- Карточка Cron задачи -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Cron задачи</h2>
+            <div class="description-card">
+                <p>Запрос памяти с сервера.</p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal"
+                    onclick="fetchDiskUsage()">
+                    <i class="fas fa-file-alt icon"></i> Запросить
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Карточка Сеть -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Заметки</h2>
+            <div class="description-card">
+                <p>Запрос памяти с сервера.</p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal"
+                    onclick="fetchDiskUsage()">
+                    <i class="fas fa-file-alt icon"></i> Запросить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

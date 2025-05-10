@@ -1,152 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends 'cards-col/card-1col.html' %}
 
-<head>
-    <!-- Метатеги для кодировки и адаптации на мобильных устройствах -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Панель управления myBot</title>
+{% block title %}Мой Бот{% endblock %}
 
-    <!-- Подключение внешних стилей -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
-    <!-- Навигационная панель -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-success px-4 fixed-top">
-        <a class="navbar-brand text-success fw-bold" href="#">
-            <i class="fas fa-robot"></i> myBot
-        </a>
-
-        <!-- Кнопка для мобильного меню -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Переключить навигацию">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <!-- Меню для навигации -->
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-success" href="/">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-success" href="/logs">Логи</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-success" href="/settings">Настройки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-success" href="/about">О проекте</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <main>
-        <div class="card-container">
-
-            <!-- Карточка 1 -->
-            <div class="card-memmory">
-                <h2>Память</h2>
-                <div class="card-mini">
-                    <p>Запрос памяти с сервера.</p>
-                </div>
-                <div class="buttons-container">
-                    <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal"
-                        onclick="fetchDiskUsage()">
-                        <i class="fas fa-file-alt icon"></i> Запросить
-                    </button>
-                </div>
-            </div>
-
-            <!-- Карточка 2 -->
-            <div class="card">
-                <h2>Управление ботом</h2>
-                <div class="buttons-container">
-
-                    <!-- Кнопки для управления ботом -->
-
-                    <a href="/start_bot" class="btn btn-success btn-lg">
-                        <i class="fas fa-play icon"></i> Запуск бота
-                    </a>
-                    <a href="/stop_bot" class="btn btn-danger btn-lg">
-                        <i class="fas fa-stop icon"></i> Остановить бота
-                    </a>
-                    <a href="/restart_bot" class="btn btn-warning btn-lg">
-                        <i class="fas fa-sync-alt icon"></i> Перезапуск бота
-                    </a>
-                    <a href="/logs" class="btn btn-info btn-lg">
-                        <i class="fas fa-file-alt icon"></i> Просмотр логов
-                    </a>
-
-                    <div class="buttons-container">
-                        <button class="btn btn-success btn-lg dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fas fa-globe icon"></i> Ссылки
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <li><a class="dropdown-item" href="/start_bot"><i class="fas fa-play"></i> GitHub</a>
-                            </li>
-                            <li><a class="dropdown-item" href="/stop_bot"><i class="fas fa-stop"></i> Telegram</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Карточка 3 -->
-            <div class="card">
-                <h2>Активные процессы</h2>
-                <div class="card-mini">
-                    <p>Описание.</p>
-                </div>
-                <div class="tab-content mt-3" id="myTabContent">
-
-                </div>
-            </div>
-
-    </main>
-
-    <!-- Модальное окно для disk usage -->
-    <div class="modal fade" id="diskModal" tabindex="-1" aria-labelledby="diskModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="diskModalLabel">Состояние диска</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Размер</th>
-                                <th>Директория</th>
-                            </tr>
-                        </thead>
-                        <tbody id="diskUsageTableBody">
-                            <!-- Заполнится через JS -->
-                        </tbody>
-                    </table>
-                </div>
+{% block one_column %}
+<!-- Карточка 1 -->
+<div class="card">
+    <div class="card-content">
+        <div class="console">
+            <div id="terminal-output">
+                <div class="text"></div>
+                <!-- <div class="cursor"></div> -->
             </div>
         </div>
     </div>
-
-    <!-- Подключение внешних скриптов -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script>
-        toastr.success("Тестовое уведомление", "Успех");  // Пример уведомления
-    </script>
-</body>
-
-</html>
+    {% endblock %}

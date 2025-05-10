@@ -1,0 +1,71 @@
+/* Стиль терминала */
+.console {
+    background-color: #000000; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+    border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+    padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
+    color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+    font-family: "Press Start 2P", Courier, monospace; /* Пиксельный шрифт для текста */
+    border-radius: 8px;
+    width: auto;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    align-items: flex-start; /* ← выравнивание по левому краю */
+}
+
+/* Стиль для текста */
+#terminal-output {
+    text-align: left;
+    font-size: 20px;
+    line-height: 1.5;
+    position: relative;
+    text-shadow: /* Эффект свечения */
+        0 0 5px #195419,
+        0 0 10px #00ff00;
+}
+
+/* Анимация появления текста */
+.text {
+    display: inline-block;
+}
+
+/* Курсор с анимацией */
+/* .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #00ff88;
+    animation: blink 0.7s step-start infinite;
+    position: absolute;
+    bottom: 0;
+    top: 4px;
+}
+
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    50.1%,
+    100% {
+        opacity: 0;
+    }
+} */
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .console {
+        padding: 15px; /* Уменьшаем отступы для мобильных экранов */
+        font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
+    }
+
+    #terminal-output {
+        font-size: 9px; /* Меньший размер шрифта для текста */
+    }
+
+    .cursor {
+        width: 8px; /* Уменьшаем размер курсора */
+        height: 18px; /* Уменьшаем высоту курсора */
+    }
+}

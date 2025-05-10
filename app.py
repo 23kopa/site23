@@ -1,6 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, request, session, jsonify
 import paramiko
 from aiogram import Bot, Dispatcher
+import os
+import psutil
+import socket
 
 app = Flask(__name__)
 app.secret_key = 'kopauser'
@@ -16,33 +19,77 @@ VPS_USER = 'root'
 VPS_PASSWORD = 'cN5tUXWYfj395b61Br'
 
 
-# Login Page
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        # Проверка с кодом
-        if username == "admin" and password == "password":
-            session['username'] = username  # Сохранение пользователя в сессии
-            return redirect(url_for('dashboard'))
-        else:
-            return "Invalid credentials, please try again."
-    return render_template('login.html')
+# ! SSH Connect to VPS
+def ssh_execute(command):
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    try:
+        ssh.connect(VPS_IP, username=VPS_USER, password=VPS_PASSWORD)
+        stdin, stdout, stderr = ssh.exec_command(command)
+        return stdout.read().decode(), stderr.read().decode()
+    except Exception as e:
+        return "", f"SSH error: {e}"
+    finally:
+        ssh.close()
 
 
-@app.route('/dashboard')
-def dashboard():
-    if 'username' in session:  # Проверка, авторизован ли пользователь
-        return f"Welcome to your dashboard, {session['username']}!"
-    else:
-        return redirect(url_for('login'))  # Перенаправление на страницу входа, если не авторизован
+# ! Функции
 
-@app.route('/get_disk_usage')
-def api_disk_usage():
-    usage = get_disk_usage()
-    return jsonify(usage)
+# Функция для получения использования CPU
+def get_cpu_usage():
+    # Используем psutil для получения процента использования CPU
+    cpu_usage = psutil.cpu_percent(interval=1)
+    return cpu_usage
+
+# Функция для получения количества ядер процессора
+def get_cpu_cores():
+    physical_cores = psutil.cpu_count(logical=False)  # физические ядра
+    logical_cores = psutil.cpu_count(logical=True)    # логические ядра
+    return physical_cores, logical_cores
+
+# Функция для получения частоты процессора
+def get_cpu_frequency():
+    freq = psutil.cpu_freq()
+    return freq.current, freq.min, freq.max  # Текущая, минимальная и максимальная частота процессора
+
+# Маршрут для получения данных о CPU
+@app.route('/cpu_usage')
+def cpu_usage():
+    cpu_usage = get_cpu_usage()
+    physical_cores, logical_cores = get_cpu_cores()
+    current_freq, min_freq, max_freq = get_cpu_frequency()
+
+    return jsonify({
+        'cpu_usage': cpu_usage,
+        'physical_cores': physical_cores,
+        'logical_cores': logical_cores,
+        'current_freq': current_freq,
+        'min_freq': min_freq,
+        'max_freq': max_freq
+    })
+
+# Функция для получения информации о сети
+def get_network_info():
+    net_io = psutil.net_io_counters()  # Получаем статистику по трафику
+    net_if_addrs = psutil.net_if_addrs()  # Получаем информацию об интерфейсах
+
+    network_info = {
+        'bytes': {
+            'sent': net_io.bytes_sent,  # Отправлено байтов
+            'recv': net_io.bytes_recv,  # Получено байтов
+        },
+        'packets': {
+            'sent': net_io.packets_sent,  # Отправлено пакетов
+            'recv': net_io.packets_recv,  # Получено пакетов
+        },
+    }
+    return network_info
+
+# Маршрут для получения информации о сети
+@app.route('/network_info')
+def network_info():
+    info = get_network_info()
+    return jsonify(info)
 
 # Disk Memory
 def get_disk_usage():
@@ -70,62 +117,24 @@ def get_disk_usage():
         ssh.close()
 
 
-# Active Process
-""" def get_active_processes():
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        ssh.connect(VPS_IP, username=VPS_USER, password=VPS_PASSWORD)
-        # Используем команду ps для получения списка процессов
-        stdin, stdout, stderr = ssh.exec_command('ps aux --sort=-%cpu')
-        processes = stdout.read().decode()  # Чтение и декодирование вывода
-
-        # Преобразуем вывод в список для использования в шаблоне
-        process_lines = processes.splitlines()
-        process_data = []
-        for line in process_lines[1:]:  # Пропускаем первую строку с заголовками
-            parts = line.split()
-            if len(parts) >= 11:
-                pid = parts[1]
-                user = parts[0]
-                cpu = parts[2]
-                memory = parts[3]
-                command = " ".join(parts[10:])
-                process_data.append({
-                    'pid': pid,
-                    'user': user,
-                    'cpu': cpu,
-                    'memory': memory,
-                    'command': command
-                })
-
-        return process_data[:10]
-    except Exception as e:
-        return f"Ошибка при получении активных процессов: {e}"
-    finally:
-        ssh.close() """
+# Статус Nginx
+@app.route('/nginx_status')
+def nginx_status():
+    command = 'systemctl is-active nginx'
+    stdout, stderr = ssh_execute(command)
+    if stderr:
+        return jsonify({'status': 'Ошибка при получении статуса Nginx'})
+    return jsonify({'status': stdout.strip()})
 
 
-# SSH Connect to VPS
-def ssh_execute(command):
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        ssh.connect(VPS_IP, username=VPS_USER, password=VPS_PASSWORD)
-        stdin, stdout, stderr = ssh.exec_command(command)
-        return stdout.read().decode(), stderr.read().decode()
-    except Exception as e:
-        return "", f"SSH error: {e}"
-    finally:
-        ssh.close()
-
-
-# Статистика бота
-@app.route('/')
-def home():
-    # Здесь можно выводить статистику, например, активных пользователей
-    # active_processes = get_active_processes()
-    return render_template('index.html')
+# Статус SSL-сертификатов
+@app.route('/ssl_status')
+def ssl_status():
+    command = 'openssl x509 -in /etc/ssl/certs/botmanager.crt -noout -dates'  # Путь к вашему сертификату
+    stdout, stderr = ssh_execute(command)
+    if stderr:
+        return jsonify({'status': 'Ошибка при получении статуса SSL-сертификатов'})
+    return jsonify({'status': stdout.strip()})
 
 
 # Запуск бота на сервере
@@ -167,6 +176,17 @@ def logs():
     logs_output = stdout if stdout else stderr
     return render_template('test.html', logs=logs_output)
 
+@app.route('/bot')
+def botmanager():
+    return render_template('bot.html')
+
+
+# ! Запуск веб-приложения
+@app.route('/')
+def home():
+    # Здесь можно выводить статистику, например, активных пользователей
+    # active_processes = get_active_processes()
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(

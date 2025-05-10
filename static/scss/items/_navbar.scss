@@ -11,7 +11,7 @@
 
     //! -------------------------- Стили для логотипа (navbar-brand) -------------------------- //
     .navbar-brand {
-        color: #198754 !important; /* Зеленый цвет текста */
+        color: #00ff88 !important;
         font-weight: bold; /* Жирный шрифт */
         font-family: "Press Start 2P", cursive; /* Пиксельный шрифт */
         display: flex; /* Используем flex для выравнивания */
@@ -29,18 +29,22 @@
 
     //! -------------------------- Стили для ссылок навбара -------------------------- //
     .nav-link {
-        color: #198754 !important; /* Зеленый текст */
-        font-weight: 500; /* Средняя жирность */
+        color: #00ff88 !important;
+        font-weight: 500;
         font-size: 0.8rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 150px;
+        transition: all 0.3s ease;
 
         &:hover,
         &:focus {
-            color: #28a745 !important; /* Более светлый зеленый при наведении */
-            text-decoration: underline; /* Подчеркивание при наведении */
+            color: #66ffcc !important;
+            text-decoration: none;
+            text-shadow:
+                0 0 5px #00ff88,
+                0 0 10px #00ff88;
         }
     }
 

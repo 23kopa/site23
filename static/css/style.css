@@ -1,10 +1,329 @@
 @charset "UTF-8";
+.card-1grid-layout {
+  display: grid;
+  grid-template-columns: 1fr; /* Столбик, одна карточка */
+  gap: 20px;
+  align-items: start;
+  justify-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.one-1column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-1grid-layout {
+    margin-top: 20px;
+  }
+}
+.card-2grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.one-2column,
+.two-2column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-3grid-layout {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Три колонки */
+  gap: 20px;
+  align-items: start;
+  justify-items: stretch;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.one-3column,
+.two-3column,
+.three-3column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-4grid-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.one-4column,
+.two-4column,
+.three-4column,
+.four-4column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-4grid-layout {
+    margin-top: 20px;
+  }
+}
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Выравнивание по ширине */
+  box-sizing: border-box;
+  overflow-x: auto;
+  width: 100%; /* Максимальная ширина для контейнера */
+  margin: 0 auto; /* Выравнивание по центру */
+  align-self: center;
+  height: auto; /* Автоматическая высота в зависимости от содержимого */
+}
+
+.table {
+  width: 100%; /* Устанавливаем таблице 100% ширины, чтобы она соответствовала описанию */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); */
+  border-collapse: collapse;
+  overflow: hidden;
+  box-sizing: border-box;
+  align-self: center;
+  border: 3px solid #000000; /* Добавлены границы */
+  table-layout: fixed; /* Устанавливаем фиксированное расположение для ячеек */
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc; /* Добавлены границы */
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 10px;
+  white-space: nowrap; /* предотвращает перенос */
+}
+
+.table thead {
+  background-color: #00ff88;
+  font-weight: bold;
+}
+
+/* .table th {
+    border-bottom: 2px solid #000000;
+} */
+.table tr:hover {
+  background-color: #686868; /* Подсветка строки при наведении */
+  cursor: pointer; /* Курсор в виде указателя */
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 8px; /* Уменьшаем отступы для маленьких экранов */
+    font-size: 0.5rem; /* Уменьшаем размер шрифта */
+  }
+  .table {
+    font-size: 0.8rem; /* Уменьшаем общий размер шрифта для маленьких экранов */
+  }
+}
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Отступ между элементами */
+  padding: 10px 15px;
+  position: relative;
+}
+
+.card {
+  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+  padding: 15px; /* внутренние отступы — создают пространство между содержимым и краями */
+  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+  /* box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); */ /* лёгкая тень с зелёным оттенком для глубины */
+  height: auto; /* Автоматическая высота в зависимости от содержимого */
+  max-height: none; /* Уберите ограничение по максимальной высоте */
+  box-sizing: border-box;
+  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease forwards;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  flex-direction: column; /* Это обеспечит вертикальное размещение элементов */
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #005f44, #008066, #3a8070);
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.2;
+}
+
+.card-content hr {
+  width: 100%;
+  margin-top: 10px; /* Отступ сверху, чтобы линия не была прямо у текста */
+  margin-bottom: 10px; /* Отступ снизу, чтобы линия не сливалась с остальными элементами */
+  border: 0;
+  border-top: 2px solid #00ff88; /* Цвет линии, соответствующий стилю */
+  opacity: 0.6; /* Немного прозрачности для лёгкости */
+  text-transform: uppercase;
+  word-wrap: break-word; /* Чтобы текст не выходил за пределы */
+}
+
+/* .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
+} */
+/* .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+} */
+/* .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
+} */
+.card:hover {
+  box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3); /* тень по всему периметру */
+}
+
+.card h2 {
+  text-shadow: none;
+  transition: text-shadow 0.3s ease;
+  margin: 0; /* Убираем все отступы */
+  color: #00ffaa;
+  border-bottom: 2px solid #ccc; /* Добавляем разделительную линию */
+  font-size: 13px; /* изменяет размер текста заголовка */
+  padding: 5px;
+  padding-top: 0px;
+  text-transform: uppercase; /* Преобразуем текст в заглавные буквы */
+}
+
+.card:hover h2 {
+  text-shadow: 0 0 5px #195419, 0 0 10px #1edd74;
+}
+
+.card p {
+  color: #b2ffdd;
+  font-size: 10px;
+}
+
+.collumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Отступ между карточками */
+  background-color: #1e1e1e; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
+  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
+  height: auto;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* отступ снизу между элементами */
+  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
+}
+
+/* @keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+  .collumn {
+    gap: 10px; /* Меньший отступ между элементами */
+    margin-bottom: 0px;
+  }
+}
+.description-card {
+  display: flex;
+  flex-direction: column; /* Добавим для правильного размещения элементов внутри */
+  background-color: #424242;
+  /* background: linear-gradient(145deg, #3a3a3a, #303030); */
+  border-radius: 12px;
+  padding: 20px;
+  color: #00ff88;
+  height: auto; /* Высота под содержимое */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  align-items: center; /* Центрирование содержимого, включая кнопки */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  gap: 2px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Позволит прокручивать, если что-то выходит */
+}
+
+/* .description-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+    transform: translateY(-4px);
+} */
+.description-card p {
+  width: 100%; /* Параграф также на всю ширину */
+  margin: 0; /* Убираем лишние отступы */
+}
+
+.copy-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4caf50; /* Зеленый цвет */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: none; /* Изначально скрыто */
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Размещение кнопок в столбик */
+  align-items: center; /* Выравнивание кнопок по центру */
+}
+
 .btn {
   position: relative; /* Относительное позиционирование для дочерних элементов */
   overflow: hidden; /* Прячем содержимое, выходящее за пределы кнопки */
   text-transform: uppercase; /* Преобразуем текст в заглавные */
-  transition: all 0.3s ease; /* Плавные переходы для всех свойств */
-  font-size: 14px; /* Размер шрифта */
+  transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  font-size: 10px; /* Размер шрифта */
   font-weight: 600; /* Жирный шрифт */
   color: #000000; /* Черный текст */
   width: 100%; /* Кнопка занимает всю ширину контейнера */
@@ -12,7 +331,7 @@
   border: 2px solid #00ffaa; /* Зеленая рамка */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
   border-radius: 10px; /* Скругленные углы */
-  padding: 10px 20px; /* Отступы внутри кнопки */
+  padding: 5px 20px; /* Отступы внутри кнопки */
   margin: 0 10px; /* Отступы слева и справа */
   margin-bottom: 10px; /* Отступ между кнопками */
 }
@@ -32,146 +351,23 @@
   margin-right: -3px;
 }
 
-/* Подключение файла с кнопками */
-.card {
-  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
-  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
-  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
-  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
-  height: auto;
-  flex: 1 1 calc(33.333% - 10px); /* 3 карточки в ряд, с учётом gap */
-  max-width: calc(33.333% - 10px);
-  box-sizing: border-box;
-  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
+.btn::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.6;
+  background: #00ff88;
+  pointer-events: none;
+  animation: none;
 }
 
-/* .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3); 
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
- */
-.card h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #00ffaa;
-  border-bottom: 2px solid #ccc; /* Добавляем разделительную линию */
-  font-size: 20px; /* изменяет размер текста заголовка */
-  padding: 5px;
-  padding-top: 0px;
-  text-transform: uppercase; /* Преобразуем текст в заглавные буквы */
-  text-shadow: 0 0 5px #195419, 0 0 10px #00ff00;
-}
-
-.card p {
-  color: #b2ffdd;
-  font-size: 13px;
-}
-
-.column-wrapper {
-  background-color: #2b2b2b;
-  border-radius: 12px;
-  padding: 20px;
-  color: #00ff88;
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2);
-  flex: 1 1 calc(100.333% - 10px); /* как у одной карточки */
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column; /* элементы внутри — в колонку */
-  gap: 10px; /* расстояние между вложенными карточками */
-}
-
-/* Подключение файла с карточками */
-.card-mini {
-  display: flex;
-  flex-direction: column; /* Добавим для правильного размещения элементов внутри */
-  background-color: #424242;
-  border-radius: 12px;
-  padding: 20px;
-  color: #00ff88;
-  height: auto; /* Высота под содержимое */
-  width: auto; /* Ширина под содержимое */
-  align-items: center; /* Центрирование содержимого, включая кнопки */
-  margin-bottom: 15px; /* Добавит отступ после контейнера */
-}
-
-.card-mini p {
-  width: 100%; /* Параграф также на всю ширину */
-  margin: 0; /* Убираем лишние отступы */
-}
-
-/* Подключение файла для прогресс-бара */
-.card-solo {
-  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
-  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
-  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
-  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
-  height: 522px;
-  flex: 1 1 calc(100% - 10px); /* 3 карточки в ряд, с учётом gap */
-  box-sizing: border-box;
-  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
-}
-
-/* .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3); 
-}
- */
-.card-solo h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #00ffaa;
-  border-bottom: 2px solid #ccc; /* Добавляем разделительную линию */
-  font-size: 20px; /* изменяет размер текста заголовка */
-  padding: 5px;
-  padding-top: 0px;
-  text-transform: uppercase; /* Преобразуем текст в заглавные буквы */
-  text-shadow: 0 0 5px #195419, 0 0 10px #00ff00;
-}
-
-.card-solo p {
-  color: #b2ffdd;
-  font-size: 13px;
-}
-
-/* Подключение файла для прогресс-бара */
-.card-memmory {
-  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
-  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
-  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
-  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
-  height: 100%;
-  flex: 1 1 calc(33.333% - 10px); /* 3 карточки в ряд, с учётом gap */
-  max-width: 1000px;
-  box-sizing: border-box;
-  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
-}
-
-/* .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3); 
-}
- */
-.card-memmory h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #00ffaa;
-  border-bottom: 2px solid #ccc; /* Добавляем разделительную линию */
-  font-size: 20px; /* изменяет размер текста заголовка */
-  padding: 5px;
-  padding-top: 0px;
-  text-transform: uppercase; /* Преобразуем текст в заглавные буквы */
-  text-shadow: 0 0 5px #195419, 0 0 10px #00ff00;
-}
-
-.card-memmory p {
-  color: #b2ffdd;
-  font-size: 13px;
-}
-
-/* Подключение файла для прогресс-бара */
 .navbar {
   background-color: #000 !important; /* Черный фон */
   border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
@@ -183,7 +379,7 @@
   font-size: 0.8rem;
 }
 .navbar .navbar-brand {
-  color: #198754 !important; /* Зеленый цвет текста */
+  color: #00ff88 !important;
   font-weight: bold; /* Жирный шрифт */
   font-family: "Press Start 2P", cursive; /* Пиксельный шрифт */
   display: flex; /* Используем flex для выравнивания */
@@ -198,17 +394,19 @@
   margin-right: 10px; /* Отступ справа от иконки */
 }
 .navbar .nav-link {
-  color: #198754 !important; /* Зеленый текст */
-  font-weight: 500; /* Средняя жирность */
+  color: #00ff88 !important;
+  font-weight: 500;
   font-size: 0.8rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 150px;
+  transition: all 0.3s ease;
 }
 .navbar .nav-link:hover, .navbar .nav-link:focus {
-  color: #28a745 !important; /* Более светлый зеленый при наведении */
-  text-decoration: underline; /* Подчеркивание при наведении */
+  color: #66ffcc !important;
+  text-decoration: none;
+  text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88;
 }
 .navbar .navbar-toggler {
   border-color: #198754; /* Зеленая рамка */
@@ -224,47 +422,130 @@
     padding-bottom: 0.5rem; /* Уменьшите отступ снизу, если нужно */
   }
 }
-/* Подключение файла для прогресс-бара */
-.card-container {
-  display: flex; /* Используем flexbox для выравнивания элементов */
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap; /* Позволяет карточкам переходить на следующую строку */
-  max-width: 100%; /* Ограничиваем максимальную ширину контейнера до 50% */
-  width: 100vw;
-  margin-top: 30px;
-  padding: 40px 20px;
-  gap: 10px; /* уменьшено с 20px до 10px */
+/* Стиль терминала */
+.console {
+  background-color: #000000; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
+  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+  font-family: "Press Start 2P", Courier, monospace; /* Пиксельный шрифт для текста */
+  border-radius: 8px;
+  width: auto;
+  height: auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+  align-items: flex-start; /* ← выравнивание по левому краю */
 }
 
-.buttons-container {
-  width: 100%;
-  display: flex;
-  padding: 1px;
-  flex-direction: column; /* Размещение кнопок в столбик */
-  align-items: center; /* Выравнивание кнопок по центру */
+/* Стиль для текста */
+#terminal-output {
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.5;
+  position: relative;
+  text-shadow: 0 0 5px #195419, 0 0 10px #00ff00;
+}
+
+/* Анимация появления текста */
+.text {
+  display: inline-block;
+}
+
+/* Курсор с анимацией */
+/* .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #00ff88;
+    animation: blink 0.7s step-start infinite;
+    position: absolute;
+    bottom: 0;
+    top: 4px;
+}
+
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    50.1%,
+    100% {
+        opacity: 0;
+    }
+} */
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .console {
+    padding: 15px; /* Уменьшаем отступы для мобильных экранов */
+    font-size: 16px; /* Уменьшаем размер шрифта для мобильных устройств */
+  }
+  #terminal-output {
+    font-size: 9px; /* Меньший размер шрифта для текста */
+  }
+  .cursor {
+    width: 8px; /* Уменьшаем размер курсора */
+    height: 18px; /* Уменьшаем высоту курсора */
+  }
+}
+.content {
+  flex: 100%;
+  max-width: 100%;
+  padding-top: 69px; /* отступ сверху, чтобы отступить от navbar */
+  box-sizing: border-box; /* чтобы padding не увеличивал ширину блока */
+  padding-left: 10px; /* Добавляет отступ слева */
+  padding-right: 10px; /* Добавляет отступ справа */
 }
 
 body {
-  margin: 0; /* Убираем отступы от краев страницы */
-  background-color: #000000; /* Черный фон */
-  color: #00ff00; /* Зеленый цвет текста */
-  font-family: "Press Start 2P", Courier, monospace; /* Пиксельный шрифт для текста */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #000000;
+  color: #00ff00;
+  font-family: "Press Start 2P", Courier, monospace;
+  position: relative;
+  overflow-y: auto;
 }
 
-@media (max-width: 768px) {
-  .card,
-  .card-memmory,
-  .card-mini,
-  .card-solo {
-    flex: 1 1 100%; /* Каждая карточка будет занимать 100% ширины контейнера */
-    max-width: 100%; /* Карточки будут растягиваться на всю ширину */
-  }
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.3;
 }
-@media (max-width: 768px) {
-  .card-container {
-    margin-top: 50px; /* Добавляем отступ перед карточками */
-  }
+
+/* Кастомизация скроллбаров для всех элементов */
+::-webkit-scrollbar {
+  width: 10px; /* Ширина вертикального скроллбара */
+  height: 10px; /* Высота горизонтального скроллбара */
+}
+
+/* Кастомизация "ползунка" скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: #00ff88; /* Цвет ползунка */
+  border-radius: 10px; /* Скругление углов ползунка */
+  border: 2px solid #000000; /* Граница вокруг ползунка */
+}
+
+/* Кастомизация области, по которой ползунок двигается */
+::-webkit-scrollbar-track {
+  background-color: #000000; /* Цвет области, по которой движется ползунок */
+  border-radius: 10px; /* Скругление углов области */
+}
+
+/* Кастомизация горизонтального скроллбара */
+::-webkit-scrollbar-horizontal {
+  height: 8px;
+}
+
+/* Кастомизация вертикального скроллбара */
+::-webkit-scrollbar-vertical {
+  width: 8px;
 }
 
 /*# sourceMappingURL=style.css.map */
