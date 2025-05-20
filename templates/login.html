@@ -1,12 +1,17 @@
 {% extends 'base-new.html' %}
 
-{% block title %}Главная{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+
+{% block title %}Вход{% endblock %}
 
 {% block content %}
+<canvas id="matrix"></canvas>
 <!-- Карточка 1 -->
 <div class="card-2grid-layout">
     <div class="one-1column">
         <div class="auth-container">
+
+
             <div class="singin">
                 <div class="card">
                     <div class="card-content">
@@ -15,7 +20,6 @@
 
                         <form method="POST" action="/login" class="flex flex-col gap-4">
                             <input type="text" name="username" placeholder="Логин">
-
                             <!-- Пароль с иконкой внутри поля -->
                             <div class="relative">
                                 <input id="password" type="password" name="password" placeholder="Пароль">
@@ -26,12 +30,12 @@
                                     👁
                                 </span>
                             </div>
+                            <div class="buttons-container flex gap-2 mt-3">
+                                <button type="submit" class="btn-in">Вход</button>
+                                <button type="button" class="btn-in"
+                                    onclick="window.location.href='/register'">Регистрация</button>
+                            </div>
                         </form>
-
-                        <div class="buttons-container">
-                            <button class="btn btn-in">Вход</button>
-                            <a href="{{ url_for('register') }}" class="btn btn-in">Регистрация</a>
-                        </div>
 
                     </div>
                 </div>

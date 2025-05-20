@@ -3,7 +3,7 @@
 {% block title %}Мой Бот{% endblock %}
 
 {% block one_column %}
-<div class="collumn">
+<div class="background">
     <!-- Карточка CPU -->
     <div class="card">
         <div class="card-content">
@@ -15,6 +15,19 @@
             </div>
             <div class="buttons-container">
                 <button class="btn btn-info btn-lg" onclick="fetchCpuUsage()">Обновить</button>
+            </div>
+        </div>
+    </div>
+    <!-- Карточка Nginx задачи -->
+    <div class="card">
+        <div class="card-content">
+            <h2>Nginx</h2>
+            <div class="description-card">
+                <p>Статус: <span id="nginx-status">Загрузка...</span></p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Запуск</button>
+                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Остановка</button>
             </div>
         </div>
     </div>
@@ -37,7 +50,7 @@
 {% endblock %}
 
 {% block two_column %}
-<div class="collumn">
+<div class="background">
     <!-- Карточка Управления ботом -->
     <div class="card">
         <div class="card-content">
@@ -95,7 +108,7 @@
 {% endblock %}
 
 {% block three_column %}
-<div class="collumn">
+<div class="background">
     <div class="card">
         <div class="card-content">
             <h2>Сеть</h2>
@@ -152,19 +165,6 @@
     <!-- Карточка Cron задачи -->
     <div class="card">
         <div class="card-content">
-            <h2>Nginx</h2>
-            <div class="description-card">
-                <p>Статус: <span id="nginx-status">Загрузка...</span></p>
-            </div>
-            <div class="buttons-container">
-                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Запуск</button>
-                <button class="btn btn-info btn-lg" onclick="fetchNginxStatus()">Остановка</button>
-            </div>
-        </div>
-    </div>
-    <!-- Карточка Cron задачи -->
-    <div class="card">
-        <div class="card-content">
             <h2>SSL-сертификаты</h2>
             <div class="description-card">
                 <p><span id="ssl-status">Загрузка...</span></p>
@@ -178,7 +178,7 @@
 {% endblock %}
 
 {% block four_column %}
-<div class="collumn">
+<div class="background">
     <!-- Карточка Cron задачи -->
     <div class="card">
         <div class="card-content">

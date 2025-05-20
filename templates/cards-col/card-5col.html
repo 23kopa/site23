@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Мой Бот{% endblock %}
+
+{% block content %}
+<div class="card-5grid-layout">
+
+    <div class="one-5column">
+        {% block one_column %}{% endblock %}
+    </div>
+
+    <div class="two-5column">
+        {% block two_column %}{% endblock %}
+    </div>
+
+    <div class="three-5column">
+        {% block three_column %}{% endblock %}
+    </div>
+
+    <div class="four-5column">
+        {% block four_column %}{% endblock %}
+    </div>
+
+    <div class="five-5column">
+        {% block five_column %}{% endblock %}
+    </div>
+
+</div>
+{% endblock %}

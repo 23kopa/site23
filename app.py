@@ -1,9 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, session, jsonify
 import paramiko
 from aiogram import Bot, Dispatcher
-import os
 import psutil
-import socket
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 app = Flask(__name__)
 app.secret_key = 'kopauser'
@@ -17,6 +18,17 @@ dp = Dispatcher()
 VPS_IP = '185.22.172.242'
 VPS_USER = 'root'
 VPS_PASSWORD = 'cN5tUXWYfj395b61Br'
+
+# ! Настройки DataBase
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), nullable=False, unique=True)
+    email = db.Column(db.String(120), nullable=False, unique=True)
+    password = db.Column(db.String(200), nullable=False)
 
 
 # ! SSH Connect to VPS
@@ -180,17 +192,71 @@ def logs():
 def botmanager():
     return render_template('bot.html')
 
+@app.route('/tokens')
+def honeytoken():
+    return render_template('tokens.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Проверка на дублирование
+        if User.query.filter_by(username=username).first() or User.query.filter_by(email=email).first():
+            return 'Пользователь с таким логином или email уже существует'
+
+        hashed_password = generate_password_hash(password)
+        new_user = User(username=username, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        user = User.query.filter_by(username=username).first()
+
+        if user and check_password_hash(user.password, password):
+            session['user_id'] = user.id
+            session['username'] = user.username
+            return redirect(url_for('dashboard'))  # Перенаправление на защищённую страницу
+        else:
+            return render_template('login.html', error='Неверный логин или пароль')
+
+    return render_template('login.html')
+
+@app.route('/dashboard')
+def dashboard():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    return render_template('dashboard.html', username=session['username'])
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 
 # ! Запуск веб-приложения
 @app.route('/')
 def home():
     # Здесь можно выводить статистику, например, активных пользователей
     # active_processes = get_active_processes()
-    return render_template('index.html')
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(
         host='0.0.0.0',
         port=5000,
+        # debug=True
         ssl_context=('/etc/letsencrypt/live/botmanager.site/fullchain.pem', '/etc/letsencrypt/live/botmanager.site/privkey.pem')
     )
