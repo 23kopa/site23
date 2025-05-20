@@ -36,10 +36,10 @@
 
 //! -------------------------- Эффект при наведении на кнопку -------------------------- //
 .btn:hover {
-    transform: translateY(-5px); /* Двигаем кнопку вверх при наведении */
-    background-color: #1f8f00; /* Темный зеленый фон при наведении */
-    color: #00ff00; /* Зеленый текст */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Усиление тени */
+    transform: translateY(-5px);
+    background-color: #1f8f00;
+    color: #00ff00;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .icon {
