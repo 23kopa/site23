@@ -98,331 +98,6 @@
     margin-top: 20px;
   }
 }
-.buttons-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column; /* Размещение кнопок в столбик */
-  align-items: center; /* Выравнивание кнопок по центру */
-}
-
-.btn {
-  position: relative; /* Относительное позиционирование для дочерних элементов */
-  overflow: hidden; /* Прячем содержимое, выходящее за пределы кнопки */
-  text-transform: uppercase; /* Преобразуем текст в заглавные */
-  transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-  font-size: 10px; /* Размер шрифта */
-  font-weight: 600; /* Жирный шрифт */
-  color: #000000; /* Черный текст */
-  width: 100%; /* Кнопка занимает всю ширину контейнера */
-  background-color: #00ffaa; /* Зеленый фон */
-  border: 2px solid #00ffaa; /* Зеленая рамка */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
-  border-radius: 10px; /* Скругленные углы */
-  padding: 5px 20px; /* Отступы внутри кнопки */
-  margin: 0 10px; /* Отступы слева и справа */
-  margin-bottom: 10px; /* Отступ между кнопками */
-}
-
-.btn:hover {
-  transform: translateY(-5px);
-  background-color: #1f8f00;
-  color: #00ff00;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.icon {
-  font-size: 1em;
-  position: relative;
-  top: -2.3px;
-  vertical-align: middle;
-  margin-right: -3px;
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  transform: scale(0);
-  opacity: 0.6;
-  background: #00ff88;
-  pointer-events: none;
-  animation: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-.btn-in {
-  text-transform: uppercase; /* Преобразуем текст в заглавные */
-  font-size: 16px;
-  padding: 14px 32px;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  color: #ffffff !important;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #00ffaa, #00ff3c);
-  border: none;
-  border-radius: 14px;
-  box-shadow: 0 6px 12px rgba(79, 172, 254, 0.3), 0 0 10px rgba(0, 242, 254, 0.2);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.35s ease;
-  z-index: 1;
-  cursor: pointer;
-  backdrop-filter: blur(3px);
-}
-
-.btn-in::before {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: -45%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 100%);
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.btn-in:hover::before {
-  animation: glossMove 1.2s ease-in-out;
-  opacity: 1;
-}
-
-@keyframes glossMove {
-  0% {
-    top: -100%;
-    left: -45%;
-  }
-  100% {
-    top: 100%;
-    left: 100%;
-  }
-}
-.auth-page #matrix {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  background: black;
-}
-
-.singin {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh; /* чуть выше, чтобы центрировать по вертикали */
-  padding: 2rem;
-  box-sizing: border-box;
-}
-
-.singin .card {
-  background: linear-gradient(145deg, rgba(40, 40, 40, 0.9), rgba(20, 20, 20, 0.85));
-  border-radius: 24px;
-  backdrop-filter: blur(16px);
-  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05), 0 12px 24px rgba(0, 0, 0, 0.6), 0 8px 20px rgba(0, 255, 200, 0.15); /* лёгкое свечение */
-  padding: 3.5rem 3rem;
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  animation: fadeInUp 0.7s ease-out;
-  transition: all 0.4s ease;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* .singin .card:hover {
-    box-shadow: 0 20px 40px rgba(0, 255, 136, 0.6);
-} */
-.singin .card-content h2 {
-  font-size: 1.8rem;
-  color: #00ffaa;
-  background: linear-gradient(135deg, #00ffaa, #00ff3c);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border-bottom: none; /* убираем старую границу */
-  position: relative;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: 3px;
-  font-weight: 800;
-}
-
-/* Добавим декоративную линию под заголовком */
-.singin .card-content h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(135deg, #00ffaa, #00ff3c);
-  border-radius: 2px;
-}
-
-.singin form input[type=text],
-.singin form input[type=password] {
-  width: 100%;
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
-  padding: 14px 12px;
-  font-size: 16px;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  backdrop-filter: blur(4px);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.singin form input::placeholder {
-  color: rgba(200, 200, 200, 0.4);
-  /* font-style: italic; */
-  letter-spacing: 0.5px;
-}
-
-.singin form input:focus {
-  outline: none;
-  border-bottom: 2px solid #00ffaa;
-  background-color: rgba(0, 255, 136, 0.07);
-  box-shadow: 0 0 8px rgba(0, 255, 170, 0.5), 0 2px 16px rgba(0, 255, 170, 0.2);
-}
-
-/* Optional: smooth label animation or floating label can be added later */
-.singin form button {
-  width: 100%;
-  padding: 14px;
-  background-color: #00ffaa;
-  color: #111;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
-}
-
-.singin form button:hover {
-  background-color: #00cc77;
-  box-shadow: 0 6px 20px rgba(0, 204, 119, 0.7);
-}
-
-.relative {
-  position: relative;
-}
-
-.absolute {
-  position: absolute;
-}
-
-.right-2 {
-  right: 0.5rem;
-}
-
-.top-1\/2 {
-  top: 30%;
-}
-
-.transform {
-  transform: translateY(-50%);
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.pr-10 {
-  padding-right: 2.5rem;
-}
-
-/* Анимация плавного появления */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.auth-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tab-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Выравнивание по ширине */
-  box-sizing: border-box;
-  overflow-x: auto;
-  width: 100%; /* Максимальная ширина для контейнера */
-  margin: 0 auto; /* Выравнивание по центру */
-  align-self: center;
-  height: auto; /* Автоматическая высота в зависимости от содержимого */
-}
-
-.table {
-  width: 100%; /* Устанавливаем таблице 100% ширины, чтобы она соответствовала описанию */
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); */
-  border-collapse: collapse;
-  overflow: hidden;
-  box-sizing: border-box;
-  align-self: center;
-  border: 3px solid #000000; /* Добавлены границы */
-  table-layout: fixed; /* Устанавливаем фиксированное расположение для ячеек */
-}
-
-.table th,
-.table td {
-  border-bottom: 1px solid #ccc;
-  border: 1px solid #ccc; /* Добавлены границы */
-  word-wrap: break-word;
-  text-align: left;
-  font-size: 10px;
-  white-space: nowrap; /* предотвращает перенос */
-}
-
-.table thead {
-  background-color: #00ff88;
-  font-weight: bold;
-}
-
-/* .table th {
-    border-bottom: 2px solid #000000;
-} */
-.table tr:hover {
-  background-color: #686868; /* Подсветка строки при наведении */
-  cursor: pointer; /* Курсор в виде указателя */
-}
-
-@media (max-width: 768px) {
-  .table th,
-  .table td {
-    padding: 8px; /* Уменьшаем отступы для маленьких экранов */
-    font-size: 0.5rem; /* Уменьшаем размер шрифта */
-  }
-  .table {
-    font-size: 0.8rem; /* Уменьшаем общий размер шрифта для маленьких экранов */
-  }
-}
 .card-content {
   display: flex;
   flex-direction: column;
@@ -432,7 +107,8 @@
 }
 
 .card {
-  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+  /* background-color: #2b2b2b; */
+  background-color: #000000;
   border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
   padding: 15px; /* внутренние отступы — создают пространство между содержимым и краями */
   color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
@@ -444,23 +120,24 @@
   position: relative;
   z-index: 10;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3);
   flex-direction: column; /* Это обеспечит вертикальное размещение элементов */
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  animation: fadeInUp 0.5s ease forwards;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #005f44, #008066, #3a8070);
-  z-index: -1;
-  filter: blur(10px);
-  opacity: 0.2;
-}
-
+/* .card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #005f44, #008066, #3a8070);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.2;
+} */
 .card-content hr {
   width: 100%;
   margin-top: 10px; /* Отступ сверху, чтобы линия не была прямо у текста */
@@ -531,8 +208,180 @@
     margin-bottom: 0px;
   }
 }
+.auth-page #matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.card-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh; /* чуть выше, чтобы центрировать по вертикали */
+  box-sizing: border-box;
+}
+
+.card-main .card-content {
+  width: 500px;
+  max-width: 90vw;
+  background-color: #000000;
+  /* background: linear-gradient(135deg, rgba(0, 255, 170, 0.15), rgba(0, 170, 85, 0.15)); */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2.5rem 3rem;
+  /*     box-shadow:
+      0 5px 24px rgba(0, 255, 136, 0.3),
+      inset 0 0 12px rgba(0, 255, 136, 0.2); */
+  /* box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3); */
+  color: #e0e0e0;
+  transition: box-shadow 0.3s ease;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* .card-main .card-content::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #005f44, #008066, #3a8070);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.2;
+} */
+/* .card-main .card-content:hover {
+    box-shadow:
+        0 12px 36px rgba(0, 255, 136, 0.5),
+        inset 0 0 18px rgba(0, 255, 136, 0.3);
+} */
+.card-main .card-content h2 {
+  font-size: 1.8rem;
+  color: #00ffaa;
+  background-color: #00ffaa; /* Зеленый фон */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: none; /* убираем старую границу */
+  position: relative;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+
+/* Добавим декоративную линию под заголовком */
+.card-main .card-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: -0.2em;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffaa, transparent);
+}
+
+.card-main form input[type=text],
+.card-main form input[type=password] {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.19);
+  color: #e0e0e0;
+  padding: 14px 12px;
+  font-size: 16px;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(4px);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.card-main form input::placeholder {
+  color: rgba(200, 200, 200, 0.4);
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.card-main form input:focus {
+  outline: none;
+  border-bottom: 2px solid #00ffaa;
+  background-color: rgba(0, 255, 136, 0.07);
+  box-shadow: 0 0 8px rgba(0, 255, 170, 0.5), 0 2px 16px rgba(0, 255, 170, 0.2);
+}
+
+/* Optional: smooth label animation or floating label can be added later */
+.card-main form button {
+  width: 100%;
+  padding: 14px;
+  background-color: #00ffaa;
+  color: #111;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+}
+
+.card-main form button:hover {
+  background-color: #00cc77;
+  box-shadow: 0 6px 20px rgba(0, 204, 119, 0.7);
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.right-2 {
+  right: 0.5rem;
+}
+
+.top-1\/2 {
+  top: 30%;
+}
+
+.transform {
+  transform: translateY(-50%);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.pr-10 {
+  padding-right: 2.5rem;
+}
+
+/* Анимация плавного появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .tokens-card {
-  background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+  background-color: #000000;
+  /* background-color: #2b2b2b; */
   border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
   padding: 15px; /* внутренние отступы — создают пространство между содержимым и краями */
   color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
@@ -546,23 +395,25 @@
   overflow: hidden;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease forwards;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3);
   flex-direction: column; /* Это обеспечит вертикальное размещение элементов */
 }
 
-.tokens-card::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #005f44, #008066, #3a8070);
-  z-index: -1;
-  filter: blur(10px);
-  opacity: 0.2;
-}
-
+/* .tokens-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #005f44, #008066, #3a8070);
+    z-index: -1;
+    filter: blur(10px);
+    opacity: 0.2;
+} */
+/* .card-content {
+    animation: fadeInUp 0.6s ease forwards;
+} */
 .card-content hr {
   width: 100%;
   margin-top: 10px; /* Отступ сверху, чтобы линия не была прямо у текста */
@@ -599,32 +450,174 @@
   font-size: 10px;
 }
 
-.description-card {
-  display: flex;
-  flex-direction: column; /* Добавим для правильного размещения элементов внутри */
-  background-color: #424242;
-  /* background: linear-gradient(145deg, #3a3a3a, #303030); */
-  border-radius: 12px;
-  padding: 20px;
-  color: #00ff88;
-  height: auto; /* Высота под содержимое */
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  align-items: center; /* Центрирование содержимого, включая кнопки */
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  gap: 2px;
-  box-sizing: border-box;
-  overflow-x: auto; /* Позволит прокручивать, если что-то выходит */
+.btn-cyber {
+  font-family: monospace;
+  font-size: 1.2rem;
+  color: #00ffaa;
+  background: transparent;
+  padding: 12px 30px;
+  border: 2px solid #00ffaa;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease-in-out;
+  border-radius: 14px;
 }
 
-/* .description-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
-    transform: translateY(-4px);
-} */
-.description-card p {
-  width: 100%; /* Параграф также на всю ширину */
-  margin: 0; /* Убираем лишние отступы */
+.btn-cyber::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #00ffaa;
+  z-index: -1;
+  transition: width 0.4s ease-in-out;
+}
+
+.btn-cyber:hover::after {
+  width: 100%;
+}
+
+.btn-cyber:hover {
+  color: #001e1e;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* Размещение кнопок в столбик */
+  align-items: center; /* Выравнивание кнопок по центру */
+}
+
+.btn {
+  position: relative; /* Относительное позиционирование для дочерних элементов */
+  overflow: hidden; /* Прячем содержимое, выходящее за пределы кнопки */
+  text-transform: uppercase; /* Преобразуем текст в заглавные */
+  transition: transform 0.25s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  font-size: 10px; /* Размер шрифта */
+  font-weight: 600; /* Жирный шрифт */
+  color: #000000; /* Черный текст */
+  width: 100%; /* Кнопка занимает всю ширину контейнера */
+  background-color: #00ffaa; /* Зеленый фон */
+  border: 2px solid #00ffaa; /* Зеленая рамка */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Легкая тень */
+  border-radius: 10px; /* Скругленные углы */
+  padding: 5px 20px; /* Отступы внутри кнопки */
+  margin: 0 10px; /* Отступы слева и справа */
+  margin-bottom: 10px; /* Отступ между кнопками */
+}
+
+.btn:hover {
+  transform: translateY(-5px);
+  background-color: #1f8f00;
+  color: #00ff00;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  font-size: 1em;
+  position: relative;
+  top: -2.3px;
+  vertical-align: middle;
+  margin-right: -3px;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.6;
+  background: #00ff88;
+  pointer-events: none;
+  animation: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+.btn-in {
+  text-transform: uppercase; /* Преобразуем текст в заглавные */
+  font-size: 16px;
+  padding: 14px 32px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  color: #ffffff !important;
+  margin-bottom: 0.5rem;
+  background-color: #00ffaa; /* Зеленый фон */
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 12px rgba(79, 172, 254, 0.3), 0 0 10px rgba(0, 242, 254, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  z-index: 1;
+  cursor: pointer;
+  backdrop-filter: blur(3px);
+}
+
+.btn-in::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -45%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 100%);
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-in:hover::before {
+  animation: glossMove 1.2s ease-in-out;
+  opacity: 1;
+}
+
+@keyframes glossMove {
+  0% {
+    top: -100%;
+    left: -45%;
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+  }
+}
+.background {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Отступ между карточками */
+  background-color: #1e1e1e;
+  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
+  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+  height: auto;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* отступ снизу между элементами */
+  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
+}
+
+.tokens-background {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Отступ между карточками */
+  background-color: #0d0d0d;
+  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
+  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
+  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
+  /* box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); */ /* лёгкая тень с зелёным оттенком для глубины */
+  height: auto;
+  box-sizing: border-box;
+  margin-bottom: 20px; /* отступ снизу между элементами */
+  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
 }
 
 .copy-notification {
@@ -653,6 +646,92 @@
     transform: translateX(-50%) translateY(0);
   }
 }
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Выравнивание по ширине */
+  box-sizing: border-box;
+  overflow-x: auto;
+  width: 100%; /* Максимальная ширина для контейнера */
+  margin: 0 auto; /* Выравнивание по центру */
+  align-self: center;
+  height: auto; /* Автоматическая высота в зависимости от содержимого */
+}
+
+.table {
+  width: 100%; /* Устанавливаем таблице 100% ширины, чтобы она соответствовала описанию */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9); */
+  border-collapse: collapse;
+  overflow: hidden;
+  box-sizing: border-box;
+  align-self: center;
+  border: 3px solid #000000; /* Добавлены границы */
+  table-layout: fixed; /* Устанавливаем фиксированное расположение для ячеек */
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc; /* Добавлены границы */
+  word-wrap: break-word;
+  text-align: left;
+  font-size: 10px;
+  white-space: nowrap; /* предотвращает перенос */
+}
+
+.table thead {
+  background-color: #00ff88;
+  font-weight: bold;
+}
+
+/* .table th {
+    border-bottom: 2px solid #000000;
+} */
+.table tr:hover {
+  background-color: #686868; /* Подсветка строки при наведении */
+  cursor: pointer; /* Курсор в виде указателя */
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 8px; /* Уменьшаем отступы для маленьких экранов */
+    font-size: 0.5rem; /* Уменьшаем размер шрифта */
+  }
+  .table {
+    font-size: 0.8rem; /* Уменьшаем общий размер шрифта для маленьких экранов */
+  }
+}
+.description-card {
+  display: flex;
+  flex-direction: column; /* Добавим для правильного размещения элементов внутри */
+  background-color: #424242;
+  /* background: linear-gradient(145deg, #3a3a3a, #303030); */
+  border-radius: 12px;
+  padding: 20px;
+  color: #00ff88;
+  height: auto; /* Высота под содержимое */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  align-items: center; /* Центрирование содержимого, включая кнопки */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  gap: 2px;
+  box-sizing: border-box;
+  overflow-x: auto; /* Позволит прокручивать, если что-то выходит */
+}
+
+/* .description-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+    transform: translateY(-4px);
+} */
+.description-card p {
+  width: 100%; /* Параграф также на всю ширину */
+  margin: 0; /* Убираем лишние отступы */
+}
+
 .navbar {
   background-color: #000 !important; /* Черный фон */
   border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
@@ -788,36 +867,6 @@
     height: 18px; /* Уменьшаем высоту курсора */
   }
 }
-.background {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Отступ между карточками */
-  background-color: #1e1e1e; /* тёмный фон карточки, создаёт контраст с ярким текстом */
-  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
-  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
-  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
-  height: auto;
-  box-sizing: border-box;
-  margin-bottom: 20px; /* отступ снизу между элементами */
-  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
-}
-
-.tokens-background {
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Отступ между карточками */
-  background-color: #1e1e1e; /* тёмный фон карточки, создаёт контраст с ярким текстом */
-  border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
-  padding: 20px; /* внутренние отступы — создают пространство между содержимым и краями */
-  color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
-  box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); /* лёгкая тень с зелёным оттенком для глубины */
-  height: auto;
-  box-sizing: border-box;
-  margin-bottom: 20px; /* отступ снизу между элементами */
-  transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
-}
-
 .content {
   flex: 100%;
   max-width: 100%;
@@ -833,7 +882,7 @@ body {
   height: 100vh;
   background-color: #000000;
   color: #00ff00;
-  font-family: "Press Start 2P", Courier, monospace;
+  font-family: "JetBrains Mono", monospace;
   position: relative;
   overflow-y: auto;
 }
@@ -876,6 +925,26 @@ body::before {
 /* Кастомизация вертикального скроллбара */
 ::-webkit-scrollbar-vertical {
   width: 8px;
+}
+
+.input-style {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  color: #333;
+}
+
+.input-style[readonly] {
+  background-color: #e9ecef;
+  cursor: default;
+}
+
+.input-label {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #444;
 }
 
 /*# sourceMappingURL=style.css.map */

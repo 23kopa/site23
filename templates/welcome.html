@@ -1,0 +1,77 @@
+{% extends 'base-new.html' %}
+
+{% block body_class %}auth-page{% endblock %}
+
+{% block title %}Вход{% endblock %}
+
+{% block content %}
+<canvas id="matrix"></canvas>
+<div class="welcome-container">
+    <h1 id="welcome-title">Добро пожаловать в myKopa!</h1>
+    <p id="typing-text"></p>
+
+    <div id="buttons-container">
+        <button type="button" class="btn-cyber" onclick="window.location.href='/login'">Войти</button>
+    </div>
+
+
+</div>
+
+<script>
+    const text = "Управляй ботом, мониторь сервер, запускай задачи!";
+    let idx = 0;
+    const speed = 70;
+    const typingElem = document.getElementById('typing-text');
+    const buttonsContainer = document.getElementById('buttons-container');
+
+    function type() {
+        if (idx < text.length) {
+            typingElem.textContent += text.charAt(idx);
+            idx++;
+            setTimeout(type, speed);
+        } else {
+            // Показать кнопки после завершения печати
+            buttonsContainer.classList.add('show');
+        }
+    }
+    type();
+</script>
+
+<style>
+    .welcome-container {
+        color: #00ffaa;
+        text-align: center;
+        margin-top: 25vh;
+        font-family: "JetBrains Mono", monospace;
+    }
+
+    #welcome-title {
+        font-size: 3rem;
+        background: linear-gradient(135deg, #00ffaa, #00ff3c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+    }
+
+    #typing-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+    }
+
+    #buttons-container {
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        margin-top: 2rem;
+    }
+
+    #buttons-container.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+</style>
+
+{% endblock %}

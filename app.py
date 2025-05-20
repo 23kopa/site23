@@ -4,6 +4,9 @@ from aiogram import Bot, Dispatcher
 import psutil
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import os
+
 
 
 app = Flask(__name__)
@@ -29,7 +32,14 @@ class User(db.Model):
     username = db.Column(db.String(80), nullable=False, unique=True)
     email = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(200), nullable=False)
+    avatar = db.Column(db.String(120))
 
+# ! Настройки Аватаров
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+UPLOAD_FOLDER = 'static/images/avatars'
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # ! SSH Connect to VPS
 def ssh_execute(command):
@@ -233,6 +243,63 @@ def login():
 
     return render_template('login.html')
 
+@app.route('/account')
+def account():
+    # Проверяем, авторизован ли пользователь
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    # Получаем пользователя из базы
+    user = User.query.get(session['user_id'])
+    if not user:
+        # Если вдруг пользователь не найден, удаляем сессию и отправляем на вход
+        session.clear()
+        return redirect(url_for('login'))
+
+    # Рендерим шаблон личного кабинета, передаём данные пользователя
+    return render_template('account.html', user=user)
+
+@app.route('/edit', methods=['GET', 'POST'])
+def edit_profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    user = User.query.get(session['user_id'])
+
+    if request.method == 'POST':
+        new_username = request.form['username']
+        new_email = request.form['email']
+        new_password = request.form['password']
+        avatar_file = request.files.get('avatar')
+
+        # Проверка логина/email
+        if new_username != user.username and User.query.filter_by(username=new_username).first():
+            return "Логин уже занят"
+        if new_email != user.email and User.query.filter_by(email=new_email).first():
+            return "Email уже занят"
+
+        user.username = new_username
+        user.email = new_email
+        if new_password:
+            user.password = generate_password_hash(new_password)
+
+        # Обработка аватара
+        if avatar_file and avatar_file.filename != '' and allowed_file(avatar_file.filename):
+            filename = secure_filename(avatar_file.filename)
+            ext = filename.rsplit('.', 1)[1].lower()
+            new_avatar_filename = f"user_{user.id}.{ext}"
+            avatar_path = os.path.join(UPLOAD_FOLDER, new_avatar_filename)
+            avatar_file.save(avatar_path)
+            user.avatar = new_avatar_filename  # Сохраняем путь в БД
+
+        db.session.commit()
+        session['username'] = user.username
+
+        return redirect(url_for('account'))
+
+    return render_template('edit.html', user=user)
+
+
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
@@ -251,7 +318,7 @@ def logout():
 def home():
     # Здесь можно выводить статистику, например, активных пользователей
     # active_processes = get_active_processes()
-    return render_template('login.html')
+    return render_template('welcome.html')
 
 if __name__ == '__main__':
     app.run(

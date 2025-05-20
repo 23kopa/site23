@@ -1,32 +1,25 @@
-//! -------------------------- Контент карточек -------------------------- //
-
-.card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Отступ между элементами */
-    padding: 10px 15px;
-    position: relative;
-}
-
 //! -------------------------- Стиль для карточек -------------------------- //
-.card {
-    background-color: #2b2b2b; /* тёмный фон карточки, создаёт контраст с ярким текстом */
+.tokens-card {
+    background-color: #000000;
+    /* background-color: #2b2b2b; */
     border-radius: 12px; /* скруглённые углы для более мягкого и современного вида */
     padding: 15px; /* внутренние отступы — создают пространство между содержимым и краями */
     color: #00ff88; /* ярко-зелёный цвет текста — хорошо виден на тёмном фоне */
     /* box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2); */ /* лёгкая тень с зелёным оттенком для глубины */
-    height: auto; /* Автоматическая высота в зависимости от содержимого */
+    height: 250px; /* Автоматическая высота в зависимости от содержимого */
     max-height: none; /* Уберите ограничение по максимальной высоте */
     box-sizing: border-box;
     transition: transform 0.2s ease; /* плавный переход при изменении положения (эффект наведения) */
     position: relative;
     z-index: 10;
     overflow: hidden;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+    box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3);
     flex-direction: column; /* Это обеспечит вертикальное размещение элементов */
 }
 
-.card::before {
+/* .tokens-card::before {
     content: "";
     position: absolute;
     top: -2px;
@@ -37,7 +30,11 @@
     z-index: -1;
     filter: blur(10px);
     opacity: 0.2;
-}
+} */
+
+/* .card-content {
+    animation: fadeInUp 0.6s ease forwards;
+} */
 
 .card-content hr {
     width: 100%;
@@ -50,26 +47,12 @@
     word-wrap: break-word; /* Чтобы текст не выходил за пределы */
 }
 
-/* .card:hover {
-    transform: scale(1.03);
-    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.4);
-} */
-
-/* .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
-} */
-
-/* .card:hover {
-    box-shadow: 0 8px 20px rgba(0, 255, 136, 0.3);
-} */
-
-/* .card:hover {
-    box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3);
+.tokens-card:hover {
+    box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3); /* тень по всему периметру */
 }
- */
+
 //! -------------------------- Стиль для заголовка карточки -------------------------- //
-.card h2 {
+.tokens-card h2 {
     text-shadow: none;
     transition: text-shadow 0.3s ease;
 
@@ -82,39 +65,14 @@
     text-transform: uppercase; /* Преобразуем текст в заглавные буквы */
 }
 
-/* .card:hover h2 {
-    text-shadow:
+.tokens-card:hover h2 {
+    text-shadow: /* Эффект свечения */
         0 0 5px #195419,
         0 0 10px #1edd74;
-} */
+}
 
 //! -------------------------- Стиль для основного текста -------------------------- //
-.card p {
+.tokens-card p {
     color: #b2ffdd;
     font-size: 10px;
-}
-
-/* @keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-} */
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .collumn {
-        gap: 10px;
-        margin-bottom: 0px;
-    }
 }
