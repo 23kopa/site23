@@ -6,43 +6,36 @@
 
 {% block content %}
 <canvas id="matrix"></canvas>
-<!-- Карточка 1 -->
-<div class="card-2grid-layout">
-    <div class="one-1column">
-        <div class="auth-container">
 
+<div class="card-main">
+    <div class="card-content">
 
-            <div class="singin">
-                <div class="card">
-                    <div class="card-content">
+        <h2>Вход</h2>
 
-                        <h2>Вход</h2>
+        <form method="POST" action="/login">
 
-                        <form method="POST" action="/login" class="flex flex-col gap-4">
-                            <input type="text" name="username" placeholder="Логин">
-                            <!-- Пароль с иконкой внутри поля -->
-                            <div class="relative">
-                                <input id="password" type="password" name="password" placeholder="Пароль">
-
-                                <!-- Иконка глаза -->
-                                <span id="togglePassword"
-                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer text-white">
-                                    👁
-                                </span>
-                            </div>
-                            <div class="buttons-container flex gap-2 mt-3">
-                                <button type="submit" class="btn-in">Вход</button>
-                                <button type="button" class="btn-in"
-                                    onclick="window.location.href='/register'">Регистрация</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
+            <div class="relative">
+                <input type="text" name="username" placeholder="Логин">
             </div>
-        </div>
+            <!-- Пароль с иконкой внутри поля -->
+            <div class="relative">
+                <input id="password" type="password" name="password" placeholder="Пароль">
+                <span id="togglePassword"
+                    class="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer text-white">
+                    👁
+                </span>
+            </div>
+
+            <div class="buttons-container flex gap-2 mt-3">
+                <button type="submit" class="btn-in">Вход</button>
+                <button type="button" class="btn-in" onclick="window.location.href='/register'">Регистрация</button>
+            </div>
+        </form>
+
     </div>
 </div>
+</div>
+
 
 <!-- Скрипт показа/скрытия пароля -->
 <script>

@@ -1,21 +1,25 @@
-@use "cards/card-1grid";
-@use "cards/card-2grid";
-@use "cards/card-3grid";
-@use "cards/card-4grid";
-@use "cards/card-5grid";
+@use "cards/cards-grid/card-1grid";
+@use "cards/cards-grid/card-2grid";
+@use "cards/cards-grid/card-3grid";
+@use "cards/cards-grid/card-4grid";
+@use "cards/cards-grid/card-5grid";
 
-@use "items/buttons/buttons-base";
-@use "items/buttons/buttons-in";
+@use "cards/cards-type/card-base";
+@use "cards/cards-type/card-main";
+@use "cards/cards-type/card-tokens";
 
-@use "items/singin";
-@use "items/table";
-@use "items/card";
-@use "items/tokens-card";
-@use "items/description";
-@use "items/notification";
-@use "items/navbar";
-@use "items/console";
-@use "items/background";
+@use "items/buttons/btn-cyber";
+@use "items/buttons/btn-base";
+@use "items/buttons/btn-login";
+
+@use "items/backgrounds/background";
+
+@use "items/notifications/copy";
+
+@use "items/other/table";
+@use "items/other/description";
+@use "items/other/navbar";
+@use "items/other/console";
 
 //! -------------------- Общее содержимое -------------------- //
 .content {
@@ -34,7 +38,7 @@ body {
     height: 100vh;
     background-color: #000000;
     color: #00ff00;
-    font-family: "Press Start 2P", Courier, monospace;
+    font-family: "JetBrains Mono", monospace;
     position: relative;
     overflow-y: auto;
 }
@@ -82,3 +86,23 @@ body::before {
 }
 
 //! -------------------- Для мобильных телефонов -------------------- //
+
+.input-style {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-style[readonly] {
+    background-color: #e9ecef;
+    cursor: default;
+}
+
+.input-label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #444;
+}
