@@ -1,0 +1,118 @@
+@use "cards/cards-grid/card-1col";
+@use "cards/cards-grid/card-2col";
+@use "cards/cards-grid/card-3col";
+@use "cards/cards-grid/card-4col";
+@use "cards/cards-grid/card-5col";
+
+@use "cards/cards-type/card-base";
+@use "cards/cards-type/card-main";
+@use "cards/cards-type/card-tokens";
+
+@use "backgrounds/background";
+
+@use "buttons/btn-cyber";
+@use "buttons/btn-base";
+@use "buttons/btn-login";
+
+@use "notifications/copy";
+
+@use "items/table";
+@use "items/description";
+@use "items/navbar";
+@use "items/console";
+
+//! -------------------- Общее содержимое -------------------- //
+.content {
+    flex: 100%;
+    max-width: 100%;
+    padding-top: 69px; /* отступ сверху, чтобы отступить от navbar */
+    box-sizing: border-box; /* чтобы padding не увеличивал ширину блока */
+    padding-left: 10px; /* Добавляет отступ слева */
+    padding-right: 10px; /* Добавляет отступ справа */
+}
+
+//! -------------------- Фон страницы -------------------- //
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #000000;
+    color: #00ff00;
+    font-family: "JetBrains Mono", monospace;
+    position: relative;
+    overflow-y: auto;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+//! -------------------- Скролл -------------------- //
+
+/* Кастомизация скроллбаров для всех элементов */
+::-webkit-scrollbar {
+    width: 10px; /* Ширина вертикального скроллбара */
+    height: 10px; /* Высота горизонтального скроллбара */
+}
+
+/* Кастомизация "ползунка" скроллбара */
+::-webkit-scrollbar-thumb {
+    background-color: #00ff88; /* Цвет ползунка */
+    border-radius: 10px; /* Скругление углов ползунка */
+    border: 2px solid #000000; /* Граница вокруг ползунка */
+}
+
+/* Кастомизация области, по которой ползунок двигается */
+::-webkit-scrollbar-track {
+    background-color: #000000; /* Цвет области, по которой движется ползунок */
+    border-radius: 10px; /* Скругление углов области */
+}
+
+/* Кастомизация горизонтального скроллбара */
+::-webkit-scrollbar-horizontal {
+    height: 8px;
+}
+
+/* Кастомизация вертикального скроллбара */
+::-webkit-scrollbar-vertical {
+    width: 8px;
+}
+
+//! -------------------- Для мобильных телефонов -------------------- //
+
+.input-style {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-style[readonly] {
+    background-color: #e9ecef;
+    cursor: default;
+}
+
+.input-label {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    .card-1grid-layout,
+    .card-2grid-layout,
+    .card-3grid-layout,
+    .card-4grid-layout,
+    .card-5grid-layout {
+        margin-top: 20px;
+    }
+}

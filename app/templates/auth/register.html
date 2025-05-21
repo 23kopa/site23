@@ -1,0 +1,31 @@
+{% extends 'base/base_nonav.html' %}
+
+{% block body_class %}auth-page{% endblock %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<canvas id="matrix"></canvas>
+<div class="card-main">
+    <div class="card-content">
+
+        <h2>Регистрация</h2>
+
+        <form method="POST" action="/register">
+            <div class="relative">
+                <input type="text" name="username" placeholder="Логин" required>
+            </div>
+            <div class="relative">
+                <input type="text" name="email" placeholder="Email" required>
+            </div>
+            <div class="relative">
+                <input type="password" name="password" placeholder="Пароль" required>
+            </div>
+            <div class="buttons-container flex gap-2 mt-3">
+                <button type="submit" class="btn-in">Зарегистрироваться</button>
+                <button type="button" class="btn-in" onclick="window.location.href='/login'">Отменить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
