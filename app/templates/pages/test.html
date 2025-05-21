@@ -1,0 +1,37 @@
+{% extends 'cards/card-2col.html' %}
+
+{% block title %}Мой Бот{% endblock %}
+
+{% block one_column %}
+<!-- ТопКарточка 1 -->
+<div class="card">
+  <div class="card-content">
+    <h2>Память сервера</h2>
+    <div class="description-card">
+      <p>Запрос памяти с сервера.</p>
+    </div>
+    <div class="buttons-container">
+      <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal" onclick="fetchDiskUsage()">
+        <i class="fas fa-file-alt icon"></i> Запросить
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block two_column %}
+<!-- БотКарточка Заметки -->
+<div class="card">
+  <div class="card-content">
+    <h2>Заметки</h2>
+    <div class="description-card">
+      <p>Запрос памяти с сервера.</p>
+    </div>
+    <div class="buttons-container">
+      <button class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#diskModal" onclick="fetchDiskUsage()">
+        <i class="fas fa-file-alt icon"></i> Запросить
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

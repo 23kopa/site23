@@ -1,0 +1,25 @@
+{% extends 'base/base_navbar.html' %}
+
+{% block title %}Мой Бот{% endblock %}
+
+{% block content %}
+<div class="card-4grid-layout">
+
+    <div class="one-4column">
+        {% block one_column %}{% endblock %}
+    </div>
+
+    <div class="two-4column">
+        {% block two_column %}{% endblock %}
+    </div>
+
+    <div class="three-4column">
+        {% block three_column %}{% endblock %}
+    </div>
+
+    <div class="four-4column">
+        {% block four_column %}{% endblock %}
+    </div>
+
+</div>
+{% endblock %}
