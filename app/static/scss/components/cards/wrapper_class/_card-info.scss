@@ -1,0 +1,18 @@
+.card-info {
+    height: 100%;
+    min-height: 180px;
+    border-width: 0px;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /*     &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    } */
+}

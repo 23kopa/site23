@@ -1,0 +1,25 @@
+/* Вертикальный и горизонтальный скроллбар */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #00ff88;
+    /* background-color: $color-green; */
+    border-radius: 10px;
+    /* border: 2px solid $color-black; */
+}
+
+::-webkit-scrollbar-track {
+    /* background-color: $color-black; */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-horizontal {
+    height: 8px;
+}
+
+::-webkit-scrollbar-vertical {
+    width: 8px;
+}

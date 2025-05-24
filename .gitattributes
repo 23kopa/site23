@@ -1,0 +1,9 @@
+# Всегда использовать LF при коммитах, независимо от ОС
+* text=auto eol=lf
+
+# Можно отдельно указать, например, для shell и CSS:
+*.sh text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.html text eol=lf
+*.py text eol=lf

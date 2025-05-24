@@ -1,0 +1,20 @@
+/* Кнопки */
+@forward "buttons/btn-auth";
+@forward "buttons/btn-cyber";
+
+/* Карточки */
+@forward "cards/cards";
+
+@forward "cards/card_class/card-profile";
+@forward "cards/card_class/card-auth";
+@forward "cards/card_class/card-dashboard";
+
+@forward "cards/wrapper_class/card-info";
+
+@forward "forms/form-base";
+@forward "forms/from-auth";
+
+/* Элеменеты */
+@forward "items/modal";
+@forward "items/scrollbar";
+@forward "items/input";

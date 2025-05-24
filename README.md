@@ -1,197 +1,162 @@
-## botmanager.site (timeweb.cloud)
+# SCSS Map
 
-> Домен зарегистрирован, оплачен до 29 апреля 2026
-
-### Основные функции:
-
-* Авторизация с БД, регистрация
-* Личный кабинет: редактирование информации и аватара
-* Страница 1 — Управление системой:
-
-  * Управление Telegram-ботом на VPS (systemctl: start, stop, reload)
-  * Информация о CPU: использование, частота, ядра
-  * Статус Nginx, запуск/остановка
-  * Сетевая информация: передано/получено, IP-адреса
-* Страница 2 — Honey-токены: карточки токенов (реализация в процессе)
-* Страница 3 — Личный кабинет:
-
-  * Отображение аватара, логина, почты
-  * Страница редактирования: логин, почта, пароль, аватар
-
----
-
-### 🌐 Инфраструктура и домен
-
-* **Домен:** botmanager.site (Timeweb Cloud)
-* **DNS:**
-
-  * `A` записи:
-
-    * botmanager.site → 185.22.172.242
-    * [www.botmanager.site](http://www.botmanager.site) → 185.22.172.242
-
----
-
-### ⚙️ Веб-сервер
-
-* **Nginx** — реверс-прокси для Flask:
-
-  * SSL от Let's Encrypt
-  * Редирект HTTP → HTTPS
-  * Обработка статики и кеширование
-
----
-
-### 🔐 SSL / HTTPS
-
-* **Let's Encrypt + Certbot**:
-
-  * Автообновление сертификатов
-  * Команда: `sudo certbot certificates`
-  * Конфиги: `/etc/letsencrypt/...`
-
----
-
-### 🐍 Flask Web App
-
-* **Фреймворк:** Flask
-* **Структура проекта:**
-
-  * `app/` — логика и шаблоны
-  * `config/` — dev/prod конфиги
-  * `.env` — переменные среды
-  * `run.py` — точка входа
-* **WSGI:** Gunicorn, запускается через systemd
-
----
-
-### 🧱 Frontend
-
-* Jinja2 шаблоны (auth, base, cards, pages)
-* SCSS/CSS по блокам (buttons, cards, items)
-* JavaScript: `static/js/script.js`
-* Изображения: `static/images/`
-
----
-
-### 📁 База данных
-
-* **SQLite** — файл: `instance/users.db`
-
----
-
-### 🛠️ DevOps
-
-* **Systemd unit:** `botmanager.service`
-
-  * Gunicorn + virtualenv
-  * Пользователь: www-data
-
----
-
-### 🧩 Инструменты
-
-* **virtualenv** — `venv/` в `/var/www/botmanager/`
-* **dotenv** — переменные среды из `.env`
-
----
-
-### Структура проекта (путь: `/var/www/botmanager/`):
+## abstracts/
+  - _functions.scss: SCSS-функции
+  - _mixins.scss: общие миксины
+## base/
+  - typography/: текст
+  - utilities/: утилиты (margin, padding, display)
+## components/
+  - buttons/: все стили кнопок
+  - cards/: карточки
+  - _forms.scss, _modal.scss: общие формы и модалки
+## layout/
+  - header/, footer/, sidebar/
+## pages/
+  - dashboard, botmanager: стили для страниц
+## themes/
+  - _default.scss: основной стиль/цвета
 
 ```
-botmanager/
-├── .env
-├── run.py
-├── config/
-│   ├── settings.py
-│   ├── base_config.py
-│   ├── dev_config.py
-│   └── prod_config.py
-├── app/
-│   ├── __init__.py
-│   ├── models/
-│   │   └── users.py
-│   ├── routes/
-│   │   ├── auth_routes.py
-│   │   ├── botmanager_routes.py
-│   │   ├── dashboard_routes.py
-│   │   ├── main_routes.py
-│   │   └── profile_routes.py
-│   ├── services/
-│   │   ├── ssh_service.py
-│   │   ├── tgbot_service.py
-│   │   ├── user_service.py
-│   │   └── vps_service.py
-│   ├── static/
-│   │   ├── css/
-│   │   ├── js/
-│   │   ├── images/
-│   │   └── scss/
-│   └── templates/
-│       ├── auth/
-│       ├── base/
-│       ├── cards/
-│       └── pages/
-├── instance/
-│   └── users.db
-└── requirements.txt
-```
+botmanager
+├─ app
+│  ├─ models
+│  │  ├─ reminders.py
+│  │  ├─ users.py
+│  │  └─ __init__.py
+│  ├─ routes
+│  │  ├─ auth_routes.py
+│  │  ├─ botmanager_routes.py
+│  │  ├─ main_routes.py
+│  │  ├─ profile_routes.py
+│  │  └─ tokens_routes.py
+│  ├─ services
+│  │  ├─ botmanager_cards_service.py
+│  │  ├─ dashboard_service.py
+│  │  ├─ default_cards_service.py
+│  │  ├─ ssh_service.py
+│  │  ├─ tgbot_service.py
+│  │  ├─ user_service.py
+│  │  └─ vps_service.py
+│  ├─ static
+│  │  ├─ css
+│  │  │  ├─ style.css
+│  │  │  └─ style.css.map
+│  │  ├─ images
+│  │  │  ├─ avatars
+│  │  │  │  ├─ user_1.jpeg
+│  │  │  │  └─ user_1.png
+│  │  │  ├─ default.png
+│  │  │  └─ logo.png
+│  │  ├─ js
+│  │  │  └─ script.js
+│  │  └─ scss
+│  │     ├─ abstracts
+│  │     │  ├─ functions
+│  │     │  │  └─ _functions.scss
+│  │     │  ├─ mixins
+│  │     │  │  └─ _mixins.scss
+│  │     │  └─ _index.scss
+│  │     ├─ base
+│  │     │  ├─ elements
+│  │     │  │  ├─ _container.scss
+│  │     │  │  ├─ _content.scss
+│  │     │  │  ├─ _html.scss
+│  │     │  │  ├─ _navbar.scss
+│  │     │  │  └─ _normalize.scss
+│  │     │  ├─ typography
+│  │     │  │  ├─ _headings.scss
+│  │     │  │  ├─ _index.scss
+│  │     │  │  └─ _text.scss
+│  │     │  ├─ utilities
+│  │     │  │  ├─ _display.scss
+│  │     │  │  ├─ _helpers.scss
+│  │     │  │  ├─ _spacing.scss
+│  │     │  │  └─ _visibility.scss
+│  │     │  ├─ variables
+│  │     │  │  ├─ _colors.scss
+│  │     │  │  └─ _fonts.scss
+│  │     │  └─ _index.scss
+│  │     ├─ components
+│  │     │  ├─ buttons
+│  │     │  │  ├─ _buttons-basic.scss
+│  │     │  │  ├─ _buttons-helpers.scss
+│  │     │  │  └─ _buttons-primary.scss
+│  │     │  ├─ cards
+│  │     │  │  ├─ card_class
+│  │     │  │  │  ├─ _card-base.scss
+│  │     │  │  │  ├─ _card-primary.scss
+│  │     │  │  │  ├─ _card-success.scss
+│  │     │  │  │  └─ _card-warning.scss
+│  │     │  │  ├─ wrapper_class
+│  │     │  │  │  └─ _card-info.scss
+│  │     │  │  └─ _cards.scss
+│  │     │  ├─ items
+│  │     │  │  ├─ _forms.scss
+│  │     │  │  ├─ _input.scss
+│  │     │  │  ├─ _modal.scss
+│  │     │  │  └─ _scrollbar.scss
+│  │     │  └─ _index.scss
+│  │     ├─ layout
+│  │     │  ├─ footer
+│  │     │  │  └─ _base.scss
+│  │     │  ├─ header
+│  │     │  │  ├─ _logo.scss
+│  │     │  │  └─ _nav.scss
+│  │     │  ├─ sidebar
+│  │     │  │  ├─ _menu.scss
+│  │     │  │  └─ _widgets.scss
+│  │     │  └─ _index.scss
+│  │     ├─ main.scss
+│  │     ├─ pages
+│  │     │  └─ _index.scss
+│  │     ├─ themes
+│  │     │  ├─ _default.scss
+│  │     │  └─ _index.scss
+│  │     └─ vendors
+│  │        ├─ _bootstrap.scss
+│  │        └─ _index.scss
+│  ├─ templates
+│  │  ├─ auth
+│  │  │  ├─ edit.html
+│  │  │  ├─ login.html
+│  │  │  ├─ profile.html
+│  │  │  └─ register.html
+│  │  ├─ base
+│  │  │  ├─ base.html
+│  │  │  └─ navbar.html
+│  │  ├─ macros
+│  │  │  ├─ cards
+│  │  │  │  ├─ botmanager
+│  │  │  │  │  └─ botmanager_card.html
+│  │  │  │  └─ dashboard
+│  │  │  │     └─ dashboard_card.html
+│  │  │  ├─ renders
+│  │  │  │  ├─ botmanager_render.html
+│  │  │  │  ├─ dashboard_render.html
+│  │  │  │  └─ default_render.html
+│  │  │  └─ __init__.html
+│  │  └─ pages
+│  │     ├─ botmanager.html
+│  │     ├─ dashboard.html
+│  │     ├─ default.html
+│  │     ├─ index.html
+│  │     ├─ tokens.html
+│  │     └─ welcome.html
+│  └─ __init__.py
+├─ config
+│  ├─ base_config.py
+│  ├─ dev_config.py
+│  ├─ prod_config.py
+│  ├─ settings.py
+│  └─ __init__.py
+├─ instance
+│  └─ users.db
+├─ migrations
+├─ README copy.md
+├─ README.md
+├─ requirements.txt
+├─ run.py
+└─ wsgi.py
 
----
-
-### Пример конфигурации systemd (`/etc/systemd/system/botmanager.service`):
-
-```ini
-[Unit]
-Description=Gunicorn instance to serve botmanager Flask app
-After=network.target
-
-[Service]
-User=www-data
-Group=www-data
-WorkingDirectory=/var/www/botmanager
-Environment="FLASK_ENV=production"
-EnvironmentFile=/var/www/botmanager/.env
-ExecStart=/var/www/botmanager/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 run:app
-
-[Install]
-WantedBy=multi-user.target
-```
-
----
-
-### Конфигурация Nginx (`/etc/nginx/sites-available/botmanager.site`):
-
-```nginx
-server {
-    listen 443 ssl;
-    server_name botmanager.site www.botmanager.site;
-
-    ssl_certificate /etc/letsencrypt/live/botmanager.site/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/botmanager.site/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
-    root /var/www/botmanager/static;
-
-    location / {
-        proxy_pass http://127.0.0.1:5000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    location /static/ {
-        alias /var/www/botmanager/static/;
-        expires 30d;
-        add_header Cache-Control "public, max-age=2592000";
-    }
-}
-
-server {
-    listen 80;
-    server_name botmanager.site www.botmanager.site;
-    return 301 https://$host$request_uri;
-}
 ```
