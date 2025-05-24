@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session
+from flask import Blueprint, render_template, request, redirect, url_for
+from flask_login import current_user, login_required
 from werkzeug.security import generate_password_hash
 from werkzeug.utils import secure_filename
 from app.models.users import User
@@ -14,23 +15,15 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.route('/account')
+@login_required
 def account():
-    if 'user_id' not in session:
-        return redirect(url_for('auth.login'))  # предполагаем, что login в auth_routes
-
-    user = User.query.get(session['user_id'])
-    if not user:
-        session.clear()
-        return redirect(url_for('auth.login'))
-
-    return render_template('auth/profile.html', user=user)
+    user = current_user
+    return render_template('auth/profile.html', user=user, page_name='profile')
 
 @bp.route('/edit', methods=['GET', 'POST'])
+@login_required
 def edit_profile():
-    if 'user_id' not in session:
-        return redirect(url_for('auth.login'))
-
-    user = User.query.get(session['user_id'])
+    user = current_user
 
     if request.method == 'POST':
         new_username = request.form['username']
@@ -57,7 +50,6 @@ def edit_profile():
             user.avatar = new_avatar_filename
 
         db.session.commit()
-        session['username'] = user.username
         return redirect(url_for('profile.account'))
 
-    return render_template('auth/edit.html', user=user)
+    return render_template('auth/edit.html', user=user, page_name='edit')

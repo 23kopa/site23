@@ -19,23 +19,6 @@
     flex-direction: column; /* Это обеспечит вертикальное размещение элементов */
 }
 
-/* .tokens-card::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #005f44, #008066, #3a8070);
-    z-index: -1;
-    filter: blur(10px);
-    opacity: 0.2;
-} */
-
-/* .card-content {
-    animation: fadeInUp 0.6s ease forwards;
-} */
-
 .card-content hr {
     width: 100%;
     margin-top: 10px; /* Отступ сверху, чтобы линия не была прямо у текста */

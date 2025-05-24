@@ -1,14 +1,17 @@
-from flask import Blueprint, jsonify, redirect, url_for, render_template
+from flask import Blueprint, jsonify, render_template
+from flask_login import login_required
 from app.services.vps_service import get_cpu_usage, get_cpu_cores, get_cpu_frequency, get_network_info
 from app.services.ssh_service import ssh_execute
 
 bp = Blueprint('botmanager', __name__)
 
 @bp.route('/bot')
+@login_required  # Защита маршрута
 def botmanager():
-    return render_template('pages/botmanager.html')
+    return render_template('pages/botmanager.html', columns=4)
 
 @bp.route('/cpu_usage')
+@login_required  # Защита API
 def cpu_usage():
     cpu_usage = get_cpu_usage()
     physical_cores, logical_cores = get_cpu_cores()
@@ -24,6 +27,7 @@ def cpu_usage():
     })
 
 @bp.route('/nginx_status')
+@login_required  # Защита API
 def nginx_status():
     command = 'systemctl is-active nginx'
     stdout, stderr = ssh_execute(command)
@@ -32,6 +36,7 @@ def nginx_status():
     return jsonify({'status': stdout.strip()})
 
 @bp.route('/network_info')
+@login_required  # Защита API
 def network_info():
     info = get_network_info()
     return jsonify(info)

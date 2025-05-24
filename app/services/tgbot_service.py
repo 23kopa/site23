@@ -9,8 +9,4 @@ def restart_bot():
 @bp.route('/stop_bot')
 def stop_bot():
     ...
-
-@bp.route('/logs')
-def logs():
-    ...
  """

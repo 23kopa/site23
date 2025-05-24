@@ -1,4 +1,4 @@
-{% extends 'base/base_nonav.html' %}
+{% extends 'base/base.html' %}
 
 {% block body_class %}auth-page{% endblock %}
 
@@ -7,7 +7,7 @@
 {% block content %}
 <canvas id="matrix"></canvas>
 <div class="welcome-container">
-    <h1 id="welcome-title">Добро пожаловать в sites23!</h1>
+    <h1 id="welcome-title">Добро пожаловать в site23!</h1>
     <p id="typing-text"></p>
 
     <div id="buttons-container">
@@ -41,7 +41,6 @@
     .welcome-container {
         color: #00ffaa;
         text-align: center;
-        margin-top: 25vh;
         font-family: "JetBrains Mono", monospace;
     }
 

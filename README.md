@@ -195,3 +195,301 @@ server {
     return 301 https://$host$request_uri;
 }
 ```
+
+
+```
+botmanager
+├─ app
+│  ├─ models
+│  │  └─ users.py
+│  ├─ routes
+│  │  ├─ auth_routes.py
+│  │  ├─ botmanager_routes.py
+│  │  ├─ dashboard_routes.py
+│  │  ├─ main_routes.py
+│  │  ├─ profile_routes.py
+│  │  └─ tokens_routes.py
+│  ├─ services
+│  │  ├─ ssh_service.py
+│  │  ├─ tgbot_service.py
+│  │  ├─ user_service.py
+│  │  └─ vps_service.py
+│  ├─ static
+│  │  ├─ css
+│  │  │  ├─ style.css
+│  │  │  └─ style.css.map
+│  │  ├─ images
+│  │  │  ├─ avatars
+│  │  │  │  ├─ user_1.jpeg
+│  │  │  │  └─ user_1.png
+│  │  │  ├─ default.png
+│  │  │  └─ logo.png
+│  │  ├─ js
+│  │  │  └─ script.js
+│  │  └─ scss
+│  │     ├─ backgrounds
+│  │     │  └─ _background.scss
+│  │     ├─ buttons
+│  │     │  ├─ _btn-base.scss
+│  │     │  ├─ _btn-cyber.scss
+│  │     │  └─ _btn-login.scss
+│  │     ├─ cards
+│  │     │  ├─ cards-grid
+│  │     │  │  ├─ _card-1col.scss
+│  │     │  │  ├─ _card-2col.scss
+│  │     │  │  ├─ _card-3col.scss
+│  │     │  │  ├─ _card-4col.scss
+│  │     │  │  └─ _card-5col.scss
+│  │     │  └─ cards-type
+│  │     │     ├─ _card-base.scss
+│  │     │     ├─ _card-main.scss
+│  │     │     └─ _card-tokens.scss
+│  │     ├─ items
+│  │     │  ├─ _console.scss
+│  │     │  ├─ _description.scss
+│  │     │  ├─ _logo.scss
+│  │     │  ├─ _navbar.scss
+│  │     │  └─ _table.scss
+│  │     ├─ notifications
+│  │     │  └─ _copy.scss
+│  │     └─ style.scss
+│  ├─ templates
+│  │  ├─ auth
+│  │  │  ├─ edit.html
+│  │  │  ├─ login.html
+│  │  │  ├─ profile.html
+│  │  │  └─ register.html
+│  │  ├─ base
+│  │  │  ├─ base.html
+│  │  │  └─ navbar.html
+│  │  ├─ cards
+│  │  │  ├─ card-1col.html
+│  │  │  ├─ card-2col.html
+│  │  │  ├─ card-3col.html
+│  │  │  ├─ card-4col.html
+│  │  │  └─ card-5col.html
+│  │  └─ pages
+│  │     ├─ botmanager.html
+│  │     ├─ dashboard.html
+│  │     ├─ index.html
+│  │     ├─ test.html
+│  │     ├─ tokens.html
+│  │     └─ welcome.html
+│  └─ __init__.py
+├─ config
+│  ├─ base_config.py
+│  ├─ dev_config.py
+│  ├─ prod_config.py
+│  ├─ settings.py
+│  └─ __init__.py
+├─ instance
+│  └─ users.db
+├─ migrations
+├─ README.md
+├─ requirements.txt
+├─ run.py
+└─ wsgi.py
+
+```
+```
+botmanager
+├─ app
+│  ├─ models
+│  │  └─ users.py
+│  ├─ routes
+│  │  ├─ auth_routes.py
+│  │  ├─ botmanager_routes.py
+│  │  ├─ dashboard_routes.py
+│  │  ├─ main_routes.py
+│  │  ├─ profile_routes.py
+│  │  └─ tokens_routes.py
+│  ├─ services
+│  │  ├─ ssh_service.py
+│  │  ├─ tgbot_service.py
+│  │  ├─ user_service.py
+│  │  └─ vps_service.py
+│  ├─ static
+│  │  ├─ css
+│  │  │  ├─ style.css
+│  │  │  └─ style.css.map
+│  │  ├─ images
+│  │  │  ├─ avatars
+│  │  │  │  ├─ user_1.jpeg
+│  │  │  │  └─ user_1.png
+│  │  │  ├─ default.png
+│  │  │  └─ logo.png
+│  │  ├─ js
+│  │  │  └─ script.js
+│  │  └─ scss
+│  │     ├─ backgrounds
+│  │     │  └─ _background.scss
+│  │     ├─ buttons
+│  │     │  ├─ _btn-base.scss
+│  │     │  ├─ _btn-cyber.scss
+│  │     │  └─ _btn-login.scss
+│  │     ├─ cards
+│  │     │  ├─ cards-grid
+│  │     │  │  ├─ _card-1col.scss
+│  │     │  │  ├─ _card-2col.scss
+│  │     │  │  ├─ _card-3col.scss
+│  │     │  │  ├─ _card-4col.scss
+│  │     │  │  ├─ _card-5col.scss
+│  │     │  │  └─ _cards_col.scss
+│  │     │  └─ cards-type
+│  │     │     ├─ _card-base.scss
+│  │     │     ├─ _card-main.scss
+│  │     │     └─ _card-tokens.scss
+│  │     ├─ items
+│  │     │  ├─ _console.scss
+│  │     │  ├─ _description.scss
+│  │     │  ├─ _logo.scss
+│  │     │  ├─ _navbar.scss
+│  │     │  └─ _table.scss
+│  │     ├─ notifications
+│  │     │  └─ _copy.scss
+│  │     └─ style.scss
+│  ├─ templates
+│  │  ├─ auth
+│  │  │  ├─ edit.html
+│  │  │  ├─ login.html
+│  │  │  ├─ profile.html
+│  │  │  └─ register.html
+│  │  ├─ base
+│  │  │  ├─ base.html
+│  │  │  └─ navbar.html
+│  │  ├─ cards
+│  │  │  ├─ card-1col.html
+│  │  │  ├─ card-2col.html
+│  │  │  ├─ card-3col.html
+│  │  │  ├─ card-4col.html
+│  │  │  ├─ card-5col.html
+│  │  │  ├─ columns
+│  │  │  │  ├─ column_0.html
+│  │  │  │  ├─ column_1.html
+│  │  │  │  ├─ column_2.html
+│  │  │  │  └─ column_3.html
+│  │  │  └─ universal-grid.html
+│  │  └─ pages
+│  │     ├─ botmanager.html
+│  │     ├─ dashboard.html
+│  │     ├─ index.html
+│  │     ├─ test.html
+│  │     ├─ tokens.html
+│  │     └─ welcome.html
+│  └─ __init__.py
+├─ config
+│  ├─ base_config.py
+│  ├─ dev_config.py
+│  ├─ prod_config.py
+│  ├─ settings.py
+│  └─ __init__.py
+├─ instance
+│  └─ users.db
+├─ migrations
+├─ README.md
+├─ requirements.txt
+├─ run.py
+└─ wsgi.py
+
+```
+```
+botmanager
+├─ app
+│  ├─ models
+│  │  └─ users.py
+│  ├─ routes
+│  │  ├─ auth_routes.py
+│  │  ├─ botmanager_routes.py
+│  │  ├─ dashboard_routes.py
+│  │  ├─ main_routes.py
+│  │  ├─ profile_routes.py
+│  │  └─ tokens_routes.py
+│  ├─ services
+│  │  ├─ ssh_service.py
+│  │  ├─ tgbot_service.py
+│  │  ├─ user_service.py
+│  │  └─ vps_service.py
+│  ├─ static
+│  │  ├─ css
+│  │  │  ├─ style.css
+│  │  │  └─ style.css.map
+│  │  ├─ images
+│  │  │  ├─ avatars
+│  │  │  │  ├─ user_1.jpeg
+│  │  │  │  └─ user_1.png
+│  │  │  ├─ default.png
+│  │  │  └─ logo.png
+│  │  ├─ js
+│  │  │  └─ script.js
+│  │  └─ scss
+│  │     ├─ backgrounds
+│  │     │  └─ _background.scss
+│  │     ├─ buttons
+│  │     │  ├─ _btn-base.scss
+│  │     │  ├─ _btn-cyber.scss
+│  │     │  └─ _btn-login.scss
+│  │     ├─ cards
+│  │     │  ├─ cards-grid
+│  │     │  │  ├─ _card-1col.scss
+│  │     │  │  ├─ _card-2col.scss
+│  │     │  │  ├─ _card-3col.scss
+│  │     │  │  ├─ _card-4col.scss
+│  │     │  │  ├─ _card-5col.scss
+│  │     │  │  └─ _card-col.scss
+│  │     │  └─ cards-type
+│  │     │     ├─ _card-base.scss
+│  │     │     ├─ _card-main.scss
+│  │     │     └─ _card-tokens.scss
+│  │     ├─ items
+│  │     │  ├─ _console.scss
+│  │     │  ├─ _description.scss
+│  │     │  ├─ _logo.scss
+│  │     │  ├─ _navbar.scss
+│  │     │  └─ _table.scss
+│  │     ├─ notifications
+│  │     │  └─ _copy.scss
+│  │     └─ style.scss
+│  ├─ templates
+│  │  ├─ auth
+│  │  │  ├─ edit.html
+│  │  │  ├─ login.html
+│  │  │  ├─ profile.html
+│  │  │  └─ register.html
+│  │  ├─ base
+│  │  │  ├─ base.html
+│  │  │  └─ navbar.html
+│  │  ├─ cards
+│  │  │  ├─ card-1col.html
+│  │  │  ├─ card-2col.html
+│  │  │  ├─ card-3col.html
+│  │  │  ├─ card-4col.html
+│  │  │  ├─ card-5col.html
+│  │  │  ├─ card-grid.html
+│  │  │  └─ columns
+│  │  │     ├─ column_0.html
+│  │  │     ├─ column_1.html
+│  │  │     ├─ column_2.html
+│  │  │     └─ column_3.html
+│  │  └─ pages
+│  │     ├─ botmanager.html
+│  │     ├─ dashboard.html
+│  │     ├─ index.html
+│  │     ├─ test.html
+│  │     ├─ tokens.html
+│  │     └─ welcome.html
+│  └─ __init__.py
+├─ config
+│  ├─ base_config.py
+│  ├─ dev_config.py
+│  ├─ prod_config.py
+│  ├─ settings.py
+│  └─ __init__.py
+├─ instance
+│  └─ users.db
+├─ migrations
+├─ README.md
+├─ requirements.txt
+├─ run.py
+└─ wsgi.py
+
+```

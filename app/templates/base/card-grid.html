@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ title or "Карточки" }}{% endblock %}
+
+{% block content %}
+<div class="card-grid-layout" style="--columns: {{ columns|default(1)}};">
+    {{ columns_content | safe }}
+</div>
+{% endblock %}

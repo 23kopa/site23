@@ -1,11 +1,11 @@
-{% extends 'cards/card-2col.html' %}
+{% extends 'base/card-grid.html' %}
 
-{% block title %}Главная — Меню{% endblock %}
+{% block title %}Главная{% endblock %}
 
-{% block one_column %}
+{% macro one_column() %}
 <div class="card card-main">
     <div class="card-content">
-        <h2>⚙️ Системные данные</h2>
+        <h2>Системные данные</h2>
         <div class="buttons-container">
             <a href="/system" class="btn btn-in"><i class="fas fa-server icon"></i> Система</a>
             <a href="/network" class="btn btn-in"><i class="fas fa-network-wired icon"></i> Сеть</a>
@@ -13,12 +13,12 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endmacro %}
 
-{% block two_column %}
+{% macro two_column() %}
 <div class="card card-main">
     <div class="card-content">
-        <h2>📝 Инструменты</h2>
+        <h2>Инструменты</h2>
         <div class="buttons-container">
             <a href="/notes" class="btn btn-in"><i class="fas fa-sticky-note icon"></i> Заметки</a>
             <a href="/reminders" class="btn btn-in"><i class="fas fa-clock icon"></i> Напоминания</a>
@@ -26,4 +26,6 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endmacro %}
+
+{% set columns_content = one_column() + two_column() %}
