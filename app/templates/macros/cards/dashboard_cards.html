@@ -1,0 +1,16 @@
+{% macro render_dashboard_card(card) %}
+<div class="{{ card.wrapper_class }}">
+
+    <div class="card {{ card.card_class | default('') }}">
+        <div class="card-body">
+
+            <h5 class="card-title {{ card.title_class | default('') }}">
+                <i class="fas fa-{{ card.icon | default('question-circle') }} me-2"></i>{{ card.title }}
+            </h5>
+            <p class="card-text">{{ card.content | safe }}</p>
+
+        </div>
+    </div>
+
+</div>
+{% endmacro %}

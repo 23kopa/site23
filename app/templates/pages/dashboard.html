@@ -1,31 +1,17 @@
-{% extends 'base/card-grid.html' %}
+{% extends 'base/base.html' %}
+{% import 'macros/renders/dashboard_render.html' as cards %}
 
-{% block title %}Главная{% endblock %}
-
-{% macro one_column() %}
-<div class="card card-main">
-    <div class="card-content">
-        <h2>Системные данные</h2>
-        <div class="buttons-container">
-            <a href="/system" class="btn btn-in"><i class="fas fa-server icon"></i> Система</a>
-            <a href="/network" class="btn btn-in"><i class="fas fa-network-wired icon"></i> Сеть</a>
-            <a href="/bot" class="btn btn-in"><i class="fas fa-robot icon"></i> Управление ботом</a>
+{% block content %}
+<section class="dashboard-section">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="page-title">Добро пожаловать,{{user.username}}!</h2>
+        </div>
+        <div class="row row-cols-1 row-cols-md-{{ columns }} g-4">
+            {% for card in grid_cards %}
+            {{ cards.render_card(card) }}
+            {% endfor %}
         </div>
     </div>
-</div>
-{% endmacro %}
-
-{% macro two_column() %}
-<div class="card card-main">
-    <div class="card-content">
-        <h2>Инструменты</h2>
-        <div class="buttons-container">
-            <a href="/notes" class="btn btn-in"><i class="fas fa-sticky-note icon"></i> Заметки</a>
-            <a href="/reminders" class="btn btn-in"><i class="fas fa-clock icon"></i> Напоминания</a>
-            <a href="/cron" class="btn btn-in"><i class="fas fa-calendar-alt icon"></i> Cron задачи</a>
-        </div>
-    </div>
-</div>
-{% endmacro %}
-
-{% set columns_content = one_column() + two_column() %}
+</section>
+{% endblock %}

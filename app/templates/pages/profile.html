@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+{% import 'macros/renders/profile_render.html' as cards %}
+
+{% block content %}
+<section class="dashboard-section">
+    <div class="container-fluid">
+        <div class=" d-flex justify-content-center align-items-center">
+            {% for card in center_cards %}
+            {{ cards.render_card(card) }}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

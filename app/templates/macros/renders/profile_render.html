@@ -1,0 +1,5 @@
+{% import 'macros/cards/profile_cards.html' as profile_cards %}
+
+{% macro render_card(card) %}
+{{ profile_cards.render_profile_card(card) }}
+{% endmacro %}

@@ -26,58 +26,6 @@ function fetchDiskUsage() {
         });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const terminalOutput = document.getElementById('terminal-output');
-    const textContainer = document.querySelector('.terminal-text');
-    const cursor = document.querySelector('.cursor');
-
-    /* const text = ">>> Добро пожаловать, бро! Тут без багов, только фичи <3"; */
-    const text = ">> Добро пожаловать!";
-
-    let i = 0;
-    const typingSpeed = 100; // скорость печати (мс)
-
-    // Функция для печати текста
-    function typeText() {
-        if (i < text.length) {
-            textContainer.textContent += text.charAt(i); // добавляем символ в текст
-            i++;
-            setTimeout(typeText, typingSpeed);
-        } else {
-            // Когда текст полностью выведен, курсор мигает
-            cursor.style.animation = 'blink 0.7s step-start infinite';
-        }
-    }
-
-    // Запуск анимации текста
-    typeText();
-});
-
-
-document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      const ripple = document.createElement('span');
-      ripple.style.position = 'absolute';
-      ripple.style.borderRadius = '50%';
-      ripple.style.background = '#00ff88';
-      ripple.style.opacity = '0.6';
-      ripple.style.pointerEvents = 'none';
-      ripple.style.width = ripple.style.height = '100px';
-      ripple.style.transform = 'scale(0)';
-      ripple.style.animation = 'ripple 0.6s linear';
-  
-      const rect = this.getBoundingClientRect();
-      ripple.style.left = `${e.clientX - rect.left - 50}px`;
-      ripple.style.top = `${e.clientY - rect.top - 50}px`;
-  
-      this.appendChild(ripple);
-  
-      ripple.addEventListener('animationend', () => {
-        ripple.remove();
-      });
-    });
-  });
-
   function fetchNginxStatus() {
     fetch('/nginx_status')
         .then(response => response.json())

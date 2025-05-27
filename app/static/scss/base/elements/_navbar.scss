@@ -1,0 +1,58 @@
+//! -------------------------- Основной стиль для навбара -------------------------- //
+.navbar {
+    background-color: #000 !important; /* Черный фон */
+    border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
+    height: 50px; // Установи нужную высоту (например, 70px)
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem; // Меньший шрифт для всей навигации
+
+    //! -------------------------- Стили для логотипа (navbar-brand) -------------------------- //
+    .navbar-logo {
+        /* width: 32px;  */
+        width: 70px;
+        height: 32px;
+        /* background-color: #28a745;  */
+        border-radius: 0%;
+        color: white;
+        font-weight: 900;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "JetBrains Mono", monospace;
+        margin-right: 10px;
+    }
+
+    //! -------------------------- Стили для ссылок навбара -------------------------- //
+    .nav-link {
+        color: #00ff88 !important;
+        font-weight: 500;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:focus {
+            color: #66ffcc !important;
+            text-decoration: none;
+            text-shadow:
+                0 0 5px #00ff88,
+                0 0 10px #00ff88;
+        }
+    }
+
+    //! -------------------------- Стили для кнопки-бургера -------------------------- //
+    .navbar-toggler {
+        border-color: #198754; /* Зеленая рамка */
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(25,135,84,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E"); /* Зеленые полоски */
+        }
+    }
+}

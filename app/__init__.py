@@ -25,22 +25,23 @@ def create_app():
         return User.query.get(int(user_id))
 
     # Импорт маршрутов
-    from app.routes import (
+    from app.routes.index_routes import (
         main_routes,
-        auth_routes,
-        dashboard_routes,
+        auth_routes
+    )
+
+    from app.routes.pages_routes import (
         profile_routes,
         botmanager_routes,
-        tokens_routes
+        dashboard_routes
     )
 
     # Регистрация blueprint'ов
     app.register_blueprint(main_routes.bp)
     app.register_blueprint(auth_routes.bp)
-    app.register_blueprint(dashboard_routes.bp)
     app.register_blueprint(profile_routes.bp)
     app.register_blueprint(botmanager_routes.bp)
-    app.register_blueprint(tokens_routes.bp)
+    app.register_blueprint(dashboard_routes.bp)
 
     EXEMPT_PATHS = [
         '/',
@@ -57,6 +58,5 @@ def create_app():
             # Если путь не начинается с одного из исключений — редиректим на логин
             if not any(path.startswith(exempt) for exempt in EXEMPT_PATHS):
                 return redirect(url_for('auth_routes.login'))
-
 
     return app
