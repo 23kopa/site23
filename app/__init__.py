@@ -1,12 +1,14 @@
 from flask import Flask, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
+from flask_migrate import Migrate
 
 from config.settings import Config
 
 
 db = SQLAlchemy()
 login_manager = LoginManager()
+migrate = Migrate() 
 
 
 def create_app():
@@ -15,6 +17,7 @@ def create_app():
 
     db.init_app(app)  # Инициализация SQLAlchemy с приложением
     login_manager.init_app(app)
+    migrate.init_app(app, db)
 
     login_manager.login_view = 'auth_routes.login'
 

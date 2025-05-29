@@ -5,4 +5,4 @@ from app.services.card_services.dashboard_cards_service import get_dashboard_car
 bp = Blueprint('main_routes', __name__)
 @bp.route('/')
 def home():
-    return render_template('pages/welcome.html')
+    return render_template('base/welcome.html')
