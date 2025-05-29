@@ -1,0 +1,12 @@
+[Unit]
+Description=GitHub Webhook Listener
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/opt/webhook/
+ExecStart=/opt/webhook/github/deploy_venv/bin/python /opt/webhook/github/webhook_listener.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
