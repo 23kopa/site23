@@ -1,6 +1,7 @@
 /* Кнопки */
 @forward "buttons/btn-auth";
 @forward "buttons/btn-cyber";
+@forward "buttons/btn-dashboard";
 
 /* Карточки */
 @forward "cards/cards";
@@ -13,6 +14,8 @@
 
 @forward "forms/form-base";
 @forward "forms/from-auth";
+
+@forward "modal/modal";
 
 /* Элеменеты */
 @forward "items/modal";

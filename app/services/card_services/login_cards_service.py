@@ -2,7 +2,7 @@ def get_login_cards():
     return [
         {
             'type': 'form',
-            'title': 'Вход в аккаунт',
+            'title': 'Вход',
             "title_class": "auth-title",
             'form_action': '/login',
             'fields': [
@@ -11,7 +11,7 @@ def get_login_cards():
             ],
             'btn_class': 'btn-auth',
             'submit_text': 'Войти',
-            'bottom_text': 'Нет аккаунта? <a href="/register">Зарегистрируйтесь</a>',
+            'bottom_text': 'Нет аккаунта? <a href="/login">Зарегистрируйтесь</a>',
             'wrapper_class': 'card-form',
             'card_class': 'card-auth',
         }

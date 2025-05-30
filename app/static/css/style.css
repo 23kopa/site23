@@ -47,9 +47,9 @@ body::before {
 }
 
 .auth-container {
+  margin-top: 50px;
   max-width: 500px;
   max-height: 5000px;
-  padding-top: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +77,7 @@ body::before {
 .navbar {
   background-color: #000 !important; /* Черный фон */
   border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
-  height: 50px;
+  height: 57px;
   padding-top: 1rem;
   padding-bottom: 1rem;
   display: flex;
@@ -86,11 +86,10 @@ body::before {
 }
 .navbar .navbar-logo {
   width: 70px;
-  height: 32px;
   border-radius: 0%;
   color: white;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 23px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,7 +99,7 @@ body::before {
 .navbar .nav-link {
   color: #00ff88 !important;
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 17px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -111,6 +110,7 @@ body::before {
   display: none;
 }
 .navbar .nav-link:hover, .navbar .nav-link:focus {
+  border-radius: 12px;
   color: #66ffcc !important;
   text-decoration: none;
   background-color: rgba(0, 255, 136, 0.1);
@@ -234,53 +234,34 @@ body::before {
 }
 /* Кнопки */
 .btn-auth {
-  text-transform: uppercase; /* Преобразуем текст в заглавные */
   font-size: 16px;
   padding: 14px 32px;
+  text-transform: uppercase;
   font-weight: 600;
-  letter-spacing: 0.8px;
-  color: #ffffff !important;
-  margin-bottom: 0.5rem;
-  background-color: #00ffaa; /* Зеленый фон */
+  color: #fff;
+  background: linear-gradient(45deg, #00ff99, #00cc66, #00ff99);
+  background-size: 300% 300%;
   border: none;
   border-radius: 14px;
-  box-shadow: 0 6px 12px rgba(79, 172, 254, 0.3), 0 0 10px rgba(0, 242, 254, 0.2);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.35s ease;
-  z-index: 1;
+  animation: gradientFlow 6s ease infinite;
+  box-shadow: 0 0 12px rgba(0, 255, 153, 0.4);
+  transition: transform 0.3s;
   cursor: pointer;
-  backdrop-filter: blur(3px);
 }
 
-.btn-auth::before {
-  content: "";
-  position: absolute;
-  top: -100%;
-  left: -45%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.2) 100%);
-  transform: rotate(25deg);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-  z-index: 2;
+.btn-auth:hover {
+  transform: scale(1.05);
 }
 
-.btn-auth:hover::before {
-  animation: glossMove 1.2s ease-in-out;
-  opacity: 1;
-}
-
-@keyframes glossMove {
+@keyframes gradientFlow {
   0% {
-    top: -100%;
-    left: -45%;
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    top: 100%;
-    left: 100%;
+    background-position: 0% 50%;
   }
 }
 .btn-cyber {
@@ -315,6 +296,49 @@ body::before {
 
 .btn-cyber:hover {
   color: #001e1e;
+}
+
+/* Кнопка-контур, выглядит как единая рамка */
+.btn-dashboard {
+  z-index: 1;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  border: 2px solid rgba(0, 255, 170, 0.4392156863);
+  border-radius: 12px;
+  background-color: transparent;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-dashboard-label {
+  z-index: 0;
+  position: relative;
+  text-transform: uppercase;
+  margin-top: 34px;
+  color: rgba(0, 255, 170, 0.4392156863);
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  background-color: transparent;
+}
+
+/* Появление при наведении на карточку */
+.card-dashboard:hover .btn-dashboard,
+.card-dashboard:hover .btn-dashboard-label {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Карточки */
@@ -374,13 +398,12 @@ body::before {
   }
 }
 .card-dashboard {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 1px 2px rgba(0, 255, 136, 0.3);
-  border: 1px solid rgba(0, 255, 170, 0.3);
   height: 200px;
   border-radius: 12px;
-  padding: 15px;
   animation: fadeInUp 0.5s ease forwards;
+  overflow: hidden;
 }
 
 .card-info {
@@ -445,6 +468,48 @@ body::before {
 .card-auth form button:hover {
   background-color: #00cc77;
   box-shadow: 0 6px 20px rgba(0, 204, 119, 0.7);
+}
+
+/* Модальное окно - затемнение заднего фона */
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Основной блок модального окна */
+.modal-content {
+  border-radius: 1rem;
+  border: none;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Заголовок */
+.modal-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 1.25rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/* Кнопка закрытия */
+.btn-close {
+  background-color: transparent;
+  border: none;
+}
+
+/* Основной текст */
+.modal-body {
+  padding: 1.5rem;
+  font-size: 1rem;
+  color: #333;
 }
 
 /* Элеменеты */

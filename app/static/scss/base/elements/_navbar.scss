@@ -2,7 +2,7 @@
 .navbar {
     background-color: #000 !important; /* Черный фон */
     border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
-    height: 50px; // Установи нужную высоту (например, 70px)
+    height: 57px; // Установи нужную высоту (например, 70px)
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
@@ -12,11 +12,10 @@
     //! -------------------------- Стили для логотипа (navbar-brand) -------------------------- //
     .navbar-logo {
         width: 70px;
-        height: 32px;
         border-radius: 0%;
         color: white;
         font-weight: 900;
-        font-size: 20px;
+        font-size: 23px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -28,7 +27,7 @@
     .nav-link {
         color: #00ff88 !important;
         font-weight: 500;
-        font-size: 0.8rem;
+        font-size: 17px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -41,6 +40,7 @@
 
         &:hover,
         &:focus {
+            border-radius: 12px;
             color: #66ffcc !important;
             text-decoration: none;
             background-color: rgba(0, 255, 136, 0.1);

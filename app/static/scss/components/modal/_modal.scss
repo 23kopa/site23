@@ -1,0 +1,41 @@
+/* Модальное окно - затемнение заднего фона */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Основной блок модального окна */
+.modal-content {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+    background-color: #fff; // или любой другой цвет
+    transition: all 0.3s ease-in-out;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Заголовок */
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.25rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Кнопка закрытия */
+.btn-close {
+    background-color: transparent;
+    border: none;
+}
+
+/* Основной текст */
+.modal-body {
+    padding: 1.5rem;
+    font-size: 1rem;
+    color: #333;
+}

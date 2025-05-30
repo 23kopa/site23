@@ -1,13 +1,15 @@
 
 ```
-botmanager.site
+botmanager
 ├─ .deploy
 │  ├─ install.sh
-│  ├─ webapp.service
+│  ├─ systemd
+│  │  ├─ webapp.service
+│  │  └─ webhook.service
 │  └─ webhook
-│     ├─ webhook.service
 │     ├─ webhook_listener.py
 │     └─ webhook_requirements.txt
+├─ .dockerignore
 ├─ app
 │  ├─ models
 │  │  ├─ reminders.py
@@ -42,6 +44,12 @@ botmanager.site
 │  │  │  ├─ default.png
 │  │  │  └─ logo.png
 │  │  ├─ js
+│  │  │  ├─ cpu.js
+│  │  │  ├─ disk.js
+│  │  │  ├─ main.js
+│  │  │  ├─ matrix.js
+│  │  │  ├─ network.js
+│  │  │  ├─ nginx.js
 │  │  │  └─ script.js
 │  │  └─ scss
 │  │     ├─ abstracts
@@ -72,8 +80,10 @@ botmanager.site
 │  │     │  └─ _index.scss
 │  │     ├─ components
 │  │     │  ├─ buttons
+│  │     │  │  ├─ _btn-auth copy.scss
 │  │     │  │  ├─ _btn-auth.scss
-│  │     │  │  └─ _btn-cyber.scss
+│  │     │  │  ├─ _btn-cyber.scss
+│  │     │  │  └─ _btn-dashboard.scss
 │  │     │  ├─ cards
 │  │     │  │  ├─ card_class
 │  │     │  │  │  ├─ _card-auth.scss
@@ -90,14 +100,22 @@ botmanager.site
 │  │     │  │  ├─ _list-group-item.scss
 │  │     │  │  ├─ _modal.scss
 │  │     │  │  └─ _scrollbar.scss
+│  │     │  ├─ modal
+│  │     │  │  └─ _modal.scss
 │  │     │  └─ _index.scss
 │  │     ├─ layout
 │  │     │  ├─ footer
-│  │     │  │  └─ _base.scss
+│  │     │  │  ├─ _base.scss
+│  │     │  │  └─ _index.scss
+│  │     │  ├─ grid
+│  │     │  │  ├─ _index.scss
+│  │     │  │  └─ _settings.scss
 │  │     │  ├─ header
+│  │     │  │  ├─ _index.scss
 │  │     │  │  ├─ _logo.scss
 │  │     │  │  └─ _nav.scss
 │  │     │  ├─ sidebar
+│  │     │  │  ├─ _index.scss
 │  │     │  │  ├─ _menu.scss
 │  │     │  │  └─ _widgets.scss
 │  │     │  └─ _index.scss
@@ -118,6 +136,7 @@ botmanager.site
 │  │  │  └─ welcome.html
 │  │  ├─ macros
 │  │  │  ├─ cards
+│  │  │  │  ├─ botmanager_cards copy.html
 │  │  │  │  ├─ botmanager_cards.html
 │  │  │  │  ├─ dashboard_cards.html
 │  │  │  │  ├─ login_cards.html
@@ -142,10 +161,18 @@ botmanager.site
 │  ├─ prod_config.py
 │  ├─ settings.py
 │  └─ __init__.py
+├─ deploy.sh
+├─ docker-compose.yaml
+├─ Dockerfile
 ├─ instance
 │  └─ users.db
 ├─ migrations
-├─ README copy.md
+│  ├─ alembic.ini
+│  ├─ env.py
+│  ├─ README
+│  ├─ script.py.mako
+│  └─ versions
+│     └─ a04c6e1155c3_initial_migration.py
 ├─ README.md
 ├─ requirements.txt
 ├─ run.py

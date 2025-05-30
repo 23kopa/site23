@@ -10,66 +10,126 @@ def get_botmanager_cards():
             'type': 'text_info',
             'title': 'Скоро...',
             "title_class": "base-title",
-            'content': 'В разработке.',
+            
             'icon': 'info-circle',
+            'content': 'В разработке.',
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card1',
+            'modal_title': '1Заголовок модального окна',
+            'modal_content': '1Подробная информация в модалке',
+
             'position': 'grid'
         },
         {
             'type': 'text_info',
             'title': 'Скоро...',
             "title_class": "base-title",
-            'content': 'В разработке.',
+            
             'icon': 'info-circle',
+            'content': 'В разработке.',
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card2',
+            'modal_title': '2Заголовок модального окна',
+            'modal_content': '2Подробная информация в модалке',
+
             'position': 'grid'
         },
         {
             'type': 'text_info',
             'title': 'Скоро...',
             "title_class": "base-title",
-            'content': 'В разработке.',
+            
             'icon': 'info-circle',
+            'content': 'В разработке.',
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card3',
+            'modal_title': '3Заголовок модального окна',
+            'modal_content': '3Подробная информация в модалке',
+
             'position': 'grid'
         },
         {
-            'type': 'cpu_usage',
+            'type': 'text_info',
             'title': 'Загрузка CPU',
             "title_class": "base-title",
-            'content': 'В разработке.',
+
             'icon': 'microchip',
+            'content': 'В разработке.',
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card4',
+            'modal_title': '4Заголовок модального окна',
+            'modal_content': '4Подробная информация в модалке',
+
             'position': 'grid'
         },
         {
             'type': 'cpu_cores',
             'title': 'Физ. ядра',
             "title_class": "base-title",
-            'content': 'В разработке.', # 'content': f'{get_cpu_cores()[0]}',
+
             'icon': 'microchip',
+            'content': 'В разработке.', # 'content': f'{get_cpu_cores()[0]}',
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card5',
+            'modal_title': '5Заголовок модального окна',
+            'modal_content': '5Подробная информация в модалке',
+
             'position': 'grid'
         },
         {
-            'type': 'nginx',
+            'type': 'text_info',
             'title': 'Состояние Nginx',
             "title_class": "base-title",
-            'content': 'В разработке.', #
+
             'icon': 'server',
+            'content': 'В разработке.', #
+
             'wrapper_class': 'card-info',
             'card_class': 'card-dashboard',
-            'buttons': [],
+
+            'button_class': 'btn-dashboard',
+            'button_text': 'Подробнее',
+            'button_url': '/details',
+
+            'id': 'card6',
+            'modal_title': '6Заголовок модального окна',
+            'modal_content': '6Подробная информация в модалке',
+
             'position': 'grid'
         }
     ]
