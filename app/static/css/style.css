@@ -85,10 +85,8 @@ body::before {
   font-size: 0.8rem;
 }
 .navbar .navbar-logo {
-  /* width: 32px;  */
   width: 70px;
   height: 32px;
-  /* background-color: #28a745;  */
   border-radius: 0%;
   color: white;
   font-weight: 900;
@@ -109,9 +107,13 @@ body::before {
   max-width: 150px;
   transition: all 0.3s ease;
 }
+.navbar .nav-link .link-text {
+  display: none;
+}
 .navbar .nav-link:hover, .navbar .nav-link:focus {
   color: #66ffcc !important;
   text-decoration: none;
+  background-color: rgba(0, 255, 136, 0.1);
   text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88;
 }
 .navbar .navbar-toggler {
@@ -121,6 +123,53 @@ body::before {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(25,135,84,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E"); /* Зеленые полоски */
 }
 
+@media (max-width: 991.98px) {
+  .navbar {
+    height: 70px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .navbar .navbar-collapse {
+    position: absolute;
+    top: 95%;
+    right: 1rem;
+    width: auto;
+    min-width: 180px;
+    background-color: #000 !important;
+    padding: 0 1rem;
+    border: 1px solid #198754;
+    border-radius: 0.5rem;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
+  }
+  .navbar .navbar-collapse.show {
+    padding: 1rem; /* Вернем вертикальные отступы при открытом меню */
+    opacity: 1;
+    max-height: 500px; /* Большое значение, чтобы вместить меню */
+  }
+  .navbar .navbar-collapse .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: #00ff88 !important;
+  }
+  .navbar .navbar-collapse .nav-link .link-text {
+    display: inline;
+  }
+  .navbar .navbar-collapse .nav-link:hover {
+    background-color: rgba(0, 255, 136, 0.1);
+    text-shadow: 0 0 5px #00ff88, 0 0 10px #00ff88;
+  }
+}
 .card-text {
   margin-top: 10px;
   color: #ffffff;
@@ -177,6 +226,12 @@ body::before {
   background: linear-gradient(to right, transparent 0%, #00ffaa 50%, transparent 100%);
 }
 
+@media (max-width: 991.98px) {
+  .page-title {
+    margin-top: 1rem;
+    margin-left: 0px;
+  }
+}
 /* Кнопки */
 .btn-auth {
   text-transform: uppercase; /* Преобразуем текст в заглавные */
