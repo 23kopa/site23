@@ -1,14 +1,16 @@
+from flask_wtf import CSRFProtect
 from flask import Flask, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 from flask_migrate import Migrate
 
+from app.routes.pages_routes import tokens_routes
 from config.settings import Config
-
 
 db = SQLAlchemy()
 login_manager = LoginManager()
-migrate = Migrate() 
+migrate = Migrate()
+csrf = CSRFProtect()
 
 
 def create_app():
@@ -18,6 +20,7 @@ def create_app():
     db.init_app(app)  # Инициализация SQLAlchemy с приложением
     login_manager.init_app(app)
     migrate.init_app(app, db)
+    csrf.init_app(app)
 
     login_manager.login_view = 'auth_routes.login'
 
@@ -35,7 +38,6 @@ def create_app():
 
     from app.routes.pages_routes import (
         profile_routes,
-        botmanager_routes,
         dashboard_routes
     )
 
@@ -43,7 +45,7 @@ def create_app():
     app.register_blueprint(main_routes.bp)
     app.register_blueprint(auth_routes.bp)
     app.register_blueprint(profile_routes.bp)
-    app.register_blueprint(botmanager_routes.bp)
+    app.register_blueprint(tokens_routes.bp)
     app.register_blueprint(dashboard_routes.bp)
 
     EXEMPT_PATHS = [

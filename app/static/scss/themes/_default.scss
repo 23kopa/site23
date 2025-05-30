@@ -1,0 +1,57 @@
+:root {
+    --bg-color: #e9e8e8; //#8e8e8e
+    --page-name: #ffffff; //#cecece
+
+    /* Карточки*/
+    --card-color: #f8f8f8;
+    --title-color: #363636c4;
+    --gradient-bg: linear-gradient(to right, #8fab9e5d 0%, #8fab9e5d 50%, transparent 100%);
+    --text-color: #7676768f;
+
+    /* Navbar */
+    --accent-color: #76767670;
+    --nav-color: #ffffff;
+    --logo-color: #76767670;
+
+    /* Кнопки */
+    --btn-border: #76767670;
+    --btn-label: #76767699;
+
+    /* Модальные окна */
+    --modal-title: #363636c4;
+    --modal-text: #686868c4;
+    --modal-input-label: #c7c7c7e2;
+    --modal-input-border: #76767670;
+    --modal-btn-background: #76767670;
+    --modal-primary-background: #f8f8f8;
+    --modal-secondary-background: #c7c7c767;
+    --modal-accent-color: #00000070;
+
+    /* Авторизация */
+    --auth-title: #363636c4;
+    --auth-primary-text: #686868c4;
+    --auth-secondary-text: #9a9a9a67;
+    --auth-input-label: #9a9a9ae2;
+    --auth-primary-background: #f8f8f8;
+    --auth-secondary-background: #c7c7c767;
+}
+
+[data-theme="light"] {
+    --bg-color: #000000;
+    --page-name: #4545458b;
+
+    /* Карточки*/
+    --card-color: #1e1e1e;
+    --title-color: #00ff8880;
+    --gradient-bg: linear-gradient(to right, #00ff8880 0%, #00ff8880 50%, transparent 100%);
+    --text-color: #ffffff;
+
+    /* Navbar*/
+    --accent-color: #00ff88;
+    --nav-color: #000000;
+    --logo-color: #ffffff;
+
+    /* Кнопки*/
+    --btn-border: #76767670;
+    --btn-label: #94949470;
+}

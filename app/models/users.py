@@ -10,7 +10,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(200), nullable=False)
     avatar = db.Column(db.String(120))
     
-    # Не нужно импортировать Reminder — используем строку
+    role = db.Column(db.String(20), nullable=False, default='user')
+
     reminders = db.relationship('Reminder', back_populates='user', lazy='dynamic')
 
     @property

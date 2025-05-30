@@ -1,8 +1,9 @@
 //! -------------------------- Основной стиль для навбара -------------------------- //
 .navbar {
-    background-color: #000 !important; /* Черный фон */
-    border-bottom: 2px solid #198754; /* Зеленая нижняя граница */
-    height: 50px; // Установи нужную высоту (например, 70px)
+    background-color: var(--nav-color);
+    box-shadow: 0 4px 8px -4px #76767670; /* тень снизу, плавно "смешивается" */
+    border-bottom: none;
+    height: 57px; // Установи нужную высоту (например, 70px)
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
@@ -11,24 +12,23 @@
 
     //! -------------------------- Стили для логотипа (navbar-brand) -------------------------- //
     .navbar-logo {
-        width: 70px;
-        height: 32px;
+        width: 120px;
         border-radius: 0%;
-        color: white;
+        color: var(--logo-color);
         font-weight: 900;
-        font-size: 20px;
+        font-size: 23px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "JetBrains Mono", monospace;
+        font-family: "Fjalla One", sans-serif;
         margin-right: 10px;
     }
 
     //! -------------------------- Стили для ссылок навбара -------------------------- //
     .nav-link {
-        color: #00ff88 !important;
+        color: var(--accent-color) !important;
         font-weight: 500;
-        font-size: 0.8rem;
+        font-size: 17px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -41,6 +41,7 @@
 
         &:hover,
         &:focus {
+            border-radius: 12px;
             color: #66ffcc !important;
             text-decoration: none;
             background-color: rgba(0, 255, 136, 0.1);
@@ -75,7 +76,7 @@
         right: 1rem; // выравнивание по бургеру
         width: auto; // компактная ширина
         min-width: 180px; // задай желаемую минимальную ширину
-        background-color: #000 !important;
+        background-color: var(--nav-color);
         padding: 0 1rem;
         border: 1px solid #198754;
         border-radius: 0.5rem;

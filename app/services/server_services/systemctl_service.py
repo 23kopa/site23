@@ -1,4 +1,4 @@
-import psutil
+""" import psutil
 
 def get_cpu_usage():
     return psutil.cpu_percent(interval=1)
@@ -25,4 +25,4 @@ def get_network_info():
             'recv': net_io.packets_recv,  # Получено пакетов
         },
     }
-    return network_info
+    return network_info """

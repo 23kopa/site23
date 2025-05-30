@@ -1,9 +1,11 @@
+@use "../variables/fonts" as fonts;
+
 body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #000000;
-    font-family: "JetBrains Mono", monospace;
+    background-color: var(--bg-color);
+    font-family: fonts.$font-heading;
     position: relative;
     overflow-y: auto;
 }

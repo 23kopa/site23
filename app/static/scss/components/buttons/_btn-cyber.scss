@@ -1,10 +1,10 @@
 .btn-cyber {
     font-family: monospace;
     font-size: 1.2rem;
-    color: #00ffaa;
+    color: #000000;
     background: transparent;
     padding: 12px 30px;
-    border: 2px solid #00ffaa;
+    border: 2px solid #000000;
     border-radius: 0;
     position: relative;
     overflow: hidden;
@@ -19,7 +19,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: #00ffaa;
+    background: #707070;
     z-index: -1;
     transition: width 0.4s ease-in-out;
 }

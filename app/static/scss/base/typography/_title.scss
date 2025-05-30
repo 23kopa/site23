@@ -1,5 +1,6 @@
 //-- Заголовок страницы
 .page-title {
+    color: var(--page-name);
     font-size: 2rem; /* Немного крупнее */
     font-weight: 700;
     margin-left: 20px;
@@ -7,49 +8,6 @@
     border-image-slice: 1;
     letter-spacing: 0.03em; /* Небольшой межбуквенный интервал */
     text-transform: uppercase; /* Заглавные буквы для акцента */
-}
-
-//-- Заголовок базовой карточки
-.base-title {
-    font-weight: 600;
-    margin-bottom: 10px;
-    position: relative;
-    padding-bottom: 10px; /* отступ между текстом и линией */
-    color: #00ff8880;
-    text-transform: uppercase; /* Заглавные буквы для акцента */
-    letter-spacing: 0.03em;
-}
-
-.base-title::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, #00ff8880 0%, #00ff8880 50%, transparent 100%);
-}
-
-//-- Заголовок карточки авторизации
-.auth-title {
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 600;
-    position: relative;
-    margin-bottom: 12px;
-    padding-bottom: 10px;
-    color: #00ffaa;
-    text-transform: uppercase; /* Заглавные буквы для акцента */
-}
-
-.auth-title::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(to right, transparent 0%, #00ffaa 50%, transparent 100%);
 }
 
 @media (max-width: 991.98px) {

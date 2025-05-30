@@ -12,7 +12,7 @@ def profile():
     center_cards = [c for c in cards if c.get('position') == 'center']
     grid_cards = [c for c in cards if c.get('position') != 'center']
     return render_template(
-        'pages/profile.html',
+        'auth/profile.html',
         cards=cards,
         user=current_user,
         center_cards=center_cards,

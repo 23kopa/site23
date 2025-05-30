@@ -1,3 +1,14 @@
 // Шрифты
-$font-primary: "JetBrains Mono", monospace;
-$font-navbar: "Press Start 2P", cursive;
+
+// Основной шрифт заголовков
+$font-heading: "Oswald", sans-serif;
+
+// Основные шрифты для текста (выберите нужный вариант)
+$font-body-serif: "Merriweather", serif;
+$font-body-sans: "Roboto", sans-serif;
+$font-body-alt: "Open Sans", sans-serif;
+$font-accent: "Lato", sans-serif;
+
+// Моноширинные шрифты для акцентов, кода
+$font-mono-1: "Source Code Pro", monospace;
+$font-mono-2: "Fira Code", monospace;

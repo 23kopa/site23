@@ -1,0 +1,34 @@
+<div class="{{ card.wrapper_class }}">
+    <div class="card {{ card.card_class | default('') }}">
+
+        <div class="card-body pb-3">
+            <h5 class="card-title {{ card.title_class | default('') }}">
+                {{ card.title }}
+            </h5>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ card.form_action }}" class="login-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                {% for field in card.fields %}
+                <div class="input">
+                    <input type="{{ field.type }}" class="form-control" name="{{ field.name }}" id="{{ field.name }}"
+                        placeholder="{{ field.label }}" required>
+                </div>
+                {% endfor %}
+
+                <button type="submit" class="btn {{ card.btn_class | default('') }}">{{ card.submit_text }}</button>
+            </form>
+
+            {% if card.bottom_text %}
+            <p class="mt-4 mb-0 text-center auth-bottom-text">{{ card.bottom_text | safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,13 +1,7 @@
 
 ```
-botmanager.site
-├─ .deploy
-│  ├─ install.sh
-│  ├─ webapp.service
-│  └─ webhook
-│     ├─ webhook.service
-│     ├─ webhook_listener.py
-│     └─ webhook_requirements.txt
+botmanager
+├─ .dockerignore
 ├─ app
 │  ├─ models
 │  │  ├─ reminders.py
@@ -18,16 +12,16 @@ botmanager.site
 │  │  │  ├─ auth_routes.py
 │  │  │  └─ main_routes.py
 │  │  └─ pages_routes
-│  │     ├─ botmanager_routes.py
 │  │     ├─ dashboard_routes.py
-│  │     └─ profile_routes.py
+│  │     ├─ profile_routes.py
+│  │     └─ tokens_routes.py
 │  ├─ services
 │  │  ├─ card_services
-│  │  │  ├─ botmanager_cards_service.py
 │  │  │  ├─ dashboard_cards_service.py
 │  │  │  ├─ login_cards_service.py
 │  │  │  ├─ profile_cards_service.py
-│  │  │  └─ register_cards_service.py
+│  │  │  ├─ register_cards_service.py
+│  │  │  └─ tokens_cards_service.py
 │  │  └─ server_services
 │  │     ├─ ssh_service.py
 │  │     └─ systemctl_service.py
@@ -37,69 +31,40 @@ botmanager.site
 │  │  │  └─ style.css.map
 │  │  ├─ images
 │  │  │  ├─ avatars
-│  │  │  │  ├─ user_1.jpeg
-│  │  │  │  └─ user_1.png
 │  │  │  ├─ default.png
 │  │  │  └─ logo.png
 │  │  ├─ js
-│  │  │  └─ script.js
+│  │  │  └─ main.js
 │  │  └─ scss
 │  │     ├─ abstracts
 │  │     │  ├─ functions
-│  │     │  │  └─ _functions.scss
 │  │     │  ├─ mixins
-│  │     │  │  └─ _mixins.scss
 │  │     │  └─ _index.scss
 │  │     ├─ base
 │  │     │  ├─ elements
-│  │     │  │  ├─ _auth-container.scss
-│  │     │  │  ├─ _content.scss
-│  │     │  │  ├─ _html.scss
-│  │     │  │  ├─ _navbar.scss
-│  │     │  │  └─ _normalize.scss
 │  │     │  ├─ typography
-│  │     │  │  ├─ _headings.scss
-│  │     │  │  ├─ _text.scss
-│  │     │  │  └─ _title.scss
 │  │     │  ├─ utilities
-│  │     │  │  ├─ _display.scss
-│  │     │  │  ├─ _helpers.scss
-│  │     │  │  ├─ _spacing.scss
-│  │     │  │  └─ _visibility.scss
 │  │     │  ├─ variables
-│  │     │  │  ├─ _colors.scss
-│  │     │  │  └─ _fonts.scss
 │  │     │  └─ _index.scss
 │  │     ├─ components
 │  │     │  ├─ buttons
-│  │     │  │  ├─ _btn-auth.scss
-│  │     │  │  └─ _btn-cyber.scss
 │  │     │  ├─ cards
 │  │     │  │  ├─ card_class
-│  │     │  │  │  ├─ _card-auth.scss
-│  │     │  │  │  ├─ _card-dashboard.scss
-│  │     │  │  │  └─ _card-profile.scss
-│  │     │  │  ├─ wrapper_class
-│  │     │  │  │  └─ _card-info.scss
+│  │     │  │  │  ├─ card-auth
+│  │     │  │  │  ├─ card-dashboard
+│  │     │  │  │  └─ card-profile
 │  │     │  │  └─ _cards.scss
+│  │     │  ├─ features
 │  │     │  ├─ forms
-│  │     │  │  ├─ _form-base.scss
-│  │     │  │  └─ _from-auth.scss
 │  │     │  ├─ items
-│  │     │  │  ├─ _input.scss
-│  │     │  │  ├─ _list-group-item.scss
-│  │     │  │  ├─ _modal.scss
-│  │     │  │  └─ _scrollbar.scss
+│  │     │  ├─ modals
+│  │     │  │  └─ modal-base
 │  │     │  └─ _index.scss
 │  │     ├─ layout
 │  │     │  ├─ footer
-│  │     │  │  └─ _base.scss
+│  │     │  ├─ grid
 │  │     │  ├─ header
-│  │     │  │  ├─ _logo.scss
-│  │     │  │  └─ _nav.scss
 │  │     │  ├─ sidebar
-│  │     │  │  ├─ _menu.scss
-│  │     │  │  └─ _widgets.scss
 │  │     │  └─ _index.scss
 │  │     ├─ main.scss
 │  │     ├─ themes
@@ -111,30 +76,29 @@ botmanager.site
 │  ├─ templates
 │  │  ├─ auth
 │  │  │  ├─ login.html
+│  │  │  ├─ profile.html
 │  │  │  └─ register.html
 │  │  ├─ base
 │  │  │  ├─ base.html
 │  │  │  ├─ navbar.html
 │  │  │  └─ welcome.html
-│  │  ├─ macros
+│  │  ├─ components
 │  │  │  ├─ cards
-│  │  │  │  ├─ botmanager_cards.html
-│  │  │  │  ├─ dashboard_cards.html
-│  │  │  │  ├─ login_cards.html
-│  │  │  │  ├─ profile_cards.html
-│  │  │  │  └─ register_cards.html
-│  │  │  ├─ renders
-│  │  │  │  ├─ botmanager_render.html
-│  │  │  │  ├─ dashboard_render.html
-│  │  │  │  ├─ login_render.html
-│  │  │  │  ├─ profile_render.html
-│  │  │  │  └─ register_render.html
+│  │  │  │  ├─ auth
+│  │  │  │  │  ├─ login_card.html
+│  │  │  │  │  ├─ profile_card.html
+│  │  │  │  │  └─ register_card.html
+│  │  │  │  └─ dashboard
+│  │  │  │     ├─ action_card.html
+│  │  │  │     └─ static_card.html
+│  │  │  └─ modals
+│  │  │     └─ action_modal.html
+│  │  ├─ macros
 │  │  │  └─ __init__.html
 │  │  └─ pages
-│  │     ├─ botmanager.html
 │  │     ├─ dashboard.html
 │  │     ├─ edit.html
-│  │     └─ profile.html
+│  │     └─ tokens.html
 │  └─ __init__.py
 ├─ config
 │  ├─ base_config.py
@@ -142,10 +106,15 @@ botmanager.site
 │  ├─ prod_config.py
 │  ├─ settings.py
 │  └─ __init__.py
+├─ docker-compose.yaml
+├─ Dockerfile
 ├─ instance
 │  └─ users.db
 ├─ migrations
-├─ README copy.md
+│  ├─ alembic.ini
+│  ├─ env.py
+│  ├─ README
+│  ├─ script.py.mako
 ├─ README.md
 ├─ requirements.txt
 ├─ run.py

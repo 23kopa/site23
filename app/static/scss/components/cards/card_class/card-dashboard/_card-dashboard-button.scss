@@ -1,0 +1,57 @@
+/* Кнопка-контур, выглядит как единая рамка */
+.btn-dashboard {
+    z-index: 1;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+
+    border: 2px solid var(--btn-border);
+    border-radius: 12px;
+
+    background-color: transparent;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.btn-dashboard-label {
+    z-index: 0;
+    position: relative;
+    text-transform: uppercase;
+    margin-top: 34px;
+    color: var(--btn-label);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition:
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+    background-color: transparent;
+    font-family: "Oswald", sans-serif;
+}
+
+/* Появление при наведении на карточку */
+.card-dashboard:hover .btn-dashboard,
+.card-dashboard:hover .btn-dashboard-label {
+    opacity: 1;
+    pointer-events: auto;
+}

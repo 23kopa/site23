@@ -1,8 +1,7 @@
 {% extends 'base/base.html' %}
-{% import 'macros/renders/register_render.html' as cards %}
 
 {% block content %}
 {% for card in register_cards %}
-{{ cards.render_card(card) }}
+{% include 'components/cards/auth/register_card.html' %}
 {% endfor %}
 {% endblock %}

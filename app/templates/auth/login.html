@@ -1,11 +1,10 @@
 {% extends 'base/base.html' %}
-{% import 'macros/renders/login_render.html' as cards %}
 
 {% block content %}
 <div class="container auth-container">
     <div class="row justify-content-center">
         {% for card in login_cards %}
-        {{ cards.render_card(card) }}
+        {% include 'components/cards/auth/login_card.html' %}
         {% endfor %}
     </div>
 </div>

@@ -1,0 +1,79 @@
+/* ------------------------ МОДАЛЬНОЕ ОКНО ------------------------ */
+
+/* Затемнение заднего фона */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Основной блок модального окна */
+.modal-content {
+    border-radius: 1rem;
+    border: none;
+    background-color: var(--modal-primary-background);
+    color: var(--modal-text);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Заголовок */
+.modal-header {
+    background-color: var(--modal-background);
+    padding: 1rem 1.25rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--modal-title);
+    text-transform: uppercase;
+}
+
+/* Основной текст */
+.modal-body {
+    padding: 1.5rem;
+    font-size: 1rem;
+    color: var(--modal-text);
+}
+
+/* Поля ввода внутри модалки */
+.modal-content input.form-control,
+.modal-content input.form-control:focus {
+    background-color: #ffffff;
+    color: var(--modal-text);
+    border: 1px solid var(--modal-input-border);
+}
+
+/* Блок описания внутри модалки */
+.modal-description {
+    background-color: var(--modal-secondary-background);
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* Кнопки внутри модалки */
+.modal-content .btn {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--modal-input-border);
+    color: var(--modal-text);
+}
+
+.modal-content .btn:hover {
+    background-color: var(--modal-btn-background);
+    color: var(--modal-accent-color);
+}
+
+.modal-content button[type="submit"]:hover {
+    cursor: pointer;
+}
+
+/* Кнопка закрытия */
+.btn-close {
+    background-color: transparent;
+    border: none;
+    color: var(--modal-btn-background);
+    filter: none; /* убрать инверсию */
+}
