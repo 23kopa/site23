@@ -13,9 +13,8 @@
                 </div>
                 {% endif %}
 
-                <form method="POST" action="{{ card.form_action }}" class="modal-form">
+                <form class="modal-form" id="form-{{ card.id }}" action="{{ card.form_action }}">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
                     {% for field in card.fields %}
                     <div class="input mb-3">
                         <label for="{{ field.name }}" class="form-label">{{ field.description }}</label>
@@ -25,9 +24,11 @@
                     </div>
                     {% endfor %}
 
-                    <button type="submit" class="btn {{ card.btn_class | default('') }}">{{ card.submit_text
-                        }}</button>
+                    <button type="submit" class="btn {{ card.btn_class | default('') }}">{{ card.submit_text }}</button>
                 </form>
+
+                <div class="token-result mt-3" id="result-{{ card.id }}"></div>
+
 
             </div>
         </div>

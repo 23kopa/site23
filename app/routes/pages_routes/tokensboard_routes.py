@@ -2,9 +2,9 @@ from flask import Blueprint, render_template
 from flask_login import login_required
 from app.services.card_services.tokens_cards_service import get_tokens_cards
 
-bp = Blueprint('botmanager', __name__)
+bp = Blueprint('tokensboard', __name__)
 
-@bp.route('/tokens')
+@bp.route('/tokensboard')
 @login_required
 def tokens_dashboard():
     cards = get_tokens_cards()

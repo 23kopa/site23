@@ -1,0 +1,16 @@
+<div class="modal fade" id="modal-result-{{ card.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Токен создан</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p>Ссылка на токен:</p>
+                <p><a href="#" target="_blank" id="token-link-{{ card.id }}"></a></p>
+                <button id="manage-btn-{{ card.id }}" class="btn btn-primary">Менеджмент токена</button>
+                <div id="token-info-{{ card.id }}" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+</div>

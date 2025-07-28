@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, current_user
 from flask_migrate import Migrate
 
-from app.routes.pages_routes import tokens_routes
 from config.settings import Config
 
 db = SQLAlchemy()
@@ -38,15 +37,25 @@ def create_app():
 
     from app.routes.pages_routes import (
         profile_routes,
-        dashboard_routes
+        dashboard_routes,
+        tokensboard_routes
+    )
+
+    from app.routes.token_routes import (
+        generate_routes,
+        trigger_routes
     )
 
     # Регистрация blueprint'ов
     app.register_blueprint(main_routes.bp)
     app.register_blueprint(auth_routes.bp)
+
     app.register_blueprint(profile_routes.bp)
-    app.register_blueprint(tokens_routes.bp)
+    app.register_blueprint(tokensboard_routes.bp)
     app.register_blueprint(dashboard_routes.bp)
+
+    app.register_blueprint(generate_routes.bp)
+    app.register_blueprint(trigger_routes.bp)
 
     EXEMPT_PATHS = [
         '/',

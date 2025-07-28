@@ -14,6 +14,8 @@ class User(db.Model, UserMixin):
 
     reminders = db.relationship('Reminder', back_populates='user', lazy='dynamic')
 
+    tokens = db.relationship("Token", back_populates="user")
+
     @property
     def reminders_count(self):
         return self.reminders.count()
