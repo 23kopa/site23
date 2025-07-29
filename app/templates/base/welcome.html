@@ -7,7 +7,7 @@
 {% block content %}
 <canvas id="matrix"></canvas>
 <div class="welcome-container">
-    <h1 id="welcome-title">Добро пожаловать в site23!</h1>
+    <h1 id="welcome-title">Добро пожаловать в TokenGuard!</h1>
     <p id="typing-text"></p>
 
     <div id="buttons-container">
@@ -18,7 +18,7 @@
 </div>
 
 <script>
-    const text = "Управляй ботом, мониторь сервер, запускай задачи!";
+    const text = "Генерируй honeypot-токены, интегрируй в документы, реагируй на утечки!";
     let idx = 0;
     const speed = 70;
     const typingElem = document.getElementById('typing-text');
@@ -39,14 +39,14 @@
 
 <style>
     .welcome-container {
-        color: #000000;
+        color: var(--title-color);
         text-align: center;
         font-family: "JetBrains Mono", monospace;
     }
 
     #welcome-title {
         font-size: 3rem;
-        background: linear-gradient(135deg, #000000, #000000);
+        background: var(--title-color);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 1rem;

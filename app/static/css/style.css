@@ -96,7 +96,7 @@ body::before {
   display: none;
 }
 .navbar .nav-link:hover, .navbar .nav-link:focus {
-  border-radius: 12px;
+  border-radius: 5px;
   color: #66ffcc !important;
   text-decoration: none;
   background-color: rgba(0, 255, 136, 0.1);
@@ -191,10 +191,10 @@ $scrollbar-width: 10px; */
 .btn-cyber {
   font-family: monospace;
   font-size: 1.2rem;
-  color: #000000;
+  color: var(--title-color);
   background: transparent;
   padding: 12px 30px;
-  border: 2px solid #000000;
+  border: 2px solid var(--title-color);
   border-radius: 0;
   position: relative;
   overflow: hidden;
@@ -532,6 +532,55 @@ $scrollbar-width: 10px; */
 
 ::-webkit-scrollbar-vertical {
   width: 8px;
+}
+
+/* Стили для таблицы с информацией о токене */
+.token-info-table {
+  background-color: white !important; /* фон таблицы */
+  border-collapse: separate !important; /* чтобы можно было задать border-radius */
+  border-spacing: 0; /* убираем пробелы между ячейками */
+  border-radius: 8px; /* радиус скругления углов таблицы */
+  overflow: hidden; /* обрезать края, чтобы скругление применялось */
+  /*  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+}
+
+.token-info-table th {
+  color: var(--text-color);
+  font-weight: normal !important;
+}
+
+.token-info-table td {
+  color: var(--modal-text);
+}
+
+.token-info-table th,
+.token-info-table td {
+  background-color: white !important; /* фон ячеек */
+  border: 1px solid #dee2e6; /* как в bootstrap table-bordered */
+  padding: 0.3rem 0.5rem; /* можно подкорректировать */
+  word-break: break-word; /* перенос длинных слов */
+  white-space: normal; /* разрешить перенос строк */
+  max-width: 200px; /* ограничение ширины ячеек */
+}
+
+/* Скругление углов ячеек: 
+   - Верхние левый и правый углы таблицы
+   - Нижние левый и правый углы таблицы
+*/
+.token-info-table tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.token-info-table tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.token-info-table tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.token-info-table tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
 }
 
 /* ------------------------ МОДАЛЬНОЕ ОКНО ------------------------ */

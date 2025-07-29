@@ -1,5 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtualenv
+venv/
+ENV/
 .env
-/venv
-/tests
-**/__pycache__/
+
+# VSCode
 .vscode/
+
+# Tests
+/tests/

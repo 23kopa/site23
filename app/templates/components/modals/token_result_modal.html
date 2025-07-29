@@ -6,9 +6,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
             </div>
             <div class="modal-body">
-                <p>Ссылка на токен:</p>
-                <p><a href="#" target="_blank" id="token-link-{{ card.id }}"></a></p>
-                <button id="manage-btn-{{ card.id }}" class="btn btn-primary">Менеджмент токена</button>
+
+                <div id="token-display-{{ card.id }}" class="mb-3">
+                    <!-- Здесь динамически отобразится либо ссылка, либо QR-код -->
+                </div>
+
+                <button id="manage-btn-{{ card.id }}" class="btn">Менеджмент токена</button>
                 <div id="token-info-{{ card.id }}" class="mt-3"></div>
             </div>
         </div>

@@ -3,26 +3,51 @@
 botmanager
 ├─ .dockerignore
 ├─ app
+│  ├─ extensions
+│  │  └─ redis.py
 │  ├─ models
 │  │  ├─ reminders.py
+│  │  ├─ tokens.py
 │  │  ├─ users.py
 │  │  └─ __init__.py
 │  ├─ routes
-│  │  ├─ index_routes
-│  │  │  ├─ auth_routes.py
-│  │  │  └─ main_routes.py
-│  │  └─ pages_routes
+│  │  ├─ api
+│  │  │  └─ token
+│  │  │     ├─ dns
+│  │  │     ├─ excel
+│  │  │     ├─ image
+│  │  │     ├─ qr
+│  │  │     │  ├─ qr_generate_routes.py
+│  │  │     │  └─ qr_trigger_routes.py
+│  │  │     ├─ web
+│  │  │     │  ├─ creation_web.py
+│  │  │     │  └─ trigger_web.py
+│  │  │     └─ word
+│  │  └─ frontend
+│  │     ├─ auth_routes.py
 │  │     ├─ dashboard_routes.py
 │  │     ├─ profile_routes.py
-│  │     └─ tokens_routes.py
+│  │     ├─ tokensboard_routes.py
+│  │     └─ welcome_routes.py
 │  ├─ services
-│  │  ├─ card_services
+│  │  ├─ card
 │  │  │  ├─ dashboard_cards_service.py
 │  │  │  ├─ login_cards_service.py
 │  │  │  ├─ profile_cards_service.py
 │  │  │  ├─ register_cards_service.py
 │  │  │  └─ tokens_cards_service.py
-│  │  └─ server_services
+│  │  ├─ kv
+│  │  │  └─ redis_store.py
+│  │  ├─ token_engines
+│  │  │  ├─ base_token.py
+│  │  │  ├─ dns_token.py
+│  │  │  ├─ excel_token.py
+│  │  │  ├─ image_token.py
+│  │  │  ├─ qr_token.py
+│  │  │  ├─ web_token.py
+│  │  │  ├─ word_token.py
+│  │  │  └─ __init__.py
+│  │  └─ vps
 │  │     ├─ ssh_service.py
 │  │     └─ systemctl_service.py
 │  ├─ static
@@ -34,6 +59,8 @@ botmanager
 │  │  │  │  ├─ user_1.jpeg
 │  │  │  │  └─ user_1.png
 │  │  │  ├─ default.png
+│  │  │  ├─ gif
+│  │  │  │  └─ spbgut.gif
 │  │  │  └─ logo.png
 │  │  ├─ js
 │  │  │  ├─ cpu.js
@@ -42,7 +69,8 @@ botmanager
 │  │  │  ├─ matrix.js
 │  │  │  ├─ network.js
 │  │  │  ├─ nginx.js
-│  │  │  └─ script.js
+│  │  │  ├─ script.js
+│  │  │  └─ showToken.js
 │  │  └─ scss
 │  │     ├─ abstracts
 │  │     │  ├─ functions
@@ -94,7 +122,8 @@ botmanager
 │  │     │  │  ├─ _form-base.scss
 │  │     │  │  └─ _from-auth.scss
 │  │     │  ├─ items
-│  │     │  │  └─ _scrollbar.scss
+│  │     │  │  ├─ _scrollbar.scss
+│  │     │  │  └─ _tokens_table.scss
 │  │     │  ├─ modals
 │  │     │  │  └─ modal-base
 │  │     │  │     ├─ _modal-base-backdrop.scss
@@ -137,6 +166,7 @@ botmanager
 │  │  ├─ base
 │  │  │  ├─ base.html
 │  │  │  ├─ navbar.html
+│  │  │  ├─ trigger_gif.html
 │  │  │  └─ welcome.html
 │  │  ├─ components
 │  │  │  ├─ cards
@@ -148,7 +178,8 @@ botmanager
 │  │  │  │     ├─ action_card.html
 │  │  │  │     └─ static_card.html
 │  │  │  └─ modals
-│  │  │     └─ action_modal.html
+│  │  │     ├─ action_modal.html
+│  │  │     └─ token_result_modal.html
 │  │  ├─ macros
 │  │  │  └─ __init__.html
 │  │  └─ pages
@@ -191,6 +222,8 @@ botmanager
 │  ├─ README
 │  ├─ script.py.mako
 │  └─ versions
+│     ├─ 19b41ba38d48_add_email_and_alert_message_columns_to_.py
+│     ├─ 7fd4eea37f58_add_tokens_table.py
 │     ├─ a04c6e1155c3_initial_migration.py
 │     └─ c7cb8d6f1375_add_role_column_to_user.py
 ├─ README.md

@@ -14,9 +14,9 @@ csrf = CSRFProtect()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)  # Загружаем конфиг из класса Config
+    app.config.from_object(Config)
 
-    db.init_app(app)  # Инициализация SQLAlchemy с приложением
+    db.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
     csrf.init_app(app)
@@ -30,32 +30,28 @@ def create_app():
         return User.query.get(int(user_id))
 
     # Импорт маршрутов
-    from app.routes.index_routes import (
-        main_routes,
-        auth_routes
-    )
-
-    from app.routes.pages_routes import (
-        profile_routes,
+    from app.routes.frontend import (
+        welcome_routes,
+        auth_routes,
         dashboard_routes,
+        profile_routes,
         tokensboard_routes
     )
 
-    from app.routes.token_routes import (
-        generate_routes,
-        trigger_routes
+    from app.routes.api.token.web import (
+        creation_web,
+        trigger_web
     )
 
     # Регистрация blueprint'ов
-    app.register_blueprint(main_routes.bp)
+    app.register_blueprint(welcome_routes.bp)
     app.register_blueprint(auth_routes.bp)
-
     app.register_blueprint(profile_routes.bp)
     app.register_blueprint(tokensboard_routes.bp)
     app.register_blueprint(dashboard_routes.bp)
 
-    app.register_blueprint(generate_routes.bp)
-    app.register_blueprint(trigger_routes.bp)
+    app.register_blueprint(creation_web.bp, url_prefix='/token_generate')
+    app.register_blueprint(trigger_web.bp, url_prefix='/token')
 
     EXEMPT_PATHS = [
         '/',
@@ -69,7 +65,6 @@ def create_app():
     def require_login():
         if not current_user.is_authenticated:
             path = request.path
-            # Если путь не начинается с одного из исключений — редиректим на логин
             if not any(path.startswith(exempt) for exempt in EXEMPT_PATHS):
                 return redirect(url_for('auth_routes.login'))
 
