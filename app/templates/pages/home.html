@@ -11,7 +11,14 @@
                     <p class="lead text-white-50 mb-4">{{ header.lead_text }}</p>
                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                         {% for btn in header.buttons %}
+                        {% if btn.data_bs_toggle %}
+                        <button class="{{ btn.class }}" data-bs-toggle="{{ btn.data_bs_toggle }}"
+                            data-bs-target="{{ btn.data_bs_target }}">
+                            {{ btn.text }}
+                        </button>
+                        {% else %}
                         <a class="{{ btn.class }}" href="{{ btn.href }}">{{ btn.text }}</a>
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -65,4 +72,12 @@
     </div>
 </div> -->
 
+{% endblock %}
+
+{% block modals %}
+{% include 'components/modals/token_select_modal.html' %}
+{% for card in token_select_cards %}
+{% include 'components/modals/token_generate_modal.html' %}
+{% include 'components/modals/token_result_modal.html' %}
+{% endfor %}
 {% endblock %}

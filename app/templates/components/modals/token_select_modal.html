@@ -1,0 +1,27 @@
+<div class="modal fade" id="tokenSelectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Выберите вид токена</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                    {% for card in token_select_cards %}
+                    <div class="col">
+                        <a class="card token-card small-card h-100 text-center p-3 shadow d-flex flex-column text-decoration-none text-dark"
+                            href="#" data-bs-target="#modal-{{ card.id }}" data-bs-toggle="modal"
+                            data-bs-dismiss="modal">
+                            <i class="bi bi-{{ card.icon }} fs-1 mb-3"></i>
+                            <h5>{{ card.title }}</h5>
+                            <p class="text-muted flex-grow-1">{{ card.content }}</p>
+                        </a>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ def tokens_dashboard():
     cards = get_tokens_cards()
     modals = get_tokens_modals()
 
-    # Объединяем карточки с соответствующими модалками
+    # Объединяем карточки с модалками
     for card in cards:
         modal_data = modals.get(card['id'])
         if modal_data:

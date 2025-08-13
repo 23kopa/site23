@@ -160,8 +160,18 @@ $scrollbar-width: 10px; */
 
 /* Карточки */
 /* Общий стиль карточек */
+/* Общий стиль карточек */
 .token-card {
   max-height: 250px;
+  border: 2px solid transparent; /* чтобы не прыгала при наведении */
+  border-radius: 1.5rem; /* эквивалент rounded-5 */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ховер эффект */
+.token-card:hover {
+  border-color: #0d6efd; /* bootstrap-синий */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Иконка */
@@ -180,20 +190,13 @@ $scrollbar-width: 10px; */
 
 /* Контент */
 .token-card .card-text {
-  font-size: 0.95rem;
-  text-align: center;
+  height: 3rem; /* пример, под 2 строки текста */
+  line-height: 1.5rem;
+  overflow: hidden;
 }
 
 .text-muted {
   color: var(--card-secondary-text) !important;
-}
-
-/* Подпись к кнопке */
-.btn-dashboard-label {
-  font-size: 0.85rem;
-  color: var(--card-button-label);
-  text-align: center;
-  margin-top: 0.25rem;
 }
 
 /* Уменьшение карточки */
