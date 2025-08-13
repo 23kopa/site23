@@ -1,0 +1,37 @@
+/* Общий стиль карточек */
+
+.token-card {
+    max-height: 250px;
+}
+
+/* Иконка */
+.token-card .bi {
+    font-size: 4rem;
+    color: var(--card-primary-text);
+}
+
+/* Заголовок */
+.token-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Контент */
+.token-card .card-text {
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.text-muted {
+    color: var(--card-secondary-text) !important;
+}
+
+/* Подпись к кнопке */
+.btn-dashboard-label {
+    font-size: 0.85rem;
+    color: var(--card-button-label);
+    text-align: center;
+    margin-top: 0.25rem;
+}

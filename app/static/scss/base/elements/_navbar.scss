@@ -1,32 +1,9 @@
 //! -------------------------- Основной стиль для навбара -------------------------- //
 .navbar {
-    background-color: var(--nav-color);
-    box-shadow: 0 4px 8px -4px #76767670; /* тень снизу, плавно "смешивается" */
-    border-bottom: none;
-    height: 57px; // Установи нужную высоту (например, 70px)
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem; // Меньший шрифт для всей навигации
-
-    //! -------------------------- Стили для логотипа (navbar-brand) -------------------------- //
-    .navbar-logo {
-        width: 120px;
-        border-radius: 0%;
-        color: var(--logo-color);
-        font-weight: 900;
-        font-size: 23px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Fjalla One", sans-serif;
-        margin-right: 10px;
-    }
-
     //! -------------------------- Стили для ссылок навбара -------------------------- //
     .nav-link {
-        color: var(--accent-color) !important;
+        /* color: var(--accent-color) !important; */
+        color: #4b4b4b70 !important;
         font-weight: 500;
         font-size: 17px;
         white-space: nowrap;
@@ -44,79 +21,17 @@
             border-radius: 5px;
             color: #66ffcc !important;
             text-decoration: none;
-            background-color: rgba(0, 255, 136, 0.1);
-            text-shadow:
-                0 0 5px #00ff88,
-                0 0 10px #00ff88;
-        }
-    }
-
-    //! -------------------------- Стили для кнопки-бургера -------------------------- //
-    .navbar-toggler {
-        border-color: #198754; /* Зеленая рамка */
-
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(25,135,84,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/ %3E%3C/svg%3E"); /* Зеленые полоски */
+            background-color: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 5px #ffffff;
         }
     }
 }
 
-@media (max-width: 991.98px) {
-    .navbar {
-        height: 70px;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
+.navbar .navbar-brand {
+    color: #4b4b4b70 !important; /* или любой другой нужный цвет */
+    font-weight: bold; /* при необходимости */
 }
-
-@media (max-width: 991.98px) {
-    .navbar .navbar-collapse {
-        position: absolute;
-        top: 95%; // под navbar
-        right: 1rem; // выравнивание по бургеру
-        width: auto; // компактная ширина
-        min-width: 180px; // задай желаемую минимальную ширину
-        background-color: var(--nav-color);
-        padding: 0 1rem;
-        border: 1px solid #198754;
-        border-radius: 0.5rem;
-        z-index: 1000; // чтобы перекрывало контент
-        box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2); // необязательно
-
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-
-        transition:
-            max-height 0.4s ease,
-            opacity 0.4s ease,
-            padding 0.4s ease;
-    }
-
-    .navbar .navbar-collapse.show {
-        padding: 1rem; /* Вернем вертикальные отступы при открытом меню */
-        opacity: 1;
-        max-height: 500px; /* Большое значение, чтобы вместить меню */
-    }
-
-    .navbar .navbar-collapse .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 0.3rem;
-        font-size: 1rem;
-        color: #00ff88 !important;
-
-        .link-text {
-            display: inline;
-        }
-
-        &:hover {
-            background-color: rgba(0, 255, 136, 0.1);
-            text-shadow:
-                0 0 5px #00ff88,
-                0 0 10px #00ff88;
-        }
-    }
+.navbar .navbar-brand:hover {
+    color: #ffffff !important; /* например, белый при наведении */
+    text-shadow: 0 0 5px #66ffcc; /* при желании */
 }

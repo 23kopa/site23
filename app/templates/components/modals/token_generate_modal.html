@@ -1,0 +1,55 @@
+<div class="modal fade" id="modal-{{ card.id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ card.modal_title or card.title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+
+                {% if card.modal_description %}
+                <div class="modal-description mb-3 p-3">
+                    {{ card.modal_description }}
+                </div>
+                {% endif %}
+
+                <form class="modal-form" id="form-{{ card.id }}" action="{{ card.form_action or '#' }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    {# Установка значений по умолчанию, если они не заданы #}
+                    {% set submit_text = card.submit_text or 'Создать' %}
+                    {% set btn_class = card.btn_class or 'btn-primary' %}
+                    {% set fields = card.fields or [
+                    {
+                    'type': 'email',
+                    'name': 'email',
+                    'label': 'Email',
+                    'description': 'Введите ваш Email для уведомлений',
+                    'required': True
+                    },
+                    {
+                    'type': 'text',
+                    'name': 'alert_message',
+                    'label': 'Сообщение',
+                    'description': 'Сообщение, которое придёт при срабатывании',
+                    'required': False
+                    }
+                    ] %}
+
+                    {% for field in fields %}
+                    <div class="input mb-3">
+                        <label for="{{ field.name }}" class="form-label">{{ field.description }}</label>
+                        <input type="{{ field.type }}" class="form-control" name="{{ field.name }}"
+                            id="{{ field.name }}" placeholder="{{ field.label }}" {% if field.required %}required{%
+                            endif %}>
+                    </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn {{ btn_class }}">{{ submit_text }}</button>
+                </form>
+
+                <div class="token-result mt-3" id="result-{{ card.id }}"></div>
+            </div>
+        </div>
+    </div>
+</div>

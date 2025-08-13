@@ -1,8 +1,9 @@
 import redis
 
 r = redis.Redis(
-    host='172.26.2.84', # IP-адрес WSL-инстанса
+    host='127.0.0.1',
     port=6379,
     db=0,
+    password='user23redis',
     decode_responses=True
 )

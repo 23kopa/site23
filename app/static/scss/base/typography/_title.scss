@@ -1,18 +1,4 @@
 //-- Заголовок страницы
-.page-title {
-    color: var(--page-name);
-    font-size: 2rem; /* Немного крупнее */
-    font-weight: 700;
-    margin-left: 20px;
-    padding-left: 15px;
-    border-image-slice: 1;
-    letter-spacing: 0.03em; /* Небольшой межбуквенный интервал */
-    text-transform: uppercase; /* Заглавные буквы для акцента */
-}
-
-@media (max-width: 991.98px) {
-    .page-title {
-        margin-top: 1rem;
-        margin-left: 0px;
-    }
+.base-primary-text {
+    color: var(--base-primary-text);
 }

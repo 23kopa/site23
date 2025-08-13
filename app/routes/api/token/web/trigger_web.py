@@ -1,7 +1,6 @@
 import requests
 from app.services.kv.redis_store import get_token, update_token
 from flask import Blueprint, jsonify, request, render_template
-from app.models.tokens import Token
 from datetime import datetime
 from flask_login import login_required
 
@@ -17,7 +16,7 @@ def process_token_trigger(token_uid):
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     if ip and ',' in ip:
         ip = ip.split(',')[0].strip()
-    if ip in ('127.0.0.1', '10.8.1.2', '172.20.10.3'):
+    if ip in ('127.0.0.1', '10.8.1.2', '192.168.106.85'):
         ip = '185.22.172.242'  # заглушка
 
     user_agent = request.headers.get("User-Agent")
@@ -55,7 +54,6 @@ def trigger(token_uid):
 
 # Эндпоинт для получения информации о токене в JSON
 @bp.route('/api/token_info/<token_uid>', methods=['GET'])
-@login_required
 def token_info(token_uid):
     token_data = get_token(token_uid)
     if not token_data:

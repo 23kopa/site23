@@ -2,8 +2,11 @@
     --bg-color: #e9e8e8; //#8e8e8e
     --page-name: #ffffff; //#cecece
 
+    /* Карточки*/
+    --card-color: #f8f8f8;
     --title-color: #363636c4;
     --gradient-bg: linear-gradient(to right, #8fab9e5d 0%, #8fab9e5d 50%, transparent 100%);
+    --text-color: #7676768f;
 
     /* Navbar */
     --accent-color: #76767670;
@@ -31,28 +34,24 @@
     --auth-input-label: #9a9a9ae2;
     --auth-primary-background: #f8f8f8;
     --auth-secondary-background: #c7c7c767;
+}
 
-    /* ============ */
+[data-theme="light"] {
+    --bg-color: #000000;
+    --page-name: #4545458b;
 
-    --base-primary-text: #32383d;
-    --base-secondary-text: #b2b2b2;
-    --base-background: ;
+    /* Карточки*/
+    --card-color: #1e1e1e;
+    --title-color: #00ff8880;
+    --gradient-bg: linear-gradient(to right, #00ff8880 0%, #00ff8880 50%, transparent 100%);
+    --text-color: #ffffff;
 
-    --header-title: #f8f8f8;
-    --header-text: ;
+    /* Navbar*/
+    --accent-color: #00ff88;
+    --nav-color: #000000;
+    --logo-color: #ffffff;
 
-    --card-label: ;
-    --card-background: #f8f8f8;
-    --card-icon: #212529;
-    --card-primary-text: #212529;
-    --card-secondary-text: #b2b2b2;
-    --card-button-label: #6c757d;
-
-    --modal-label: ;
-    --modal-background: #f8f8f8;
-    --modal-primary-text: #7676768f;
-    --modal-secondary--text: #7676768f;
-
-    --nav-background: ;
-    --nav-items: ;
+    /* Кнопки*/
+    --btn-border: #76767670;
+    --btn-label: #94949470;
 }

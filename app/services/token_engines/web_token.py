@@ -44,7 +44,7 @@ class WebTokenService(BaseTokenService):
         ip = request.headers.get('X-Forwarded-For', request.remote_addr)
         if ip and ',' in ip:
             ip = ip.split(',')[0].strip()
-        if ip in ('127.0.0.1', '10.8.1.2', '172.20.10.3'):
+        if ip in ('127.0.0.1', '10.8.1.2', '192.168.106.85'):
             ip = '185.22.172.242'  # заглушка
 
         user_agent = request.headers.get("User-Agent")

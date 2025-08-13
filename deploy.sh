@@ -1,35 +1,45 @@
 #!/bin/bash
 
-# Включаем логирование всего вывода в файл
-exec > /var/log/deploy.log 2>&1
-echo "===== DEPLOY START: $(date) ====="
-echo "👤 Скрипт выполняется от пользователя: $(whoami)"
+# Файл логов
+LOG_FILE="/var/log/deploy.log"
+
+# Функция для вывода сообщений одновременно в терминал и лог
+log() {
+    echo -e "$1" | tee -a "$LOG_FILE"
+}
+
+log "===== DEPLOY START: $(date) ====="
+log "👤 Скрипт выполняется от пользователя: $(whoami)"
 
 # Пути
-PROJECT_DIR="/var/www/botmanager"
-SERVICE_NAME="botmanager"
+PROJECT_DIR="/var/www/tokenguard"
+SERVICE_NAME="tokenguard"
+GIT_BRANCH="design-update"  # корректное имя ветки
 
 # Переход в директорию проекта
-echo "📁 Переход в директорию $PROJECT_DIR"
-cd "$PROJECT_DIR" || { echo "❌ Ошибка: не удалось перейти в $PROJECT_DIR"; exit 1; }
+log "📁 Переход в директорию $PROJECT_DIR"
+cd "$PROJECT_DIR" || { log "❌ Ошибка: не удалось перейти в $PROJECT_DIR"; exit 1; }
 
-# Получение последних изменений из origin/main
-echo "📥 Получение обновлений из git..."
-git fetch origin
-git reset --hard origin/main
+# Проверка ветки и обновление
+log "📥 Получение обновлений из git..."
+git fetch origin || log "⚠️ Ошибка git fetch, продолжаем..."
+if git show-ref --verify --quiet "refs/remotes/origin/$GIT_BRANCH"; then
+    git reset --hard "origin/$GIT_BRANCH" || log "⚠️ Ошибка git reset, продолжаем..."
+else
+    log "⚠️ Ветка origin/$GIT_BRANCH не найдена, пропускаем git reset"
+fi
 
 # Очистка неотслеживаемых файлов, кроме исключений
-echo "🧹 Очистка untracked файлов (venv, .env и т.д. сохраняются)"
-git clean -fd -e venv -e .env -e .git -e .gitignore -e deploy.sh
+log "🧹 Очистка untracked файлов (venv, .env и т.д. сохраняются)"
+git clean -fd -e tokenguard_venv -e .env -e .git -e .gitignore -e deploy.sh || log "⚠️ Ошибка git clean, продолжаем..."
 
 # Перезапуск сервиса
-echo "🔁 Перезапуск сервиса $SERVICE_NAME..."
+log "🔁 Перезапуск сервиса $SERVICE_NAME..."
 if systemctl restart "$SERVICE_NAME"; then
-    echo "✅ Сервис $SERVICE_NAME успешно перезапущен"
+    log "✅ Сервис $SERVICE_NAME успешно перезапущен"
 else
-    echo "❌ Ошибка при перезапуске сервиса $SERVICE_NAME"
+    log "❌ Ошибка при перезапуске сервиса $SERVICE_NAME"
     exit 1
 fi
 
-# Завершение
-echo "✅ DEPLOY FINISHED: $(date)"
+log "✅ DEPLOY FINISHED: $(date)"

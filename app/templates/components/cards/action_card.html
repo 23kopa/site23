@@ -1,0 +1,21 @@
+<div class="element">
+    <div class="card token-card small-card border-0 shadow rounded-5 {{ card.card_class | default('') }}">
+        <div class="card-body p-4 text-center">
+            {% if card.icon %}
+            <div class="text-primary text-center">
+                <i class="bi bi-{{ card.icon }}"></i>
+            </div>
+            {% endif %}
+            <h5 class="card-title {{ card.title_class | default('') }}">{{ card.title }}</h5>
+            <!-- <hr class="bg-danger border-2 border-top border-danger" /> -->
+            <p class="card-text text-muted">{{ card.content | safe }}</p>
+
+            {% if card.button_text and card.button_url %}
+            <button type="button" class="{{ card.button_class or 'btn-card' }}" role="button" data-bs-toggle="modal"
+                data-bs-target="#modal-{{ card.id }}">
+                {{ card.button_text }}
+            </button>
+            {% endif %}
+        </div>
+    </div>
+</div>

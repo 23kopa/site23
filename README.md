@@ -17,25 +17,25 @@ botmanager
 │  │  │     ├─ excel
 │  │  │     ├─ image
 │  │  │     ├─ qr
-│  │  │     │  ├─ qr_generate_routes.py
-│  │  │     │  └─ qr_trigger_routes.py
+│  │  │     │  ├─ creation_qr.py
+│  │  │     │  └─ trigger_qr.py
 │  │  │     ├─ web
 │  │  │     │  ├─ creation_web.py
 │  │  │     │  └─ trigger_web.py
 │  │  │     └─ word
 │  │  └─ frontend
-│  │     ├─ auth_routes.py
-│  │     ├─ dashboard_routes.py
-│  │     ├─ profile_routes.py
-│  │     ├─ tokensboard_routes.py
-│  │     └─ welcome_routes.py
+│  │     ├─ home_routes.py
+│  │     └─ tokensboard_routes.py
 │  ├─ services
-│  │  ├─ card
-│  │  │  ├─ dashboard_cards_service.py
-│  │  │  ├─ login_cards_service.py
-│  │  │  ├─ profile_cards_service.py
-│  │  │  ├─ register_cards_service.py
-│  │  │  └─ tokens_cards_service.py
+│  │  ├─ content
+│  │  │  ├─ components
+│  │  │  │  ├─ cards
+│  │  │  │  │  └─ tokens_cards.py
+│  │  │  │  └─ modals
+│  │  │  │     └─ tokens_modals.py
+│  │  │  └─ pages
+│  │  │     ├─ home_content.py
+│  │  │     └─ tokens_content.py
 │  │  ├─ kv
 │  │  │  └─ redis_store.py
 │  │  ├─ token_engines
@@ -60,7 +60,9 @@ botmanager
 │  │  │  │  └─ user_1.png
 │  │  │  ├─ default.png
 │  │  │  ├─ gif
+│  │  │  │  ├─ homegif.gif
 │  │  │  │  └─ spbgut.gif
+│  │  │  ├─ icons
 │  │  │  └─ logo.png
 │  │  ├─ js
 │  │  │  ├─ cpu.js
@@ -99,40 +101,22 @@ botmanager
 │  │     │  └─ _index.scss
 │  │     ├─ components
 │  │     │  ├─ buttons
-│  │     │  │  ├─ _btn-cyber.scss
-│  │     │  │  └─ _btn-theme.scss
+│  │     │  │  └─ _btn-card.scss
 │  │     │  ├─ cards
 │  │     │  │  ├─ card_class
-│  │     │  │  │  ├─ card-auth
-│  │     │  │  │  │  ├─ _card-auth-bottomtext.scss
-│  │     │  │  │  │  ├─ _card-auth-button.scss
-│  │     │  │  │  │  ├─ _card-auth-placeholder.scss
-│  │     │  │  │  │  ├─ _card-auth-title.scss
-│  │     │  │  │  │  └─ _card-auth.scss
-│  │     │  │  │  ├─ card-dashboard
-│  │     │  │  │  │  ├─ _card-dashboard-button.scss
-│  │     │  │  │  │  ├─ _card-dashboard-text.scss
-│  │     │  │  │  │  ├─ _card-dashboard-title.scss
-│  │     │  │  │  │  └─ _card-dashboard.scss
-│  │     │  │  │  └─ card-profile
-│  │     │  │  │     └─ _card-profile.scss
-│  │     │  │  └─ _cards.scss
-│  │     │  ├─ features
+│  │     │  │  │  └─ _card-token.scss
+│  │     │  │  └─ card_type
+│  │     │  │     └─ _card-small.scss
 │  │     │  ├─ forms
-│  │     │  │  ├─ _form-base.scss
-│  │     │  │  └─ _from-auth.scss
+│  │     │  │  └─ _form-base.scss
 │  │     │  ├─ items
+│  │     │  │  ├─ _bg-dark.scss
+│  │     │  │  ├─ _features.scss
+│  │     │  │  ├─ _header.scss
 │  │     │  │  ├─ _scrollbar.scss
 │  │     │  │  └─ _tokens_table.scss
 │  │     │  ├─ modals
 │  │     │  │  └─ modal-base
-│  │     │  │     ├─ _modal-base-backdrop.scss
-│  │     │  │     ├─ _modal-base-body.scss
-│  │     │  │     ├─ _modal-base-button.scss
-│  │     │  │     ├─ _modal-base-close.scss
-│  │     │  │     ├─ _modal-base-description.scss
-│  │     │  │     ├─ _modal-base-placeholder.scss
-│  │     │  │     ├─ _modal-base-title.scss
 │  │     │  │     └─ _modal-base.scss
 │  │     │  └─ _index.scss
 │  │     ├─ layout
@@ -154,15 +138,12 @@ botmanager
 │  │     ├─ main.scss
 │  │     ├─ themes
 │  │     │  ├─ _default.scss
+│  │     │  ├─ _default_original.scss
 │  │     │  └─ _index.scss
 │  │     └─ vendors
 │  │        ├─ _bootstrap.scss
 │  │        └─ _index.scss
 │  ├─ templates
-│  │  ├─ auth
-│  │  │  ├─ login.html
-│  │  │  ├─ profile.html
-│  │  │  └─ register.html
 │  │  ├─ base
 │  │  │  ├─ base.html
 │  │  │  ├─ navbar.html
@@ -170,21 +151,16 @@ botmanager
 │  │  │  └─ welcome.html
 │  │  ├─ components
 │  │  │  ├─ cards
-│  │  │  │  ├─ auth
-│  │  │  │  │  ├─ login_card.html
-│  │  │  │  │  ├─ profile_card.html
-│  │  │  │  │  └─ register_card.html
-│  │  │  │  └─ dashboard
-│  │  │  │     ├─ action_card.html
-│  │  │  │     └─ static_card.html
+│  │  │  │  ├─ action_card.html
+│  │  │  │  └─ static_card.html
 │  │  │  └─ modals
-│  │  │     ├─ action_modal.html
-│  │  │     └─ token_result_modal.html
+│  │  │     ├─ token_generate_modal.html
+│  │  │     ├─ token_result_modal.html
+│  │  │     └─ token_select_moda.html
 │  │  ├─ macros
 │  │  │  └─ __init__.html
 │  │  └─ pages
-│  │     ├─ dashboard.html
-│  │     ├─ edit.html
+│  │     ├─ home.html
 │  │     └─ tokens.html
 │  └─ __init__.py
 ├─ config

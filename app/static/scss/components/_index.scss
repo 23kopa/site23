@@ -1,35 +1,14 @@
 /* Кнопки */
-@forward "buttons/btn-cyber";
-@forward "buttons/btn-theme";
+@forward "buttons/btn-card";
 
 /* Карточки */
-@forward "cards/cards";
-
-@forward "cards/card_class/card-auth/card-auth";
-@forward "cards/card_class/card-auth/card-auth-title";
-@forward "cards/card_class/card-auth/card-auth-placeholder";
-@forward "cards/card_class/card-auth/card-auth-bottomtext";
-@forward "cards/card_class/card-auth/card-auth-button";
-
-@forward "cards/card_class/card-dashboard/card-dashboard";
-@forward "cards/card_class/card-dashboard/card-dashboard-title";
-@forward "cards/card_class/card-dashboard/card-dashboard-text";
-@forward "cards/card_class/card-dashboard/card-dashboard-button";
-
-@forward "cards/card_class/card-profile/card-profile";
-
-/* Формы */
-@forward "forms/form-base";
-@forward "forms/from-auth";
+@forward "cards/card_class/card-token";
+@forward "cards/card_type/card-small";
 
 @forward "items/scrollbar";
 @forward "items/tokens_table";
+@forward "items/bg-dark";
+@forward "items/features";
+@forward "items/header";
 
 @forward "modals/modal-base/modal-base";
-@forward "modals/modal-base/modal-base-title";
-@forward "modals/modal-base/modal-base-placeholder";
-@forward "modals/modal-base/modal-base-description";
-@forward "modals/modal-base/modal-base-close";
-@forward "modals/modal-base/modal-base-button";
-@forward "modals/modal-base/modal-base-body";
-@forward "modals/modal-base/modal-base-backdrop";

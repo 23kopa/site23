@@ -1,0 +1,57 @@
+def get_tokens_cards():
+    return [
+        {
+            'id': 'security',
+            'title': 'Web bug',
+            'icon': 'shield-lock',
+            'content': 'Уведомление при открытии URL.',
+            'button_text': 'Сгенерировать',
+            'button_url': '#',
+            'button_class': '',
+        },
+        {
+            'id': 'card2',
+            'title': 'QR code',
+            'icon': 'qr-code',
+            'content': 'Уведомление при сканировании QR-кода.',
+            'button_text': 'Сгенерировать',
+            'button_url': '/details',
+            'button_class': '',
+        },
+        {
+            'id': 'card3',
+            'title': 'DNS',
+            'icon': 'diagram-3',
+            'content': 'Уведомление при DNS-запросе.',
+            'button_text': 'Сгенерировать',
+            'button_url': '/details',
+            'button_class': '',
+        },
+        {
+            'id': 'card4',
+            'title': 'Microsoft Word',
+            'icon': 'file-earmark-word',
+            'content': 'Уведомление при открытии Word-файла.',
+            'button_text': 'Сгенерировать',
+            'button_url': '/details',
+            'button_class': '',
+        },
+        {
+            'id': 'card5',
+            'title': 'Microsoft Excel',
+            'icon': 'file-earmark-excel',
+            'content': 'Уведомление при открытии Excel-файла.',
+            'button_text': 'Сгенерировать',
+            'button_url': '/details',
+            'button_class': '',
+        },
+        {
+            'id': 'card6',
+            'title': 'Web image',
+            'icon': 'image',
+            'content': 'Уведомление при просмотре изображения.',
+            'button_text': 'Сгенерировать',
+            'button_url': '/details',
+            'button_class': '',
+        }
+    ]

@@ -1,0 +1,8 @@
+.gradient-header {
+    background: linear-gradient(to bottom, #495057, #343a40, #212529);
+}
+
+.gradient-header > nav,
+.gradient-header > header {
+    background: transparent !important;
+}

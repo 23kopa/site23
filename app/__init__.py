@@ -1,7 +1,7 @@
 from flask_wtf import CSRFProtect
-from flask import Flask, redirect, url_for, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 from flask_migrate import Migrate
 
 from config.settings import Config
@@ -21,7 +21,7 @@ def create_app():
     migrate.init_app(app, db)
     csrf.init_app(app)
 
-    login_manager.login_view = 'auth_routes.login'
+    login_manager.login_view = 'auth.login'
 
     from app.models.users import User
 
@@ -31,10 +31,7 @@ def create_app():
 
     # Импорт маршрутов
     from app.routes.frontend import (
-        welcome_routes,
-        auth_routes,
-        dashboard_routes,
-        profile_routes,
+        home_routes,
         tokensboard_routes
     )
 
@@ -44,28 +41,10 @@ def create_app():
     )
 
     # Регистрация blueprint'ов
-    app.register_blueprint(welcome_routes.bp)
-    app.register_blueprint(auth_routes.bp)
-    app.register_blueprint(profile_routes.bp)
     app.register_blueprint(tokensboard_routes.bp)
-    app.register_blueprint(dashboard_routes.bp)
+    app.register_blueprint(home_routes.bp)
 
     app.register_blueprint(creation_web.bp, url_prefix='/token_generate')
     app.register_blueprint(trigger_web.bp, url_prefix='/token')
-
-    EXEMPT_PATHS = [
-        '/',
-        '/login',
-        '/register',
-        '/static/',
-        '/welcome',
-    ]
-
-    @app.before_request
-    def require_login():
-        if not current_user.is_authenticated:
-            path = request.path
-            if not any(path.startswith(exempt) for exempt in EXEMPT_PATHS):
-                return redirect(url_for('auth_routes.login'))
 
     return app
